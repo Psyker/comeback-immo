@@ -9,7 +9,9 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="home")
+     * @Route("/", name="app_front_home")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction(Request $request)
     {
@@ -18,7 +20,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/contact", name="contact")
+     * @Route("/contact", name="app_front_contact")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function contactAction()
@@ -27,7 +29,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/about-us", name="about")
+     * @Route("/about-us", name="app_front_about")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function aboutAction()
