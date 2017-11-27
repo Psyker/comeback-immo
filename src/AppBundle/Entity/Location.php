@@ -21,6 +21,13 @@ class Location
      */
     private $id;
 
+    /**
+     * @var Property $property
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Property", inversedBy="location")
+     * @ORM\JoinColumn(name="property_id", referencedColumnName="aff_id")
+     */
+    private $property;
+
 
     /**
      * Get id

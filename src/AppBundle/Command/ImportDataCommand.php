@@ -29,6 +29,6 @@ class ImportDataCommand extends ContainerAwareCommand
         $xml = simplexml_load_string($res->getBody()->getContents(), 'SimpleXMLElement', LIBXML_NOCDATA);
         $arrayData = json_decode(json_encode((array)$xml), true);
 
-        dump($arrayData['BIEN'][0]['INFO_GENERALES']);exit;
+        dump($arrayData['BIEN'][0]);exit;
     }
 }
