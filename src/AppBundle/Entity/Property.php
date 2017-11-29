@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Interfaces\PropertyInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,8 +11,11 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="property")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PropertyRepository")
  */
-class Property
+class Property implements PropertyInterface
 {
+    CONST PROPERTY_HOUSE = 'house';
+    CONST PROPERTY_APARTMENT = 'appartement';
+
     /**
      * @var int
      *
@@ -26,6 +30,12 @@ class Property
      * @ORM\Column(name="title", type="string")
      */
     private $title;
+
+    /**
+     * @var string $type
+     * @ORM\Column(name="type", type="string")
+     */
+    private $type;
 
     /**
      * @var string $description
@@ -90,6 +100,13 @@ class Property
         return $this->affId;
     }
 
+    public function setAffId(int $affId)
+    {
+        $this->affId = $affId;
+
+        return $this;
+    }
+
     /**
      * @return string
      */
@@ -137,10 +154,10 @@ class Property
     }
 
     /**
-     * @param Location $location
+     * @param PropertyInterface $location
      * @return Property
      */
-    public function setLocation($location)
+    public function setLocation(PropertyInterface $location)
     {
         $this->location = $location;
 
@@ -156,10 +173,10 @@ class Property
     }
 
     /**
-     * @param PropertyInside $propertyInside
+     * @param PropertyInterface $propertyInside
      * @return Property
      */
-    public function setPropertyInside($propertyInside)
+    public function setPropertyInside(PropertyInterface $propertyInside)
     {
         $this->propertyInside = $propertyInside;
 
@@ -259,5 +276,44 @@ class Property
         $this->updatedAt = $updatedAt;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     * @return Property
+     */
+    public function setType(string $type): Property
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function setAttribute($callback, $value)
+    {
+        $this->$callback($value);
+
+        return $this;
+    }
+
+    public function set(string $functionName, $value): PropertyInterface
+    {
+
+        $this->$functionName($value);
+
+        return $this;
+    }
+
+    public function get(string $functionName): PropertyInterface
+    {
+        // TODO: Implement get() method.
     }
 }

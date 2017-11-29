@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Interfaces\PropertyInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="property_inside")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PropertyInsideRepository")
  */
-class PropertyInside
+class PropertyInside implements PropertyInterface
 {
     /**
      * @var int
@@ -69,6 +70,12 @@ class PropertyInside
      * @ORM\Column(name="heating_type", type="string")
      */
     private $heatingType;
+
+    /**
+     * @var int $floorNumber
+     * @ORM\Column(name="floor_number", type="integer")
+     */
+    private $floorNumber;
 
 
     /**
@@ -231,5 +238,36 @@ class PropertyInside
         $this->heatingType = $heatingType;
 
         return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getFloorNumber(): int
+    {
+        return $this->floorNumber;
+    }
+
+    /**
+     * @param int $floorNumber
+     * @return PropertyInside
+     */
+    public function setFloorNumber($floorNumber): PropertyInside
+    {
+        $this->floorNumber = $floorNumber;
+
+        return $this;
+    }
+
+    public function set(string $functionName, $value): PropertyInterface
+    {
+        $this->$functionName($value);
+
+        return $this;
+    }
+
+    public function get(string $functionName): PropertyInterface
+    {
+        // TODO: Implement get() method.
     }
 }
