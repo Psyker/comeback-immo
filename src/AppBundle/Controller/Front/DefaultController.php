@@ -9,29 +9,31 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="home")
+     * @Route("/", name="app_front_home")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction(Request $request)
     {
         // replace this example code with whatever you need
-        return $this->render('front/default/index.html.twig');
+        return $this->render('front/maintenance/index.html.twig');
     }
 
     /**
-     * @Route("/contact", name="contact")
+     * @Route("/contact", name="app_front_contact")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function contactAction()
     {
-        return $this->render('front/default/contact.html.twig');
+        return $this->redirectToRoute('app_front_home');
     }
 
     /**
-     * @Route("/about-us", name="about")
+     * @Route("/about-us", name="app_front_about")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function aboutAction()
     {
-        return $this->render(':front/default:about.html.twig');
+        return $this->redirectToRoute('app_front_home');
     }
 }
