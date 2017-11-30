@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ComeBack-Immobilier | En construction</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <style>
+        html {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Raleway', sans-serif;
+            color: white;
+            background-color: black
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        img {
+            width: 100%;
+            max-width: 50%;
+            height: auto;
+        }
+        a {
+            text-decoration: none;
+            color: rgb(149, 131, 101);
+        }
+        .wrapper {
+            padding: 2%;
+        }
+        .container {
+            position: relative;
+            height: 90vh;
+            width: 100%;
+            border: 4px solid rgb(149, 131, 101);
+        }
+        .block__middle {
+            margin-top: 7%;
+            font-size: 38px;
+        }
+        .block__bottom {
+            font-size: 20px;
+            position: absolute;
+            bottom: 3%;
+            left: 2%;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .text-left {
+            text-align: left;
+        }
+        .underline {
+            display: inline-block;
+            margin-bottom: 2px;
+            padding-bottom: 2px;
+            border-bottom: 1px solid white;
+        }
+
+    </style>
+</head>
+<body>
+<section class="wrapper">
+    <div class="container text-center">
+        <div class="block__middle">
+            <img src="{{ asset('assets/images/logo-CB.png') }}" alt="">
+            <p>Le site est en cours de construction.</p>
+            <p>Veuillez nous excuser pour ce contre-temps...</p>
+        </div>
+        <div class="block__bottom text-left">
+            <p class="underline">Nos coordonnées :</p>
+            <p>Téléphone : 07 67 12 05 22</p>
+            <p>Email : <a href="mailto:contact@comeback-immo.fr">contact@comeback-immo.fr</a></p>
+        </div>
+    </div>
+
+</section>
+</body>
+</html>

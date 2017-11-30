@@ -22,7 +22,7 @@ class PropertyController extends Controller
      */
     public function listAction()
     {
-        return $this->render(':front/property/display:list.html.twig');
+        return $this->redirectToRoute('app_front_home');
     }
 
     /**
@@ -31,7 +31,7 @@ class PropertyController extends Controller
      */
     public function gridAction()
     {
-        return $this->render(':front/property/display:grid.html.twig');
+        return $this->redirectToRoute('app_front_home');
     }
 
     /**
@@ -43,8 +43,6 @@ class PropertyController extends Controller
      */
     public function showAction(Request $request, Property $property)
     {
-        return $this->render(':front/property:show.html.twig', [
-            'property' => $property
-        ]);
+        return $this->redirectToRoute('app_front_home');
     }
 }

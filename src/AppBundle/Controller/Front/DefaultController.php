@@ -16,7 +16,7 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         // replace this example code with whatever you need
-        return $this->render('front/default/index.html.twig');
+        return $this->render('front/maintenance/index.html.twig');
     }
 
     /**
@@ -25,7 +25,7 @@ class DefaultController extends Controller
      */
     public function contactAction()
     {
-        return $this->render('front/default/contact.html.twig');
+        return $this->redirectToRoute('app_front_home');
     }
 
     /**
@@ -34,6 +34,6 @@ class DefaultController extends Controller
      */
     public function aboutAction()
     {
-        return $this->render(':front/default:about.html.twig');
+        return $this->redirectToRoute('app_front_home');
     }
 }
