@@ -6,6 +6,8 @@ use AppBundle\Entity\Interfaces\PropertyInterface;
 use AppBundle\Entity\Location;
 use AppBundle\Entity\Property;
 use AppBundle\Entity\PropertyInside;
+use AppBundle\Entity\PropertyOther;
+use AppBundle\Entity\PropertyOutside;
 use GuzzleHttp\Client;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -58,6 +60,17 @@ class ImportDataCommand extends ContainerAwareCommand
         ]
     ];
 
+    private $propertyOutsideModel = [
+        'MAISON' => [
+            'JARDIN' => 'setGarden',
+            'ANNEE_CONSTRUCTION' => 'setYearOfConstruction'
+        ],
+        'APPARTEMENT' => [
+            'JARDIN' => 'setGarden',
+            'ANNEE_CONSTRUCTION' => 'setYearOfConstruction'
+        ]
+    ];
+
     /**
      * {@inheritdoc}
      */
@@ -102,6 +115,7 @@ class ImportDataCommand extends ContainerAwareCommand
         $arrayData = json_decode(json_encode((array)$xml), true);
         $em = $this->getContainer()->get('doctrine.orm.default_entity_manager');
 
+
         foreach ($arrayData['BIEN'] as $data) {
             /** @var Property $property */
             $property = $this->setDataByModel($this->propertyModel, $data, new Property());
@@ -117,8 +131,14 @@ class ImportDataCommand extends ContainerAwareCommand
             /** @var PropertyInside $propertyInside */
             $propertyInside = $this->setDataByModel($this->propertyInsideModel, $data, new PropertyInside());
 
+            /** @var PropertyOutside $propertyOutside */
+            $propertyOutside = $this->setDataByModel($this->propertyOutsideModel, $data, new PropertyOutside());
+
+            $propertyOther = $this->setDataByModel($this->propertyOtherModel, $data, new PropertyOther());
+
             $property->setLocation($location);
             $property->setPropertyInside($propertyInside);
+            $property->setPropertyOutside($propertyOutside);
 
             dump($property);
 

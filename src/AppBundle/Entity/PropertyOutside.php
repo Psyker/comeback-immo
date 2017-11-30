@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Interfaces\PropertyInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="property_outside")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PropertyOutsideRepository")
  */
-class PropertyOutside
+class PropertyOutside implements PropertyInterface
 {
     /**
      * @var int
@@ -106,6 +107,18 @@ class PropertyOutside
         $this->yearOfConstruction = $yearOfConstruction;
 
         return $this;
+    }
+
+    public function set(string $functionName, $value): PropertyInterface
+    {
+        $this->$functionName($value);
+
+        return $this;
+    }
+
+    public function get(string $functionName): PropertyInterface
+    {
+        // TODO: Implement get() method.
     }
 }
 
