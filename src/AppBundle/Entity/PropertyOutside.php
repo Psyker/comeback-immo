@@ -31,13 +31,13 @@ class PropertyOutside implements PropertyInterface
 
     /**
      * @var bool
-     * @ORM\Column(name="garden", type="boolean")
+     * @ORM\Column(name="garden", type="boolean", nullable=true)
      */
     private $garden;
 
     /**
      * @var integer
-     * @ORM\Column(name="year_of_construction", type="integer")
+     * @ORM\Column(name="year_of_construction", type="integer", nullable=true)
      */
     private $yearOfConstruction;
 

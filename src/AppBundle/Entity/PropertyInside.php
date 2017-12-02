@@ -31,49 +31,49 @@ class PropertyInside implements PropertyInterface
 
     /**
      * @var int $roomQuantity
-     * @ORM\Column(name="room_quantity", type="integer")
+     * @ORM\Column(name="room_quantity", type="integer", nullable=true)
      */
     private $roomQuantity;
 
     /**
      * @var int $bedroomQuantity
-     * @ORM\Column(name="bedroom_quantity", type="integer")
+     * @ORM\Column(name="bedroom_quantity", type="integer", nullable=true)
      */
     private $bedroomQuantity;
 
     /**
      * @var int $bathroomQuantity
-     * @ORM\Column(name="bathroom_quantity", type="integer")
+     * @ORM\Column(name="bathroom_quantity", type="integer", nullable=true)
      */
     private $bathroomQuantity;
 
     /**
      * @var int $washroomQuantity
-     * @ORM\Column(name="washroom_quantity", type="integer")
+     * @ORM\Column(name="washroom_quantity", type="integer", nullable=true)
      */
     private $washroomQuantity;
 
     /**
      * @var int $toiletQuantity
-     * @ORM\Column(name="toilet_quantity", type="integer")
+     * @ORM\Column(name="toilet_quantity", type="integer", nullable=true)
      */
     private $toiletQuantity;
 
     /**
      * @var string $kitchen
-     * @ORM\Column(name="kitchen", type="string")
+     * @ORM\Column(name="kitchen", type="string", nullable=true)
      */
     private $kitchen;
 
     /**
      * @var string $heatingType
-     * @ORM\Column(name="heating_type", type="string")
+     * @ORM\Column(name="heating_type", type="string", nullable=true)
      */
     private $heatingType;
 
     /**
      * @var int $floorNumber
-     * @ORM\Column(name="floor_number", type="integer")
+     * @ORM\Column(name="floor_number", type="integer", nullable=true)
      */
     private $floorNumber;
 

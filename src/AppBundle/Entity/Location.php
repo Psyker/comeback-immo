@@ -24,19 +24,19 @@ class Location implements PropertyInterface
 
     /**
      * @var int $zipCode
-     * @ORM\Column(name="zip_code", name="zip_code")
+     * @ORM\Column(name="zip_code", name="zip_code", nullable=true)
      */
     private $zipCode;
 
     /**
      * @var string $city
-     * @ORM\Column(name="city", type="string")
+     * @ORM\Column(name="city", type="string", nullable=true)
      */
     private $city;
 
     /**
      * @var string $country
-     * @ORM\Column(name="country", type="string")
+     * @ORM\Column(name="country", type="string", nullable=true)
      */
     private $country;
 
@@ -54,7 +54,7 @@ class Location implements PropertyInterface
 
     /**
      * @var int $floorQuantity
-     * @ORM\Column(name="floor_quantity", type="integer")
+     * @ORM\Column(name="floor_quantity", type="integer", nullable=true)
      */
     private $floorQuantity;
 

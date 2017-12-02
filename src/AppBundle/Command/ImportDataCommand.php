@@ -5,9 +5,12 @@ namespace AppBundle\Command;
 use AppBundle\Entity\Interfaces\PropertyInterface;
 use AppBundle\Entity\Location;
 use AppBundle\Entity\Property;
+use AppBundle\Entity\PropertyArea;
 use AppBundle\Entity\PropertyInside;
+use AppBundle\Entity\PropertyMedia;
 use AppBundle\Entity\PropertyOther;
 use AppBundle\Entity\PropertyOutside;
+use Doctrine\ORM\EntityManager;
 use GuzzleHttp\Client;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -20,8 +23,8 @@ class ImportDataCommand extends ContainerAwareCommand
         'INFO_GENERALES' => [
             'AFF_ID' => 'setAffId',
             'DATE_CREATION' => 'setCreatedAt',
-            'DATE_MAJ' => 'setUpdatedAt'
-        ]
+            'DATE_MAJ' => 'setUpdatedAt',
+        ],
     ];
 
     private $locationModel = [
@@ -31,12 +34,12 @@ class ImportDataCommand extends ContainerAwareCommand
             'PAYS' => 'setCountry',
             'PROXIMITE' => [
                 'COMMERCES' => 'setShopProximity',
-                'BUS' => 'setBusProximity'
-            ]
+                'BUS' => 'setBusProximity',
+            ],
         ],
         'APPARTEMENT' => [
-            'NUM_ETAGE' => 'setFloorQuantity'
-        ]
+            'NUM_ETAGE' => 'setFloorQuantity',
+        ],
     ];
 
     private $propertyInsideModel = [
@@ -47,7 +50,8 @@ class ImportDataCommand extends ContainerAwareCommand
             'NBRE_SALLE_EAU' => 'setWashroomQuantity',
             'NBRE_WC' => 'setToiletQuantity',
             'CUISINE' => 'setKitchen',
-            'MODE_CHAUFFAGE' => 'setHeatingType'
+            'MODE_CHAUFFAGE' => 'setHeatingType',
+            'NBRE_ETAGE' => 'setFloorNumber',
         ],
         'APPARTEMENT' => [
             'NBRE_PIECES' => 'setRoomQuantity',
@@ -56,20 +60,56 @@ class ImportDataCommand extends ContainerAwareCommand
             'NBRE_SALLE_EAU' => 'setWashroomQuantity',
             'NBRE_WC' => 'setToiletQuantity',
             'CUISINE' => 'setKitchen',
-            'MODE_CHAUFFAGE' => 'setHeatingType'
-        ]
+            'MODE_CHAUFFAGE' => 'setHeatingType',
+            'NBRE_ETAGE' => 'setFloorNumber',
+        ],
     ];
 
     private $propertyOutsideModel = [
         'MAISON' => [
             'JARDIN' => 'setGarden',
-            'ANNEE_CONSTRUCTION' => 'setYearOfConstruction'
+            'ANNEE_CONSTRUCTION' => 'setYearOfConstruction',
         ],
         'APPARTEMENT' => [
             'JARDIN' => 'setGarden',
-            'ANNEE_CONSTRUCTION' => 'setYearOfConstruction'
-        ]
+            'ANNEE_CONSTRUCTION' => 'setYearOfConstruction',
+        ],
     ];
+
+    private $propertyOtherModel = [
+        'MAISON' => [
+            'ASCENSEUR' => 'setElevator',
+            'SOUS_SOL' => 'setBasement',
+            'NBRE_GARAGE' => 'setGarageQuantity',
+            'NBRE_CAVES' => 'setCellar',
+            'INTERPHONE' => 'setIntercom',
+            'NBRE_PARKING' => 'setParkingSpot',
+        ],
+        'APPARTMEMENT' => [
+            'ASCENSEUR' => 'setElevator',
+            'NBRE_GARAGE' => 'setGarageQuantity',
+            'SOUS_SOL' => 'setBasement',
+            'NBRE_CAVES' => 'setCellar',
+            'INTERPHONE' => 'setIntercom',
+            'NBRE_PARKING' => 'setParkingSpot',
+        ],
+    ];
+
+    private $propertyAreaModel = [
+        'MAISON' => [
+            'SURFACE_HABITABLE' => 'setArea',
+            'SURFACE_SEJOUR' => 'setLivingRoomArea',
+            'SURFACE_TERRASSE' => 'setTerraceArea',
+            'SURFACE_TERRAIN' => 'setLandArea'
+        ],
+    ];
+    private $em;
+
+    public function __construct(EntityManager $em)
+    {
+        parent::__construct();
+        $this->em = $em;
+    }
 
     /**
      * {@inheritdoc}
@@ -104,6 +144,55 @@ class ImportDataCommand extends ContainerAwareCommand
         return $entity;
     }
 
+//    private function getImagesByProperty(Property $property, array $data)
+//    {
+//        foreach ($data['IMAGES']['IMG'] as $image) {
+//            $property->addPropertyMedia((new PropertyMedia())->setImageUrl($image));
+//        }
+//    }
+
+    private function createProperties(array $newProperties) {
+        foreach ($newProperties as $data) {
+            /** @var Property $property */
+            $property = $this->setDataByModel($this->propertyModel, $data, new Property());
+            if (array_key_exists('MAISON', $data)) {
+                $property->setType(Property::PROPERTY_HOUSE);
+            } else {
+                $property->setType(Property::PROPERTY_APARTMENT);
+            }
+
+            /** @var Location $location */
+            $location = $this->setDataByModel($this->locationModel, $data, new Location());
+            $location->setProperty($property);
+
+            /** @var PropertyInside $propertyInside */
+            $propertyInside = $this->setDataByModel($this->propertyInsideModel, $data, new PropertyInside());
+            $propertyInside->setProperty($property);
+
+            /** @var PropertyOutside $propertyOutside */
+            $propertyOutside = $this->setDataByModel($this->propertyOutsideModel, $data, new PropertyOutside());
+            $propertyOutside->setProperty($property);
+
+            /** @var PropertyOutside $propertyOther */
+            $propertyOther = $this->setDataByModel($this->propertyOtherModel, $data, new PropertyOther());
+            $propertyOther->setProperty($property);
+
+            /** @var PropertyArea $propertyArea */
+            $propertyArea = $this->setDataByModel($this->propertyAreaModel, $data, new PropertyArea());
+            $propertyArea->setProperty($property);
+
+            $property->setLocation($location);
+            $property->setPropertyInside($propertyInside);
+            $property->setPropertyOutside($propertyOutside);
+            $property->setPropertyOther($propertyOther);
+            $property->setPropertyArea($propertyArea);
+
+//            $this->getImagesByProperty($property, $data);
+
+            $this->em->persist($property);
+        }
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -115,102 +204,17 @@ class ImportDataCommand extends ContainerAwareCommand
         $arrayData = json_decode(json_encode((array)$xml), true);
         $em = $this->getContainer()->get('doctrine.orm.default_entity_manager');
 
-
-        foreach ($arrayData['BIEN'] as $data) {
-            /** @var Property $property */
-            $property = $this->setDataByModel($this->propertyModel, $data, new Property());
-            if (array_key_exists('MAISON', $data)) {
-                $property->setType(Property::PROPERTY_HOUSE);
-            } else {
-                $property->setType(Property::PROPERTY_APARTMENT);
+        /** @var array $propertiesIds */
+        $propertiesIds = $em->getRepository('AppBundle:Property')->getAffIds();
+        $newProperties = [];
+        foreach($arrayData['BIEN'] as $item) {
+            if (!in_array($item['INFO_GENERALES']['AFF_ID'], $propertiesIds)) {
+                $newProperties[] = $item;
             }
-
-            /** @var Location $location */
-            $location = $this->setDataByModel($this->locationModel, $data, new Location());
-
-            /** @var PropertyInside $propertyInside */
-            $propertyInside = $this->setDataByModel($this->propertyInsideModel, $data, new PropertyInside());
-
-            /** @var PropertyOutside $propertyOutside */
-            $propertyOutside = $this->setDataByModel($this->propertyOutsideModel, $data, new PropertyOutside());
-
-            $propertyOther = $this->setDataByModel($this->propertyOtherModel, $data, new PropertyOther());
-
-            $property->setLocation($location);
-            $property->setPropertyInside($propertyInside);
-            $property->setPropertyOutside($propertyOutside);
-
-            dump($property);
-
         }
 
+        $this->createProperties($newProperties);
 
-
-//        /** @var array $data */
-//        foreach ($arrayData['BIEN'] as $data) {
-//            $propertyType = null;
-//            if (array_key_exists('MAISON', $data)) {
-//                $propertyType = Property::PROPERTY_HOUSE;
-//            } elseif (array_key_exists('APPARTEMENT', $data)) {
-//                $propertyType = Property::PROPERTY_APARTMENT;
-//            }
-//
-//            $dataLocation = $data['LOCALISATION'];
-//
-//            $location = (new Location())
-//                ->setZipCode($dataLocation['CODE_POSTAL'])
-//                ->setCity($dataLocation['VILLE'])
-//                ->setCountry($dataLocation['PAYS'])
-//                ->setShopProximity($dataLocation['PROXIMITE']['COMMERCES'])
-//                ->setBusProximity($dataLocation['PROXIMITE']['BUS']);
-//
-//            if ($propertyType === Property::PROPERTY_HOUSE) {
-//                $location->setFloorQuantity($data['MAISON']['NUM_ETAGE']);
-//            } elseif ($propertyType === Property::PROPERTY_APARTMENT) {
-//                $location->setFloorQuantity($data['APPARTEMENT']['NUM_ETAGE']);
-//            }
-//
-//            $dataInside = $data['MAISON'];
-//
-//            $propertyInside = (new PropertyInside())
-//                ->setRoomQuantity($dataInside['NBRE_PIECES'])
-//                ->setBedroomQuantity($dataInside['NBRE_CHAMBRES'])
-//                ->setBathroomQuantity($dataInside['NBRE_SALLE_BAIN'])
-//                ->setWashroomQuantity($dataInside['NBRE_SALLE_EAU'])
-//                ->setToiletQuantity($dataInside['NBRE_WC'])
-//                ->setKitchen($dataInside['CUISINE'])
-//                ->setHeatingType($dataInside['MODE_CHAUFFAGE']);
-//
-//            $propertyOutside = (new PropertyOutside())
-//                ->setGarden($data['MAISON']['JARDIN'])
-//                ->setYearOfConstruction($data['MAISON']['ANNEE_CONSTRUCTION']);
-//
-//            $dataGeneral = $data['INFOS_GENERALES'];
-//
-//            $property = (new Property())
-//                ->setType($propertyType)
-//                ->setAffId($dataGeneral['AFF_ID'])
-//                ->setLocation($location)
-//                ->setPropertyInside($propertyInside)
-//                ->setPropertyOutside($propertyOutside)
-//                ->setCreatedAt($dataGeneral['DATE_CREATION'])
-//                ->setUpdatedAt($dataGeneral['DATE_MAJ']);
-//
-//
-//            $propertyOther = new PropertyOther();
-//            if ($propertyType === Property::PROPERTY_APARTMENT) {
-//                $propertyOther->setElevator($data['APPARTEMENT']['ASCENSEUR'])
-//                    ->setDigicode($data['APPARTEMENT']['DIGICODE'])
-//                    ->setIntercom($data['APPARTEMENT']['INTERPHONE'])
-//                    ->setBasement($data['APPARTEMENT']['SOUS_SOL'])
-//                    ->setGarageQuantity($data['APPARTEMENT']['NBRE_GARAGE']);
-//            } elseif ($propertyType === Property::PROPERTY_HOUSE) {
-//                $propertyOther->setElevator($data['MAISON']['ASCENSEUR'])
-//                    ->setBasement($data['MAISON']['SOUS_SOL'])
-//                    ->setGarageQuantity($data['MAISON']['NBRE_GARAGE']);
-//            }
-//
-//        }
-
+        $this->em->flush();
     }
 }

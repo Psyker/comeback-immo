@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Interfaces\PropertyInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="property_area")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PropertyOutsideRepository")
  */
-class PropertyArea
+class PropertyArea implements PropertyInterface
 {
     /**
      * @var int
@@ -30,25 +31,25 @@ class PropertyArea
 
     /**
      * @var int $area
-     * @ORM\Column(name="area", type="integer")
+     * @ORM\Column(name="area", type="integer", nullable=true)
      */
     private $area;
 
     /**
      * @var float $livingRoomArea
-     * @ORM\Column(name="living_room_area", type="float")
+     * @ORM\Column(name="living_room_area", type="float", nullable=true)
      */
     private $livingRoomArea;
 
     /**
      * @var int $terraceArea
-     * @ORM\Column(name="terrace_area", type="integer")
+     * @ORM\Column(name="terrace_area", type="integer", nullable=true)
      */
     private $terraceArea;
 
     /**
      * @var int $landArea
-     * @ORM\Column(name="land_area", type="integer")
+     * @ORM\Column(name="land_area", type="integer", nullable=true)
      */
     private $landArea;
 
@@ -155,6 +156,18 @@ class PropertyArea
         $this->landArea = $landArea;
 
         return $this;
+    }
+
+    public function set(string $functionName, $value): PropertyInterface
+    {
+       $this->$functionName($value);
+
+       return $this;
+    }
+
+    public function get(string $functionName): PropertyInterface
+    {
+        // TODO: Implement get() method.
     }
 }
 

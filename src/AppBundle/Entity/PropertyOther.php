@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Interfaces\PropertyInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="property_other")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PropertyOtherRepository")
  */
-class PropertyOther
+class PropertyOther implements PropertyInterface
 {
     /**
      * @var int
@@ -30,43 +31,43 @@ class PropertyOther
 
     /**
      * @var bool $elevator
-     * @ORM\Column(name="elevator", type="boolean")
+     * @ORM\Column(name="elevator", type="boolean", nullable=true)
      */
     private $elevator;
 
     /**
      * @var int $cellar
-     * @ORM\Column(name="cellar", type="integer")
+     * @ORM\Column(name="cellar", type="integer", nullable=true)
      */
     private $cellar;
 
     /**
      * @var int $parkingSpot
-     * @ORM\Column(name="parking_spot", type="integer")
+     * @ORM\Column(name="parking_spot", type="integer", nullable=true)
      */
     private $parkingSpot;
 
     /**
      * @var int $garageQuantity
-     * @ORM\Column(name="garage_quantity", type="integer")
+     * @ORM\Column(name="garage_quantity", type="integer", nullable=true)
      */
     private $garageQuantity;
 
     /**
      * @var boolean $intercom
-     * @ORM\Column(name="intercom", type="boolean")
+     * @ORM\Column(name="intercom", type="boolean", nullable=true)
      */
     private $intercom;
 
     /**
      * @var boolean $digicode
-     * @ORM\Column(name="digicode", type="boolean")
+     * @ORM\Column(name="digicode", type="boolean", nullable=true)
      */
     private $digicode;
 
     /**
      * @var boolean $basement
-     * @ORM\Column(name="basement", type="boolean")
+     * @ORM\Column(name="basement", type="boolean", nullable=true)
      */
     private $basement;
 
@@ -231,5 +232,17 @@ class PropertyOther
         $this->basement = $basement;
 
         return $this;
+    }
+
+    public function set(string $functionName, $value): PropertyInterface
+    {
+       $this->$functionName($value);
+
+       return $this;
+    }
+
+    public function get(string $functionName): PropertyInterface
+    {
+        // TODO: Implement get() method.
     }
 }

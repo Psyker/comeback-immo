@@ -3,7 +3,12 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\Interfaces\PropertyInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\ManyToMany;
+use Doctrine\ORM\Mapping\ManyToOne;
 
 /**
  * Property
@@ -21,13 +26,12 @@ class Property implements PropertyInterface
      *
      * @ORM\Column(name="aff_id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $affId;
 
     /**
      * @var string $title
-     * @ORM\Column(name="title", type="string")
+     * @ORM\Column(name="title", type="string", nullable=true)
      */
     private $title;
 
@@ -39,41 +43,41 @@ class Property implements PropertyInterface
 
     /**
      * @var string $description
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
     /**
      * @var Location $location
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Location", mappedBy="property")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Location", mappedBy="property", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="location_id", referencedColumnName="id")
      */
     private $location;
 
     /**
      * @var PropertyInside $propertyInside
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\PropertyInside", mappedBy="property")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\PropertyInside", mappedBy="property", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="inside_id", referencedColumnName="id")
      */
     private $propertyInside;
 
     /**
      * @var PropertyOutside $propertyOutside
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\PropertyOutside", mappedBy="property")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\PropertyOutside", mappedBy="property", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="outside_id", referencedColumnName="id")
      */
     private $propertyOutside;
 
     /**
      * @var PropertyOther $propertyOther
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\PropertyOther", mappedBy="property")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\PropertyOther", mappedBy="property", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="other_id", referencedColumnName="id")
      */
     private $propertyOther;
 
     /**
      * @var PropertyArea $propertyArea
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\PropertyArea", mappedBy="property")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\PropertyArea", mappedBy="property", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="area_id", referencedColumnName="id")
      */
     private $propertyArea;
@@ -211,7 +215,7 @@ class Property implements PropertyInterface
     }
 
     /**
-     * @param PropertyOther $propertyOther
+     * @param PropertyInterface $propertyOther
      * @return Property
      */
     public function setPropertyOther($propertyOther)
@@ -254,7 +258,8 @@ class Property implements PropertyInterface
      */
     public function setCreatedAt($createdAt)
     {
-        $this->createdAt = $createdAt;
+        $createdAt =  str_replace('/', '-', $createdAt);
+        $this->createdAt = \DateTime::createFromFormat('d-m-Y', $createdAt);
 
         return $this;
     }
@@ -273,7 +278,8 @@ class Property implements PropertyInterface
      */
     public function setUpdatedAt($updatedAt)
     {
-        $this->updatedAt = $updatedAt;
+        $updatedAt =  str_replace('/', '-', $updatedAt);
+        $this->updatedAt = \DateTime::createFromFormat('d-m-Y', $updatedAt);
 
         return $this;
     }
