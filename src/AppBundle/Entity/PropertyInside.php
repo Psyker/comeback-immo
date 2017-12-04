@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * PropertyInside
  *
  * @ORM\Table(name="property_inside")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\PropertyInsideRepository")
+ * @ORM\Entity()
  */
 class PropertyInside implements PropertyInterface
 {

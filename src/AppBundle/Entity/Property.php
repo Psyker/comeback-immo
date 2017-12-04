@@ -95,6 +95,21 @@ class Property implements PropertyInterface
     private $updatedAt;
 
     /**
+     * Many User have Many Phonenumbers.
+     * @ManyToMany(targetEntity="AppBundle\Entity\Media", cascade={"persist", "remove"})
+     * @JoinTable(name="property_media",
+     *      joinColumns={@JoinColumn(name="media_id", referencedColumnName="aff_id")},
+     *      inverseJoinColumns={@JoinColumn(name="property_id", referencedColumnName="id", unique=true)}
+     * )
+     */
+    private $medias;
+
+    public function __construct()
+    {
+        $this->medias =  new ArrayCollection();
+    }
+
+    /**
      * Get id
      *
      * @return int
@@ -301,6 +316,18 @@ class Property implements PropertyInterface
         $this->type = $type;
 
         return $this;
+    }
+
+    public function setMedias(array $medias)
+    {
+        $this->medias = $medias;
+
+        return $this;
+    }
+
+    public function getMedias()
+    {
+        return $this->medias;
     }
 
     public function setAttribute($callback, $value)

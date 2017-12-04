@@ -7,7 +7,7 @@ use AppBundle\Entity\Location;
 use AppBundle\Entity\Property;
 use AppBundle\Entity\PropertyArea;
 use AppBundle\Entity\PropertyInside;
-use AppBundle\Entity\PropertyMedia;
+use AppBundle\Entity\Media;
 use AppBundle\Entity\PropertyOther;
 use AppBundle\Entity\PropertyOutside;
 use Doctrine\ORM\EntityManager;
@@ -145,35 +145,36 @@ class ImportDataCommand extends ContainerAwareCommand
         return $entity;
     }
 
-    private function createProperties(array $newProperties) {
-        foreach ($newProperties as $data) {
-            /** @var Property $property */
-            $property = $this->setDataByModel($this->propertyModel, $data, new Property());
-            if (array_key_exists('MAISON', $data)) {
-                $property->setType(Property::PROPERTY_HOUSE);
-            } else {
-                $property->setType(Property::PROPERTY_APARTMENT);
-            }
-            /** @var Location $location */
-            $location = $this->setDataByModel($this->locationModel, $data, new Location());
-            $location->setProperty($property);
-            /** @var PropertyInside $propertyInside */
-            $propertyInside = $this->setDataByModel($this->propertyInsideModel, $data, new PropertyInside());
-            /** @var PropertyOutside $propertyOutside */
-            $propertyOutside = $this->setDataByModel($this->propertyOutsideModel, $data, new PropertyOutside());
-            /** @var PropertyOutside $propertyOther */
-            $propertyOther = $this->setDataByModel($this->propertyOtherModel, $data, new PropertyOther());
-            /** @var PropertyArea $propertyArea */
-            $propertyArea = $this->setDataByModel($this->propertyAreaModel, $data, new PropertyArea());
-
-            $property->setLocation($location);
-            $property->setPropertyInside($propertyInside);
-            $property->setPropertyOutside($propertyOutside);
-            $property->setPropertyOther($propertyOther);
-            $property->setPropertyArea($propertyArea);
-
-            $this->em->persist($property);
+    private function createProperty(array $data) {
+        /** @var Property $property */
+        $property = $this->setDataByModel($this->propertyModel, $data, new Property());
+        if (array_key_exists('MAISON', $data)) {
+            $property->setType(Property::PROPERTY_HOUSE);
+        } else {
+            $property->setType(Property::PROPERTY_APARTMENT);
         }
+        /** @var Location $location */
+        $location = $this->setDataByModel($this->locationModel, $data, new Location());
+        $location->setProperty($property);
+        /** @var PropertyInside $propertyInside */
+        $propertyInside = $this->setDataByModel($this->propertyInsideModel, $data, new PropertyInside());
+        /** @var PropertyOutside $propertyOutside */
+        $propertyOutside = $this->setDataByModel($this->propertyOutsideModel, $data, new PropertyOutside());
+        /** @var PropertyOutside $propertyOther */
+        $propertyOther = $this->setDataByModel($this->propertyOtherModel, $data, new PropertyOther());
+        /** @var PropertyArea $propertyArea */
+        $propertyArea = $this->setDataByModel($this->propertyAreaModel, $data, new PropertyArea());
+
+        $property->setLocation($location);
+        $property->setPropertyInside($propertyInside);
+        $property->setPropertyOutside($propertyOutside);
+        $property->setPropertyOther($propertyOther);
+        $property->setPropertyArea($propertyArea);
+
+        $this->setPropertyImages($property, $data);
+
+        $this->em->persist($property);
+
     }
 
     private function updateProperty(int $affId, array $data)
@@ -189,6 +190,18 @@ class ImportDataCommand extends ContainerAwareCommand
         $this->setDataByModel($this->propertyOutsideModel, $data, $property->getPropertyOutside());
         $this->setDataByModel($this->propertyAreaModel, $data, $property->getPropertyArea());
         $this->setDataByModel($this->propertyOtherModel, $data, $property->getPropertyOther());
+
+        $this->setPropertyImages($property, $data);
+    }
+
+    private function setPropertyImages(Property $property, array $data)
+    {
+        $imgArray = [];
+        foreach ($data['IMAGES']['IMG'] as $img) {
+            $media = (new Media())->setImageUrl($img);
+            $imgArray[] = $media;
+        }
+        $property->setMedias($imgArray);
     }
 
     /**
@@ -207,8 +220,8 @@ class ImportDataCommand extends ContainerAwareCommand
 
         /** @var array $propertiesIds */
         $propertiesIds = $em->getRepository('AppBundle:Property')->getAffIds();
-        $newProperties = [];
         $existPropertiesCounter = 0;
+        $newPropertiesCounter = 0;
 
         $output->writeln([
             'Checking properties ...'
@@ -216,7 +229,8 @@ class ImportDataCommand extends ContainerAwareCommand
         $checkPropBar->start();
         foreach($arrayData['BIEN'] as $item) {
             if (!in_array($item['INFO_GENERALES']['AFF_ID'], $propertiesIds)) {
-                $newProperties[] = $item;
+                $newPropertiesCounter++;
+                $this->createProperty($item);
             } else {
                 $existPropertiesCounter++;
                 $this->updateProperty($item['INFO_GENERALES']['AFF_ID'], $item);
@@ -225,11 +239,9 @@ class ImportDataCommand extends ContainerAwareCommand
         }
 
         $output->writeln([
-            PHP_EOL.'New properties to create :'. count($newProperties),
+            PHP_EOL.'New properties to create :'. $newPropertiesCounter,
             'Existing properties to update :'. $existPropertiesCounter
         ]);
-
-        $this->createProperties($newProperties);
 
         $output->writeln([
             'Flushing...'
