@@ -33,3 +33,7 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+    app.data.import:
+        class: AppBundle\Command\ImportDataCommand
+        arguments: ['@doctrine.orm.default_entity_manager']
