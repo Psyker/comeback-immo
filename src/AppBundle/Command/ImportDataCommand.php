@@ -196,12 +196,12 @@ class ImportDataCommand extends ContainerAwareCommand
 
     private function setPropertyImages(Property $property, array $data)
     {
-        $imgArray = [];
-        foreach ($data['IMAGES']['IMG'] as $img) {
-            $media = (new Media())->setImageUrl($img);
-            $imgArray[] = $media;
+        foreach ($property->getMedias() as $media) {
+            $property->removeMedia($media);
         }
-        $property->setMedias($imgArray);
+        foreach ($data['IMAGES']['IMG'] as $img) {
+            $property->addMedia((new Media())->setImageUrl($img)->setProperty($property));
+        }
     }
 
     /**
@@ -214,9 +214,10 @@ class ImportDataCommand extends ContainerAwareCommand
         $xml = simplexml_load_string($res->getBody()->getContents(), 'SimpleXMLElement', LIBXML_NOCDATA);
         $arrayData = json_decode(json_encode((array)$xml), true);
         $em = $this->getContainer()->get('doctrine.orm.default_entity_manager');
-
         $checkPropBar = new ProgressBar($output, count($arrayData['BIEN']));
 
+        // Clear media table.
+        $this->em->getConnection()->exec('TRUNCATE TABLE media');
 
         /** @var array $propertiesIds */
         $propertiesIds = $em->getRepository('AppBundle:Property')->getAffIds();

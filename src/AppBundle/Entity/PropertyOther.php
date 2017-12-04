@@ -239,4 +239,44 @@ class PropertyOther implements PropertyInterface
     {
         // TODO: Implement get() method.
     }
+
+    /**
+     * Get elevator
+     *
+     * @return boolean
+     */
+    public function getElevator()
+    {
+        return $this->elevator;
+    }
+
+    /**
+     * Get intercom
+     *
+     * @return boolean
+     */
+    public function getIntercom()
+    {
+        return $this->intercom;
+    }
+
+    /**
+     * Get digicode
+     *
+     * @return boolean
+     */
+    public function getDigicode()
+    {
+        return $this->digicode;
+    }
+
+    /**
+     * Get basement
+     *
+     * @return boolean
+     */
+    public function getBasement()
+    {
+        return $this->basement;
+    }
 }

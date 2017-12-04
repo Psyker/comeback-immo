@@ -113,5 +113,14 @@ class PropertyOutside implements PropertyInterface
     {
         // TODO: Implement get() method.
     }
-}
 
+    /**
+     * Get garden
+     *
+     * @return boolean
+     */
+    public function getGarden()
+    {
+        return $this->garden;
+    }
+}

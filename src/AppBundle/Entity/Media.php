@@ -24,9 +24,16 @@ class Media
     /**
      * @var string
      *
-     * @ORM\Column(name="imageUrl", type="string", unique=true, length=500)
+     * @ORM\Column(name="imageUrl", type="string", length=500)
      */
     private $imageUrl;
+
+    /**
+     * @var Property $property
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Property", inversedBy="medias")
+     * @ORM\JoinColumn(name="property_id", referencedColumnName="aff_id")
+     */
+    private $property;
 
 
     /**
@@ -62,5 +69,28 @@ class Media
     {
         return $this->imageUrl;
     }
-}
 
+    /**
+     * Set property
+     *
+     * @param Property $property
+     *
+     * @return Media
+     */
+    public function setProperty(Property $property = null)
+    {
+        $this->property = $property;
+
+        return $this;
+    }
+
+    /**
+     * Get property
+     *
+     * @return Property
+     */
+    public function getProperty()
+    {
+        return $this->property;
+    }
+}

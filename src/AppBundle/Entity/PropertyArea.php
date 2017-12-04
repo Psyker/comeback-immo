@@ -163,4 +163,3 @@ class PropertyArea implements PropertyInterface
         // TODO: Implement get() method.
     }
 }
-

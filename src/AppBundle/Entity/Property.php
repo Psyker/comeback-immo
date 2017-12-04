@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\Interfaces\PropertyInterface;
+use AppBundle\Entity\Media;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
@@ -95,12 +96,7 @@ class Property implements PropertyInterface
     private $updatedAt;
 
     /**
-     * Many User have Many Phonenumbers.
-     * @ManyToMany(targetEntity="AppBundle\Entity\Media", cascade={"persist", "remove"})
-     * @JoinTable(name="property_media",
-     *      joinColumns={@JoinColumn(name="media_id", referencedColumnName="aff_id")},
-     *      inverseJoinColumns={@JoinColumn(name="property_id", referencedColumnName="id", unique=true)}
-     * )
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Media", mappedBy="property", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $medias;
 
@@ -348,5 +344,29 @@ class Property implements PropertyInterface
     public function get(string $functionName): PropertyInterface
     {
         // TODO: Implement get() method.
+    }
+
+    /**
+     * Add media
+     *
+     * @param Media $media
+     *
+     * @return Property
+     */
+    public function addMedia(Media $media)
+    {
+        $this->medias[] = $media;
+
+        return $this;
+    }
+
+    /**
+     * Remove media
+     *
+     * @param Media $media
+     */
+    public function removeMedia(Media $media)
+    {
+        $this->medias->removeElement($media);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Property;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -20,5 +21,17 @@ class PropertyRepository extends EntityRepository
             ->getScalarResult();
 
        return array_map('current', $result);
+    }
+
+    public function deleteMedias(Property $property)
+    {
+        return $this->createQueryBuilder('p')
+            ->join('p.medias', 'm')
+            ->delete('m')
+            ->where('m.property_id = :affId')
+            ->setParameter(':affId', $property->getAffId())
+            ->getQuery()
+            ->getResult();
+
     }
 }
