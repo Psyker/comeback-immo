@@ -23,13 +23,6 @@ class PropertyOutside implements PropertyInterface
     private $id;
 
     /**
-     * @var Property $property
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Property", inversedBy="propertyOutside")
-     * @ORM\JoinColumn(name="property_id", referencedColumnName="aff_id")
-     */
-    private $property;
-
-    /**
      * @var bool
      * @ORM\Column(name="garden", type="boolean", nullable=true)
      */

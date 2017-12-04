@@ -23,13 +23,6 @@ class PropertyInside implements PropertyInterface
     private $id;
 
     /**
-     * @var Property
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Property", inversedBy="propertyInside")
-     * @ORM\JoinColumn(name="property_id", referencedColumnName="aff_id")
-     */
-    private $property;
-
-    /**
      * @var int $roomQuantity
      * @ORM\Column(name="room_quantity", type="integer", nullable=true)
      */

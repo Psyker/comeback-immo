@@ -23,13 +23,6 @@ class PropertyArea implements PropertyInterface
     private $id;
 
     /**
-     * @var Property $property
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Property", inversedBy="propertyArea")
-     * @ORM\JoinColumn(name="property_id", referencedColumnName="aff_id")
-     */
-    private $property;
-
-    /**
      * @var int $area
      * @ORM\Column(name="area", type="integer", nullable=true)
      */

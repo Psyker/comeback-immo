@@ -14,9 +14,11 @@ class PropertyRepository extends EntityRepository
 {
     public function getAffIds()
     {
-        return $this->createQueryBuilder('p')
+        $result = $this->createQueryBuilder('p')
             ->select('p.affId')
             ->getQuery()
-            ->getArrayResult();
+            ->getScalarResult();
+
+       return array_map('current', $result);
     }
 }

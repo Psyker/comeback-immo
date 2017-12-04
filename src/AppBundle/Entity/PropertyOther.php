@@ -22,12 +22,6 @@ class PropertyOther implements PropertyInterface
      */
     private $id;
 
-    /**
-     * @var Property $property
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Property", inversedBy="propertyOther")
-     * @ORM\JoinColumn(name="property_id", referencedColumnName="aff_id")
-     */
-    private $property;
 
     /**
      * @var bool $elevator

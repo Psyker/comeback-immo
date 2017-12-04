@@ -13,6 +13,7 @@ use AppBundle\Entity\PropertyOutside;
 use Doctrine\ORM\EntityManager;
 use GuzzleHttp\Client;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -144,13 +145,6 @@ class ImportDataCommand extends ContainerAwareCommand
         return $entity;
     }
 
-//    private function getImagesByProperty(Property $property, array $data)
-//    {
-//        foreach ($data['IMAGES']['IMG'] as $image) {
-//            $property->addPropertyMedia((new PropertyMedia())->setImageUrl($image));
-//        }
-//    }
-
     private function createProperties(array $newProperties) {
         foreach ($newProperties as $data) {
             /** @var Property $property */
@@ -160,26 +154,17 @@ class ImportDataCommand extends ContainerAwareCommand
             } else {
                 $property->setType(Property::PROPERTY_APARTMENT);
             }
-
             /** @var Location $location */
             $location = $this->setDataByModel($this->locationModel, $data, new Location());
             $location->setProperty($property);
-
             /** @var PropertyInside $propertyInside */
             $propertyInside = $this->setDataByModel($this->propertyInsideModel, $data, new PropertyInside());
-            $propertyInside->setProperty($property);
-
             /** @var PropertyOutside $propertyOutside */
             $propertyOutside = $this->setDataByModel($this->propertyOutsideModel, $data, new PropertyOutside());
-            $propertyOutside->setProperty($property);
-
             /** @var PropertyOutside $propertyOther */
             $propertyOther = $this->setDataByModel($this->propertyOtherModel, $data, new PropertyOther());
-            $propertyOther->setProperty($property);
-
             /** @var PropertyArea $propertyArea */
             $propertyArea = $this->setDataByModel($this->propertyAreaModel, $data, new PropertyArea());
-            $propertyArea->setProperty($property);
 
             $property->setLocation($location);
             $property->setPropertyInside($propertyInside);
@@ -187,10 +172,23 @@ class ImportDataCommand extends ContainerAwareCommand
             $property->setPropertyOther($propertyOther);
             $property->setPropertyArea($propertyArea);
 
-//            $this->getImagesByProperty($property, $data);
-
             $this->em->persist($property);
         }
+    }
+
+    private function updateProperty(int $affId, array $data)
+    {
+        $property = $this->em->getRepository('AppBundle:Property')->find($affId);
+
+        $propertyModel = $this->propertyModel;
+        unset($propertyModel['INFO_GENERALES']['AFF_ID']);
+        $this->setDataByModel($propertyModel, $data, $property);
+
+        $this->setDataByModel($this->locationModel, $data, $property->getLocation());
+        $this->setDataByModel($this->propertyInsideModel, $data, $property->getPropertyInside());
+        $this->setDataByModel($this->propertyOutsideModel, $data, $property->getPropertyOutside());
+        $this->setDataByModel($this->propertyAreaModel, $data, $property->getPropertyArea());
+        $this->setDataByModel($this->propertyOtherModel, $data, $property->getPropertyOther());
     }
 
     /**
@@ -204,17 +202,43 @@ class ImportDataCommand extends ContainerAwareCommand
         $arrayData = json_decode(json_encode((array)$xml), true);
         $em = $this->getContainer()->get('doctrine.orm.default_entity_manager');
 
+        $checkPropBar = new ProgressBar($output, count($arrayData['BIEN']));
+
+
         /** @var array $propertiesIds */
         $propertiesIds = $em->getRepository('AppBundle:Property')->getAffIds();
         $newProperties = [];
+        $existPropertiesCounter = 0;
+
+        $output->writeln([
+            'Checking properties ...'
+        ]);
+        $checkPropBar->start();
         foreach($arrayData['BIEN'] as $item) {
             if (!in_array($item['INFO_GENERALES']['AFF_ID'], $propertiesIds)) {
                 $newProperties[] = $item;
+            } else {
+                $existPropertiesCounter++;
+                $this->updateProperty($item['INFO_GENERALES']['AFF_ID'], $item);
             }
+            $checkPropBar->advance();
         }
+
+        $output->writeln([
+            PHP_EOL.'New properties to create :'. count($newProperties),
+            'Existing properties to update :'. $existPropertiesCounter
+        ]);
 
         $this->createProperties($newProperties);
 
+        $output->writeln([
+            'Flushing...'
+        ]);
+
         $this->em->flush();
+
+        $output->writeln([
+            'Done with success.'
+        ]);
     }
 }
