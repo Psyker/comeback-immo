@@ -29,6 +29,18 @@ class Media
     private $imageUrl;
 
     /**
+     * @var boolean $thumbnail
+     * @ORM\Column(name="thumbnail", type="boolean")
+     */
+    private $thumbnail;
+
+    /**
+     * @var boolean $cover
+     * @ORM\Column(name="cover", type="boolean")
+     */
+    private $cover;
+
+    /**
      * @var Property $property
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Property", inversedBy="medias")
      * @ORM\JoinColumn(name="property_id", referencedColumnName="aff_id")
@@ -92,5 +104,43 @@ class Media
     public function getProperty()
     {
         return $this->property;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isThumbnail(): bool
+    {
+        return $this->thumbnail;
+    }
+
+    /**
+     * @param bool $thumbnail
+     * @return Media
+     */
+    public function setThumbnail(bool $thumbnail): Media
+    {
+        $this->thumbnail = $thumbnail;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCover(): bool
+    {
+        return $this->cover;
+    }
+
+    /**
+     * @param bool $cover
+     * @return Media
+     */
+    public function setCover(bool $cover): Media
+    {
+        $this->cover = $cover;
+
+        return $this;
     }
 }

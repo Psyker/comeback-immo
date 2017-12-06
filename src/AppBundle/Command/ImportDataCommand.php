@@ -26,6 +26,9 @@ class ImportDataCommand extends ContainerAwareCommand
             'DATE_CREATION' => 'setCreatedAt',
             'DATE_MAJ' => 'setUpdatedAt',
         ],
+        'VENTE' => [
+            'PRIX' => 'setNetPrice'
+        ]
     ];
 
     private $locationModel = [
@@ -164,17 +167,13 @@ class ImportDataCommand extends ContainerAwareCommand
         $propertyOther = $this->setDataByModel($this->propertyOtherModel, $data, new PropertyOther());
         /** @var PropertyArea $propertyArea */
         $propertyArea = $this->setDataByModel($this->propertyAreaModel, $data, new PropertyArea());
-
         $property->setLocation($location);
         $property->setPropertyInside($propertyInside);
         $property->setPropertyOutside($propertyOutside);
         $property->setPropertyOther($propertyOther);
         $property->setPropertyArea($propertyArea);
-
         $this->setPropertyImages($property, $data);
-
         $this->em->persist($property);
-
     }
 
     private function updateProperty(int $affId, array $data)
@@ -184,13 +183,11 @@ class ImportDataCommand extends ContainerAwareCommand
         $propertyModel = $this->propertyModel;
         unset($propertyModel['INFO_GENERALES']['AFF_ID']);
         $this->setDataByModel($propertyModel, $data, $property);
-
         $this->setDataByModel($this->locationModel, $data, $property->getLocation());
         $this->setDataByModel($this->propertyInsideModel, $data, $property->getPropertyInside());
         $this->setDataByModel($this->propertyOutsideModel, $data, $property->getPropertyOutside());
         $this->setDataByModel($this->propertyAreaModel, $data, $property->getPropertyArea());
         $this->setDataByModel($this->propertyOtherModel, $data, $property->getPropertyOther());
-
         $this->setPropertyImages($property, $data);
     }
 
@@ -215,15 +212,12 @@ class ImportDataCommand extends ContainerAwareCommand
         $arrayData = json_decode(json_encode((array)$xml), true);
         $em = $this->getContainer()->get('doctrine.orm.default_entity_manager');
         $checkPropBar = new ProgressBar($output, count($arrayData['BIEN']));
-
         // Clear media table.
         $this->em->getConnection()->exec('TRUNCATE TABLE media');
-
         /** @var array $propertiesIds */
         $propertiesIds = $em->getRepository('AppBundle:Property')->getAffIds();
         $existPropertiesCounter = 0;
         $newPropertiesCounter = 0;
-
         $output->writeln([
             'Checking properties ...'
         ]);
@@ -238,18 +232,12 @@ class ImportDataCommand extends ContainerAwareCommand
             }
             $checkPropBar->advance();
         }
-
         $output->writeln([
             PHP_EOL.'New properties to create :'. $newPropertiesCounter,
-            'Existing properties to update :'. $existPropertiesCounter
-        ]);
-
-        $output->writeln([
+            'Existing properties to update :'. $existPropertiesCounter,
             'Flushing...'
         ]);
-
         $this->em->flush();
-
         $output->writeln([
             'Done with success.'
         ]);

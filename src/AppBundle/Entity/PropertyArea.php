@@ -57,25 +57,6 @@ class PropertyArea implements PropertyInterface
     }
 
     /**
-     * @return Property
-     */
-    public function getProperty()
-    {
-        return $this->property;
-    }
-
-    /**
-     * @param Property $property
-     * @return PropertyArea
-     */
-    public function setProperty($property)
-    {
-        $this->property = $property;
-
-        return $this;
-    }
-
-    /**
      * @return int
      */
     public function getArea()

@@ -23,15 +23,19 @@ class PropertyRepository extends EntityRepository
        return array_map('current', $result);
     }
 
-    public function deleteMedias(Property $property)
+    public function getCarouselProperties()
     {
-        return $this->createQueryBuilder('p')
+        $query = $this->createQueryBuilder('p')
             ->join('p.medias', 'm')
-            ->delete('m')
-            ->where('m.property_id = :affId')
-            ->setParameter(':affId', $property->getAffId())
+            ->addSelect('m.imageUrl')
+            ->andWhere('m.cover = true')
+            ->andWhere('p.inCarousel = true')
+            ->setMaxResults(3)
             ->getQuery()
             ->getResult();
+
+        return $query;
+
 
     }
 }

@@ -22,7 +22,10 @@ class PropertyController extends Controller
      */
     public function listAction()
     {
-        return $this->redirectToRoute('app_front_home');
+        $properties = $this->getDoctrine()->getRepository('AppBundle:Property')->findAll();
+        return $this->render('front/property/display/list.html.twig', [
+            'properties' => $properties
+        ]);
     }
 
     /**

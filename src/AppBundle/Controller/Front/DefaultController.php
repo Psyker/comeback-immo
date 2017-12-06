@@ -4,19 +4,23 @@ namespace AppBundle\Controller\Front;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
     /**
      * @Route("/", name="app_front_home")
-     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
+     * @internal param Request $request
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
-        // replace this example code with whatever you need
-        return $this->render('front/maintenance/index.html.twig');
+        $propertyRepo = $this->getDoctrine()->getRepository('AppBundle:Property');
+        $properties = $propertyRepo->findBy([], null, 9, null);
+        $carouselProperties = $propertyRepo->getCarouselProperties();
+        return $this->render('front/default/index.html.twig', [
+            'properties' => $properties,
+            'carouselProperties' => $carouselProperties,
+        ]);
     }
 
     /**
