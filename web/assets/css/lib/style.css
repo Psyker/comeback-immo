@@ -62,7 +62,7 @@ body { background: #212121; color: #727272; font: 12px "Open Sans", Arial, Helve
 
 a { color: white; text-decoration: none; }
 a:visited { color: white; text-decoration: none; }
-a:hover { color: rgb(149, 131, 101); text-decoration: none; }
+a:hover { color: grey; text-decoration: none; }
 a:focus, a:hover, a:active { outline: none; }
 
 h1, h2, h3, h4, h5, h6 { font-weight: 600; font-family: 'Open Sans', Arial, Helvetica, sans-serif; color: #212121; text-transform: uppercase; }
@@ -811,11 +811,11 @@ footer ul li a:hover { color: #fff; }
 .property-data { margin-bottom: 70px; }
 
 .property-data .prop-price { overflow: hidden; margin-bottom: 22px; }
-.property-data .prop-price .price { color: #000; font: 700 30px 'Ubuntu', Arial, Helvetica, sans-serif; line-height: 39px; }
+.property-data .prop-price .price { color: rgb(149, 131, 101); font: 700 30px 'Ubuntu', Arial, Helvetica, sans-serif; line-height: 39px; }
 .property-data .prop-price .btn { float: right; }
 
 .property-data .prop-features { margin-bottom: 22px; overflow: hidden; }
-.property-data .prop-features span { display: block; font-size: 12px; color: #727272; text-transform: uppercase; padding-left: 20px; width: 50%; float: left; margin-bottom: 15px; }
+.property-data .prop-features span { display: block; font-size: 12px; color: white; text-transform: uppercase; padding-left: 20px; width: 50%; float: left; margin-bottom: 15px; }
 .property-data .prop-features span:last-child { margin: 0; }
 .property-data .prop-features span i { margin-right: 10px; }
 .property-data .prop-features .bath { background: url(../../images/icon-bath.png) no-repeat left; }
@@ -829,7 +829,7 @@ footer ul li a:hover { color: #fff; }
 .property-data .prop-features.prop-before span { float: none; width: 100%; }
 
 .property-data > ul { overflow: hidden; }
-.property-data > ul li { font-weight: 300; color: #727272; background: url("../../images/tick.png") 0 -25px no-repeat; padding-left: 20px; text-transform: uppercase; margin-bottom: 15px; width: 50%; float: left; }
+.property-data > ul li { font-weight: 300; color: white; background: url("../../images/tick.png") 0 -25px no-repeat; padding-left: 20px; text-transform: uppercase; margin-bottom: 15px; width: 50%; float: left; }
 .property-data > ul li:last-child { margin: 0; }
 
 

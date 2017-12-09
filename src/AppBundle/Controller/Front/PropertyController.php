@@ -38,21 +38,23 @@ class PropertyController extends Controller
     public function gridAction(Request $request)
     {
         $page = $request->get('page', 1);
-        $properties = $this->getDoctrine()->getRepository('AppBundle:Property')->getPropertiesPaginated(20, $page);
+        $properties = $this->getDoctrine()->getRepository('AppBundle:Property')->getPropertiesPaginated(8, $page);
         return $this->render('front/property/display/grid.html.twig', [
             'properties' => $properties
         ]);
     }
 
     /**
-     * @param Request $request
      * @param Property $property
      * @return \Symfony\Component\HttpFoundation\Response
+     * @internal param Request $request
      * @Route("/show/{id}", name="app_front_property_show")
      * @ParamConverter("property", class="AppBundle:Property")
      */
-    public function showAction(Request $request, Property $property)
+    public function showAction(Property $property)
     {
-        return $this->redirectToRoute('app_front_home');
+        return $this->render('front/property/show.html.twig', [
+            'property' => $property,
+        ]);
     }
 }

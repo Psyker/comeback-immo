@@ -8,7 +8,7 @@ use Pagerfanta\View\Template\DefaultTemplate;
 class ComebackTemplate extends DefaultTemplate
 {
     static protected $defaultOptions = array(
-        'prev_message'   => '<i class="fa fa-angle-left"></i>Précédent',
+        'previous_message'   => '<i class="fa fa-angle-left"></i>Précédent',
         'next_message'       => 'Suivant <i class="fa fa-angle-right"></i>',
         'css_disabled_class' => 'disabled',
         'css_dots_class'     => 'dots',
@@ -25,7 +25,7 @@ class ComebackTemplate extends DefaultTemplate
 
     public function previousEnabled($page)
     {
-        $text = $this->option('prev_message');
+        $text = $this->option('previous_message');
         $class = $this->option('css_prev_class');
 
         return $this->pageWithTextAndClass($page, $text, $class);
