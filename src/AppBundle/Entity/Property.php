@@ -56,7 +56,7 @@ class Property implements PropertyInterface
 
     /**
      * @var boolean $inCarousel
-     * @ORM\Column(name="in_carousel", type="boolean")
+     * @ORM\Column(name="in_carousel", type="boolean", nullable=true)
      */
     private $inCarousel;
 
@@ -97,13 +97,13 @@ class Property implements PropertyInterface
 
     /**
      * @var \DateTime $createdAt
-     * @ORM\Column(name="created_at", type="date")
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
      */
     private $createdAt;
 
     /**
      * @var \DateTime $updatedAt
-     * @ORM\Column(name="updated_at", type="date")
+     * @ORM\Column(name="updated_at", type="date", nullable=true)
      */
     private $updatedAt;
 
@@ -278,11 +278,11 @@ class Property implements PropertyInterface
     /**
      * @param \DateTime $createdAt
      * @return Property
+     * @throws \Exception
      */
     public function setCreatedAt($createdAt)
     {
-        $createdAt =  str_replace('/', '-', $createdAt);
-        $this->createdAt = \DateTime::createFromFormat('d-m-Y', $createdAt);
+        $this->createdAt = \DateTime::createFromFormat('Y-m-d H:i:s', $createdAt);
 
         return $this;
     }
@@ -298,10 +298,12 @@ class Property implements PropertyInterface
     /**
      * @param \DateTime $updatedAt
      * @return Property
+     * @throws \Exception
      */
     public function setUpdatedAt($updatedAt)
     {
-        $updatedAt =  str_replace('/', '-', $updatedAt);
+        $updatedAt = str_replace('/', '-', $updatedAt);
+
         $this->updatedAt = \DateTime::createFromFormat('d-m-Y', $updatedAt);
 
         return $this;

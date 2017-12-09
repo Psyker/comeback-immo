@@ -4,6 +4,8 @@ namespace AppBundle\Repository;
 
 use AppBundle\Entity\Property;
 use Doctrine\ORM\EntityRepository;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
 
 /**
  * PropertyRepository
@@ -35,7 +37,18 @@ class PropertyRepository extends EntityRepository
             ->getResult();
 
         return $query;
+    }
 
+    public function getPropertiesPaginated(int $limit, int $page)
+    {
+        $query = $this->createQueryBuilder('p')
+            ->getQuery();
 
+        $pagerfanta = new Pagerfanta(new DoctrineORMAdapter($query));
+        $pagerfanta->setMaxPerPage($limit)
+            ->setCurrentPage($page)
+            ->setAllowOutOfRangePages(true);
+
+        return $pagerfanta;
     }
 }

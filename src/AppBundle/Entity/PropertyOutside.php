@@ -46,25 +46,6 @@ class PropertyOutside implements PropertyInterface
     }
 
     /**
-     * @return Property
-     */
-    public function getProperty()
-    {
-        return $this->property;
-    }
-
-    /**
-     * @param Property $property
-     * @return PropertyOutside
-     */
-    public function setProperty($property)
-    {
-        $this->property = $property;
-
-        return $this;
-    }
-
-    /**
      * @return bool
      */
     public function isGarden()

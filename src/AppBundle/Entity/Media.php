@@ -30,13 +30,13 @@ class Media
 
     /**
      * @var boolean $thumbnail
-     * @ORM\Column(name="thumbnail", type="boolean")
+     * @ORM\Column(name="thumbnail", type="boolean", nullable=true)
      */
     private $thumbnail;
 
     /**
      * @var boolean $cover
-     * @ORM\Column(name="cover", type="boolean")
+     * @ORM\Column(name="cover", type="boolean", nullable=true)
      */
     private $cover;
 

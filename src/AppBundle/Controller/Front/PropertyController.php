@@ -17,24 +17,31 @@ class PropertyController extends Controller
 {
 
     /**
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/list" , name="app_front_property_list")
+     * @Route("/list", name="app_front_property_list")
      */
-    public function listAction()
+    public function listAction(Request $request)
     {
-        $properties = $this->getDoctrine()->getRepository('AppBundle:Property')->findAll();
+        $page = $request->get('page', 1);
+        $properties = $this->getDoctrine()->getRepository('AppBundle:Property')->getPropertiesPaginated(5, $page);
         return $this->render('front/property/display/list.html.twig', [
             'properties' => $properties
         ]);
     }
 
     /**
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/grid", name="app_front_property_grid")
      */
-    public function gridAction()
+    public function gridAction(Request $request)
     {
-        return $this->redirectToRoute('app_front_home');
+        $page = $request->get('page', 1);
+        $properties = $this->getDoctrine()->getRepository('AppBundle:Property')->getPropertiesPaginated(20, $page);
+        return $this->render('front/property/display/grid.html.twig', [
+            'properties' => $properties
+        ]);
     }
 
     /**

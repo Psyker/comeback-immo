@@ -37,3 +37,13 @@ services:
     app.data.import:
         class: AppBundle\Command\ImportDataCommand
         arguments: ['@doctrine.orm.default_entity_manager']
+
+    app.template.comeback_template:
+        class: AppBundle\Template\ComebackTemplate
+
+    pagerfanta.view.comeback_template:
+        class: Pagerfanta\View\DefaultView
+        public: false
+        arguments:
+            - '@app.template.comeback_template'
+        tags: [{ name: pagerfanta.view, alias: comeback_template }]

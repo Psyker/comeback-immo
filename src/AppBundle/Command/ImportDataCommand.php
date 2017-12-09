@@ -10,7 +10,7 @@ use AppBundle\Entity\PropertyInside;
 use AppBundle\Entity\Media;
 use AppBundle\Entity\PropertyOther;
 use AppBundle\Entity\PropertyOutside;
-use Doctrine\ORM\EntityManager;
+use Doctrine\Common\Persistence\ObjectManager;
 use GuzzleHttp\Client;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Helper\ProgressBar;
@@ -109,7 +109,7 @@ class ImportDataCommand extends ContainerAwareCommand
     ];
     private $em;
 
-    public function __construct(EntityManager $em)
+    public function __construct(ObjectManager $em)
     {
         parent::__construct();
         $this->em = $em;
@@ -197,7 +197,7 @@ class ImportDataCommand extends ContainerAwareCommand
             $property->removeMedia($media);
         }
         foreach ($data['IMAGES']['IMG'] as $img) {
-            $property->addMedia((new Media())->setImageUrl($img)->setProperty($property));
+            $property->addMedia((new Media())->setImageUrl($img)->setProperty($property)->setThumbnail(false)->setCover(false));
         }
     }
 

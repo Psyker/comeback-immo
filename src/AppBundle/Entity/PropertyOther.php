@@ -77,25 +77,6 @@ class PropertyOther implements PropertyInterface
     }
 
     /**
-     * @return Property
-     */
-    public function getProperty()
-    {
-        return $this->property;
-    }
-
-    /**
-     * @param Property $property
-     * @return PropertyOther
-     */
-    public function setProperty($property)
-    {
-        $this->property = $property;
-
-        return $this;
-    }
-
-    /**
      * @return bool
      */
     public function isElevator()

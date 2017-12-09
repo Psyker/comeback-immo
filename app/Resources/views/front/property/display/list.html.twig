@@ -20,12 +20,10 @@
 
     <div class="container">
         <div class="row">
-
             {% include ':front/layout:property_sidebar.html.twig' %}
-
             <div class="col-md-8">
                 <div class="row properties-list">
-                    {% for property in properties %}
+                    {% for property in properties.currentPageResults %}
                     <div class="col-md-12">
                         <div class="item">
                             <figure>
@@ -65,23 +63,35 @@
         </div>
     </div>
 
-    <!-- PAGINATION -->
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="pagination">
-                    <a href="#" class="prev"><i class="fa fa-angle-left"></i>Previous</a>
-                    <a href="#">1</a>
-                    <span>2</span>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#">6</a>
-                    <a href="#" class="next">Next<i class="fa fa-angle-right"></i></a>
-                </div>
+                {% if properties.haveToPaginate %}
+                    {{ pagerfanta(properties, 'comeback_template', { 'omitFirstPage': true})}}
+                {% endif %}
             </div>
         </div>
     </div>
-    <!-- PAGINATION -->
+
+
+
+    {#<!-- PAGINATION -->#}
+    {#<div class="container">#}
+        {#<div class="row">#}
+            {#<div class="col-md-12">#}
+                {#<div class="pagination">#}
+                    {#<a href="#" class="prev"><i class="fa fa-angle-left"></i>Previous</a>#}
+                    {#<a href="#">1</a>#}
+                    {#<span>2</span>#}
+                    {#<a href="#">3</a>#}
+                    {#<a href="#">4</a>#}
+                    {#<a href="#">5</a>#}
+                    {#<a href="#">6</a>#}
+                    {#<a href="#" class="next">Next<i class="fa fa-angle-right"></i></a>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+    {#<!-- PAGINATION -->#}
 </div>
 {% endblock %}
