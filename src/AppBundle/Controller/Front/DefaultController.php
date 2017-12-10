@@ -15,11 +15,9 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $propertyRepo = $this->getDoctrine()->getRepository('AppBundle:Property');
-        $properties = $propertyRepo->findBy([], null, 9, null);
-        $carouselProperties = $propertyRepo->getCarouselProperties();
+        $properties = $propertyRepo->findBy([], ['createdAt' => 'ASC'], 9, null);
         return $this->render('front/default/index.html.twig', [
             'properties' => $properties,
-            'carouselProperties' => $carouselProperties,
         ]);
     }
 
@@ -29,7 +27,7 @@ class DefaultController extends Controller
      */
     public function contactAction()
     {
-        return $this->redirectToRoute('app_front_home');
+        return $this->render('front/default/contact.html.twig');
     }
 
     /**

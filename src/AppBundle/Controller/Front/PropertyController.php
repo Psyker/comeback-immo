@@ -53,6 +53,8 @@ class PropertyController extends Controller
      */
     public function showAction(Property $property)
     {
+
+        $relatedProperties = $this->getDoctrine()->getRepository('AppBundle:Property');
         return $this->render('front/property/show.html.twig', [
             'property' => $property,
         ]);

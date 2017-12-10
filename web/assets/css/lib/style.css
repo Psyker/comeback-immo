@@ -490,7 +490,7 @@ footer ul li a:hover { color: #fff; }
 .page-contents p+p:last-child { margin: 0; }
 .page-contents figure { margin: 0 0 40px; }
 .page-contents figure a { overflow: hidden; position: relative; display: block; line-height: 0; }
-.page-contents figure a .overlay { opacity: 0; position: absolute; left: 20px; top: 20px; width: calc(100% - 40px); height: calc(100% - 40px); background: rgba(255,235,59,0.5) url("../images/zoom.png") center center no-repeat;
+.page-contents figure a .overlay { opacity: 0; position: absolute; left: 20px; top: 20px; width: calc(100% - 40px); height: calc(100% - 40px); background: rgba(255,235,59,0.5) url("../../images/zoom.png") center center no-repeat;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     -o-transition: all 0.5s;
@@ -677,7 +677,7 @@ footer ul li a:hover { color: #fff; }
 .pricing-tables .price-col h2 { font-size: 30px; color: #212121; text-transform: uppercase; display: block; margin-bottom: 10px; }
 .pricing-tables .price-col h2 small { font-weight: 300; font-size: 20px; display: block; }
 .pricing-tables .price-col .price { font-weight: 700; font-size: 40px; color: rgb(149, 131, 101); display: block; margin-bottom: 25px; }
-.pricing-tables .price-col p { font-size: 14px; line-height: 14px; color: #727272; padding-left: 25px; background: url(../images/tick.png) no-repeat left top; margin-bottom: 13px; text-transform: uppercase; }
+.pricing-tables .price-col p { font-size: 14px; line-height: 14px; color: #727272; padding-left: 25px; background: url(../../images/tick.png) no-repeat left top; margin-bottom: 13px; text-transform: uppercase; }
 
 .steps-sec { margin-bottom: 75px; }
 .steps-sec .step { width: 20%; text-align: center; float: left; }
@@ -705,7 +705,7 @@ footer ul li a:hover { color: #fff; }
     -moz-transform:scale(1.1);
     -o-transform:scale(1.1);
 }
-.grid-item a .overlay { opacity: 0; position: absolute; left: 20px; top: 20px; width: calc(100% - 40px); height: calc(100% - 40px); background: rgba(255,235,59,0.5) url("../images/zoom.png") center center no-repeat;
+.grid-item a .overlay { opacity: 0; position: absolute; left: 20px; top: 20px; width: calc(100% - 40px); height: calc(100% - 40px); background: rgba(255,235,59,0.5) url("../../images/zoom.png") center center no-repeat;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     -o-transition: all 0.5s;
@@ -770,9 +770,15 @@ footer ul li a:hover { color: #fff; }
 
 .property-single .property-filter .view-map { float: right; margin: 0; }
 
-.element { border-radius: 2px; background: #fff; padding: 30px; position: relative; margin-bottom: 20px; }
-.element h6 { font-weight: 300; font-size: 18px; line-height: 18px; }
-.element span { text-transform: uppercase; padding-left: 20px; color: #727272; line-height: 12px; }
+.property-description {
+    margin-top: 20px;
+    color: white;
+    font-size: 16px;
+}
+
+.element { border-radius: 2px; background: rgb(149, 131, 101); padding: 30px; position: relative; margin-bottom: 20px; }
+.element h6 { font-weight: 300; font-size: 18px; line-height: 18px; color: white; }
+.element span { text-transform: uppercase; padding-left: 20px; color: white; line-height: 12px; }
 .element span.walk { background: url("../../images/icon-walk.png") left center no-repeat; }
 .element span.cycling { background: url("../../images/icon-cycle.png") left center no-repeat; }
 .element span.car { background: url("../../images/icon-car.png") left center no-repeat; }
@@ -810,11 +816,11 @@ footer ul li a:hover { color: #fff; }
 
 .property-data { margin-bottom: 70px; }
 
-.property-data .prop-price { overflow: hidden; margin-bottom: 22px; }
+.property-data .prop-price { overflow: hidden; margin-bottom: 35px; }
 .property-data .prop-price .price { color: rgb(149, 131, 101); font: 700 30px 'Ubuntu', Arial, Helvetica, sans-serif; line-height: 39px; }
 .property-data .prop-price .btn { float: right; }
 
-.property-data .prop-features { margin-bottom: 22px; overflow: hidden; }
+.property-data .prop-features { margin-bottom: 30px; overflow: hidden; }
 .property-data .prop-features span { display: block; font-size: 12px; color: white; text-transform: uppercase; padding-left: 20px; width: 50%; float: left; margin-bottom: 15px; }
 .property-data .prop-features span:last-child { margin: 0; }
 .property-data .prop-features span i { margin-right: 10px; }

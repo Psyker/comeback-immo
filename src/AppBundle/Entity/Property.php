@@ -98,6 +98,7 @@ class Property implements PropertyInterface
     /**
      * @var \DateTime $createdAt
      * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     * @ORM\OrderBy("ASC")
      */
     private $createdAt;
 

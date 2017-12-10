@@ -3,31 +3,31 @@
 {% block body %}
     <div class="flexslider" id="slider">
         <ul class="slides">
-            {% for carouselProperty in carouselProperties %}
+            {#{% for carouselProperty in carouselProperties %}#}
             <li>
-                <img src="{{ carouselProperty.imageUrl }}" class="img-responsive" alt="Slider Image" />
+                <img src="{{ asset('assets/images/banner-pricing.png') }}" class="img-responsive" alt="Slider Image" />
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="detail">
-                                <div class="white">
-                                    <h2>{{ carouselProperty.0.location.city }} <br> {{ carouselProperty.0.type }}</h2>
-                                    <span class="slide-location">{{ carouselProperty.0.location.city }} ({{ carouselProperty.0.location.country }})</span>
-                                    <div class="bar"></div>
-                                    <span class="slide-price">{{ carouselProperty.0.netPrice }} €</span>
-                                </div>
-                                <div class="red">
-                                    <span class="bath">{{ carouselProperty.0.propertyInside.bathroomQuantity }} Salles de bains</span>
-                                    <span class="bed">{{ carouselProperty.0.propertyInside.bedroomQuantity }} Chambres</span>
+                            {#<div class="detail">#}
+                                {#<div class="white">#}
+                                    {#<h2>{{ carouselProperty.0.location.city }} <br> {{ carouselProperty.0.type }}</h2>#}
+                                    {#<span class="slide-location">{{ carouselProperty.0.location.city }} ({{ carouselProperty.0.location.country }})</span>#}
+                                    {#<div class="bar"></div>#}
+                                    {#<span class="slide-price">{{ carouselProperty.0.netPrice }} €</span>#}
+                                {#</div>#}
+                                {#<div class="red">#}
+                                    {#<span class="bath">{{ carouselProperty.0.propertyInside.bathroomQuantity }} Salles de bains</span>#}
+                                    {#<span class="bed">{{ carouselProperty.0.propertyInside.bedroomQuantity }} Chambres</span>#}
                                     {#<span class="gym">1 Gym</span>#}
                                     {#<span class="pool">2 Pool</span>#}
-                                </div>
-                            </div>
+                                {#</div>#}
+                            {#</div>#}
                         </div>
                     </div>
                 </div>
             </li>
-            {% endfor %}
+            {#{% endfor %}#}
         </ul>
     </div>
     <!-- SLIDER -->
@@ -206,12 +206,12 @@
                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient...</p>
                 </div>
                 <div class="col-md-4 col-sm-4">
-                    <img src="images/avatar2.png" alt="Avatar" class="img-responsive">
+                    <img src="{{ asset('assets/images/avatar1.png') }}" alt="Avatar" class="img-responsive">
                     <h6>Eva Rodriges</h6>
                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient...</p>
                 </div>
                 <div class="col-md-4 col-sm-4">
-                    <img src="images/avatar3.png" alt="Avatar" class="img-responsive">
+                    <img src="{{ asset('assets/images/avatar1.png') }}" alt="Avatar" class="img-responsive">
                     <h6>Paul Jones</h6>
                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient...</p>
                 </div>

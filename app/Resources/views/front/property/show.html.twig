@@ -7,11 +7,13 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="breadcrumbs">
-                        <a href="index.html">Home</a>
+                        <a href="{{ path('app_front_home') }}">Accueil</a>
                         <span class="sep">/</span>
-                        <span class="current">Properties List</span>
+                        <a href="{{ path('app_front_property_list') }}">Liste des propriétés</a>
+                        <span class="sep">/</span>
+                        <span class="current">Propriété</span>
                     </div>
-                    <h2 class="page-title">All Properties</h2>
+                    <h2 class="page-title">Propriété</h2>
                 </div>
             </div>
         </div>
@@ -61,6 +63,7 @@
                 <div class="col-md-5 property-data">
                     <div class="prop-features prop-before">
                         <span class="location">{{ property.location.city }} ({{ property.location.country }})</span>
+                        <span class="area">{{ property.propertyArea.area }} m2</span>
                     </div>
                     <div class="prop-price">
                         <strong class="price">{{ property.netPrice }} €</strong>
@@ -81,6 +84,11 @@
                         {% if property.propertyOther.parkingSpot %}<li>Parking</li>{% endif %}
                         {% if property.propertyOther.elevator %}<li>Ascenseur</li>{% endif %}
                     </ul>
+                    <p class="property-description">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad aut culpa cumque, cupiditate
+                        deserunt earum est facere facilis illo ipsam itaque molestiae nesciunt nihil nobis praesentium
+                        repellat similique, unde?
+                    </p>
                 </div>
                 <!-- PROPERTY DATA -->
             </div>
@@ -114,40 +122,37 @@
         {#</div>#}
         {#<!-- GALLERY -->#}
 
-        {#<div class="container">#}
-            {#<div class="row">#}
+        <div class="container">
+            <div class="row">
 
-                {#<!-- INFRASTRUCTURE -->#}
-                {#<div class="col-md-5 infra-elements">#}
-                    {#<h5>Infrastructure Elements</h5>#}
-                    {#<div class="element">#}
-                        {#<img src="images/element-bus.png" alt="">#}
-                        {#<h6>Bus Stop</h6>#}
-                        {#<span class="walk">In 8 Minutes</span>#}
-                        {#<a href="#" class="loc-marker"><i class="fa fa-map-marker"></i></a>#}
-                    {#</div>#}
-                    {#<div class="element">#}
-                        {#<img src="images/element-book.png" alt="">#}
-                        {#<h6>The Great Library</h6>#}
-                        {#<span class="walk">In 12 Minutes</span>#}
-                        {#<a href="#" class="loc-marker"><i class="fa fa-map-marker"></i></a>#}
-                    {#</div>#}
-                    {#<div class="element">#}
-                        {#<img src="images/element-market.png" alt="">#}
-                        {#<h6>Super Market</h6>#}
-                        {#<span class="walk">In 2 Minutes</span>#}
-                        {#<a href="#" class="loc-marker"><i class="fa fa-map-marker"></i></a>#}
-                    {#</div>#}
-                    {#<div class="element">#}
-                        {#<img src="images/element-school.png" alt="">#}
-                        {#<h6>International School</h6>#}
-                        {#<span class="cycling">In 13 Minutes</span>#}
-                        {#<a href="#" class="loc-marker"><i class="fa fa-map-marker"></i></a>#}
-                    {#</div>#}
-                {#</div>#}
-                {#<!-- INFRASTRUCTURE -->#}
+                <!-- INFRASTRUCTURE -->
+                <div class="col-md-12 infra-elements">
+                    {% if property.location.busProximity > 0 %}
+                        <div class="col-md-4">
+                            <h5>Infrastructure Elements</h5>
+                            <div class="element">
+                                <img src="{{ asset('assets/images/element-bus.png') }}" alt="">
+                                <h6>Arrêt de bus</h6>
+                                <span class="walk">{{ property.location.busProximity }} min</span>
+                                <a href="#" class="loc-marker"><i class="fa fa-map-marker"></i></a>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if property.location.shopProximity > 0 %}
+                        <div class="col-md-4">
+                            <h5>Infrastructure Elements</h5>
+                            <div class="element">
+                                <img src="{{ asset('assets/images/element-market.png') }}" alt="">
+                                <h6>Commerces</h6>
+                                <span class="walk">{{ property.location.shopProximity }} km</span>
+                                <a href="#" class="loc-marker"><i class="fa fa-map-marker"></i></a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                <!-- INFRASTRUCTURE -->
 
-                {#<!-- NEARBY PLACES -->#}
+                <!-- NEARBY PLACES -->
                 {#<div class="col-md-7 nearby-places">#}
                     {#<h5>Nearby Attractions</h5>#}
                     {#<div class="element">#}
@@ -175,10 +180,10 @@
                         {#<a href="#" class="loc-marker"><i class="fa fa-map-marker"></i></a>#}
                     {#</div>#}
                 {#</div>#}
-                {#<!-- NEARBY PLACES -->#}
+                <!-- NEARBY PLACES -->
 
-            {#</div>#}
-        {#</div>#}
+            </div>
+        </div>
 
         <!-- BANNER -->
         <div class="full-width personal-agent">
