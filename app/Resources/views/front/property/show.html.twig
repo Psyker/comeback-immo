@@ -209,184 +209,38 @@
 
         <!-- ITEMS GRID -->
         <div class="container">
+            <h2 class="page-title">Vous pourriez aimer aussi ...</h2>
             <div class="row">
-
+                {% for relatedProperty in relatedProperties %}
                 <div class="col-md-4 col-sm-6">
                     <div class="item">
                         <div class="item-header clearfix">
-                            <h3>Los Angles Apartment</h3>
-                            <span class="favorite"><i class="fa fa-heart"></i>9</span>
+                            <h3>{{ relatedProperty.location.city }} {{ relatedProperty.type }}</h3>
                         </div>
                         <figure>
-                            <img src="images/items/7.png" alt="" class="img-responsive">
-                            <span class="label sale">Sell</span>
+                            <img src="{% if relatedProperty.medias.0.imageUrl is defined %}{{ relatedProperty.medias.0.imageUrl }}{% endif %}" alt="" class="img-responsive">
                             <div class="overlay">
-                                <a href="#" class="btn btn-detail">Detail</a>
+                                <a href="{{ path('app_front_property_show', {'id' : relatedProperty.affId}) }}" class="btn btn-detail">Voir</a>
                             </div>
                         </figure>
                         <div class="item-detail">
                             <div class="left">
-                                <span class="place"><i class="fa fa-map-marker"></i>Galtur (Austria)</span>
-                                <span class="bed">3</span>
-                                <span class="bath">2</span>
-                                <span class="garage">2</span>
-                                <span class="gym">1</span>
+                                <span class="place"><i class="fa fa-map-marker"></i>{{ relatedProperty.location.city }} ({{ relatedProperty.location.country }})</span>
+                                <span class="bed">{{ relatedProperty.propertyInside.bedroomQuantity }}</span>
+                                <span class="bath">{{ relatedProperty.propertyInside.bathroomQuantity }}</span>
+                                <span class="garage">{{ property.propertyOther.garageQuantity|default(0) }}</span>
                             </div>
                             <div class="right">
-                                <span class="area">134 m2</span>
-                                <span class="price">$ 870000</span>
+                                <span class="area">{{ relatedProperty.propertyArea.area|default('N/A') }} m2</span>
+                                <span class="price">{{ relatedProperty.netPrice }} €</span>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="item">
-                        <div class="item-header clearfix">
-                            <h3>Los Angles Apartment</h3>
-                            <span class="favorite"><i class="fa fa-heart"></i>9</span>
-                        </div>
-                        <figure>
-                            <img src="images/items/8.png" alt="" class="img-responsive">
-                            <span class="label rent">Rent</span>
-                            <div class="overlay">
-                                <a href="#" class="btn btn-detail">Detail</a>
-                            </div>
-                        </figure>
-                        <div class="item-detail">
-                            <div class="left">
-                                <span class="place"><i class="fa fa-map-marker"></i>Galtur (Austria)</span>
-                                <span class="bed">3</span>
-                                <span class="bath">2</span>
-                                <span class="garage">2</span>
-                                <span class="gym">1</span>
-                            </div>
-                            <div class="right">
-                                <span class="area">134 m2</span>
-                                <span class="price">$ 870000</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="item">
-                        <div class="item-header clearfix">
-                            <h3>Los Angles Apartment</h3>
-                            <span class="favorite"><i class="fa fa-heart"></i>9</span>
-                        </div>
-                        <figure>
-                            <img src="images/items/9.png" alt="" class="img-responsive">
-                            <span class="label rent">Rent</span>
-                            <div class="overlay">
-                                <a href="#" class="btn btn-detail">Detail</a>
-                            </div>
-                        </figure>
-                        <div class="item-detail">
-                            <div class="left">
-                                <span class="place"><i class="fa fa-map-marker"></i>Galtur (Austria)</span>
-                                <span class="bed">3</span>
-                                <span class="bath">2</span>
-                                <span class="garage">2</span>
-                                <span class="gym">1</span>
-                            </div>
-                            <div class="right">
-                                <span class="area">134 m2</span>
-                                <span class="price">$ 870000</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="item">
-                        <div class="item-header clearfix">
-                            <h3>Los Angles Apartment</h3>
-                            <span class="favorite"><i class="fa fa-heart"></i>9</span>
-                        </div>
-                        <figure>
-                            <img src="images/items/10.png" alt="" class="img-responsive">
-                            <span class="label hot">Hot</span>
-                            <div class="overlay">
-                                <a href="#" class="btn btn-detail">Detail</a>
-                            </div>
-                        </figure>
-                        <div class="item-detail">
-                            <div class="left">
-                                <span class="place"><i class="fa fa-map-marker"></i>Galtur (Austria)</span>
-                                <span class="bed">3</span>
-                                <span class="bath">2</span>
-                                <span class="garage">2</span>
-                                <span class="gym">1</span>
-                            </div>
-                            <div class="right">
-                                <span class="area">134 m2</span>
-                                <span class="price">$ 870000</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="item">
-                        <div class="item-header clearfix">
-                            <h3>Los Angles Apartment</h3>
-                            <span class="favorite"><i class="fa fa-heart"></i>9</span>
-                        </div>
-                        <figure>
-                            <img src="images/items/11.png" alt="" class="img-responsive">
-                            <span class="label rent">Rent</span>
-                            <div class="overlay">
-                                <a href="#" class="btn btn-detail">Detail</a>
-                            </div>
-                        </figure>
-                        <div class="item-detail">
-                            <div class="left">
-                                <span class="place"><i class="fa fa-map-marker"></i>Galtur (Austria)</span>
-                                <span class="bed">3</span>
-                                <span class="bath">2</span>
-                                <span class="garage">2</span>
-                                <span class="gym">1</span>
-                            </div>
-                            <div class="right">
-                                <span class="area">134 m2</span>
-                                <span class="price">$ 870000</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="item">
-                        <div class="item-header clearfix">
-                            <h3>Los Angles Apartment</h3>
-                            <span class="favorite"><i class="fa fa-heart"></i>9</span>
-                        </div>
-                        <figure>
-                            <img src="images/items/12.png" alt="" class="img-responsive">
-                            <span class="label sale">Sell</span>
-                            <div class="overlay">
-                                <a href="#" class="btn btn-detail">Detail</a>
-                            </div>
-                        </figure>
-                        <div class="item-detail">
-                            <div class="left">
-                                <span class="place"><i class="fa fa-map-marker"></i>Galtur (Austria)</span>
-                                <span class="bed">3</span>
-                                <span class="bath">2</span>
-                                <span class="garage">2</span>
-                                <span class="gym">1</span>
-                            </div>
-                            <div class="right">
-                                <span class="area">134 m2</span>
-                                <span class="price">$ 870000</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                {% endfor %}
             </div>
         </div>
         <!-- ITEMS GRID -->
+
     </div>
 {% endblock %}

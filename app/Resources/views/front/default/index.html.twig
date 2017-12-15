@@ -34,43 +34,7 @@
 
     <!-- FILTER -->
     <div class="container">
-        <div class="filter">
-            <select class="location">
-                <option>Location</option>
-                <option>London</option>
-                <option>Paris</option>
-                <option>New York</option>
-            </select>
-            <select class="cata">
-                <option>Category</option>
-                <option>Land</option>
-                <option>Plots</option>
-                <option>Commercial</option>
-            </select>
-            <select class="type">
-                <option>Type</option>
-                <option>Buy</option>
-                <option>Sell</option>
-                <option>Rent</option>
-            </select>
-            <select class="type">
-                <option>Type</option>
-                <option>Buy</option>
-                <option>Sell</option>
-                <option>Rent</option>
-            </select>
-            <button type="button" class="btn"><i class="fa fa-search"></i>Search</button>
-            <div class="range">
-                <p>
-                    <label for="price">Price</label>
-                    <span>$ <input type="text" id="price" ></span>
-                </p>
-                <div id="price-range"></div>
-            </div>
-
-            <a href="#" class="adv-srch">Advance Search</a>
-
-        </div>
+        {{ render(controller('AppBundle\\Controller\\Front\\PropertyController::searchAction')) }}
     </div>
     <!-- FILTER -->
 

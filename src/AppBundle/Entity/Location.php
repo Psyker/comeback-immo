@@ -118,7 +118,7 @@ class Location implements PropertyInterface
     /**
      * @return int
      */
-    public function getShopProximity(): int
+    public function getShopProximity()
     {
         return $this->shopProximity;
     }
@@ -137,7 +137,7 @@ class Location implements PropertyInterface
     /**
      * @return int
      */
-    public function getBusProximity(): int
+    public function getBusProximity()
     {
         return $this->busProximity;
     }

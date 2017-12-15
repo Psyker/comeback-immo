@@ -55,12 +55,6 @@ class Property implements PropertyInterface
     private $netPrice;
 
     /**
-     * @var boolean $inCarousel
-     * @ORM\Column(name="in_carousel", type="boolean", nullable=true)
-     */
-    private $inCarousel;
-
-    /**
      * @var Location $location
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Location", mappedBy="property", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="location_id", referencedColumnName="id")
@@ -400,25 +394,6 @@ class Property implements PropertyInterface
     public function setNetPrice(int $netPrice): Property
     {
         $this->netPrice = $netPrice;
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isInCarousel(): bool
-    {
-        return $this->inCarousel;
-    }
-
-    /**
-     * @param bool $inCarousel
-     * @return Property
-     */
-    public function setInCarousel(bool $inCarousel): Property
-    {
-        $this->inCarousel = $inCarousel;
 
         return $this;
     }

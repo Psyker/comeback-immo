@@ -3,6 +3,7 @@
 namespace AppBundle\Controller\Front;
 
 use AppBundle\Entity\Property;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -12,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Class PropertyController
  * @package AppBundle\Controller\Front
  * @Route("/property")
+ * @Method("GET")
  */
 class PropertyController extends Controller
 {
@@ -53,10 +55,29 @@ class PropertyController extends Controller
      */
     public function showAction(Property $property)
     {
-
-        $relatedProperties = $this->getDoctrine()->getRepository('AppBundle:Property');
+        $relatedProperties = $this->getDoctrine()->getRepository('AppBundle:Property')->getRelatedProperties($property);
         return $this->render('front/property/show.html.twig', [
             'property' => $property,
+            'relatedProperties' => $relatedProperties
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/search", name="app_front_search")
+     * @Method("GET")
+     */
+    public function searchAction(Request $request)
+    {
+        $locations = $this->getDoctrine()->getRepository('AppBundle:Location')->getCities();
+        if (!empty($request->query)) {
+            $properties = $this->getDoctrine()->getRepository('AppBundle:Property')->simpleSearchProperties($request->query);
+            dump($properties);
+        }
+
+        return $this->render(':front/property:search.html.twig', [
+            'locations' => $locations
         ]);
     }
 }

@@ -1,0 +1,29 @@
+<div class="filter">
+    <form action="{{ path('app_front_search') }}">
+        <select name="location" class="location">
+            <option value="">Ville</option>
+            {% for location in locations %}
+                <option value="{{ location.city|trim }}">{{ location.city }}</option>
+            {% endfor %}
+        </select>
+        <select name="type" class="cata">
+            <option value="">Type de bien</option>
+            <option value="house">Maison</option>
+            <option value="appartment">Appartement</option>
+        </select>
+        <select name="category" class="type">
+            <option value="">Catégorie</option>
+            <option>Location</option>
+            <option>Achat</option>
+        </select>
+        <button type="submit" class="btn"><i class="fa fa-search"></i>Rechercher</button>
+        <div class="range">
+            <p>
+                <label for="price">Prix</label>
+                <span>$ <input name="price" type="text" id="price" ></span>
+            </p>
+            <div id="price-range"></div>
+        </div>
+    </form>
+    <a href="{{ path('app_front_property_list') }}" class="adv-srch">Recherche avancée</a>
+</div>

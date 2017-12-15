@@ -6,6 +6,7 @@ use AppBundle\Entity\Property;
 use Doctrine\ORM\EntityRepository;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
+use Symfony\Component\HttpFoundation\ParameterBag;
 
 /**
  * PropertyRepository
@@ -50,5 +51,54 @@ class PropertyRepository extends EntityRepository
             ->setAllowOutOfRangePages(true);
 
         return $pagerfanta;
+    }
+
+    public function getRelatedProperties(Property $property)
+    {
+        $query = $this->createQueryBuilder('p')
+            ->join('p.location', 'l')
+            ->join('p.propertyInside', 'pi')
+            ->orWhere('l.city = :propertyCity')
+            ->orWhere('pi.roomQuantity = :propertyRooms')
+            ->andWhere('p.type = :propertyType')
+            ->orderBy('p.createdAt', 'ASC')
+            ->setParameter(':propertyCity', $property->getLocation()->getCity())
+            ->setParameter(':propertyRooms', $property->getPropertyInside()->getRoomQuantity())
+            ->setParameter(':propertyType', $property->getType())
+            ->setMaxResults(6)
+            ->getQuery()
+            ->getResult();
+
+        return $query;
+    }
+
+    public function simpleSearchProperties(ParameterBag $data)
+    {
+        $query = $this->createQueryBuilder('p')
+            ->join('p.location', 'l');
+
+        if (array_key_exists('location', $data->all()) && !empty($data->get('location'))) {
+            $query->andWhere('l.city LIKE :city')
+                ->setParameter(':city', '%'.$data->get('location').'%');
+        }
+
+        if (array_key_exists('type', $data->all()) && !empty($data->get('type'))) {
+            $query->andWhere('p.type = :type');
+            if ($data->get('type') === Property::PROPERTY_HOUSE) {
+                $query->setParameter(':type', Property::PROPERTY_HOUSE);
+            } else {
+                $query->setParameter(':type', Property::PROPERTY_APARTMENT);
+            }
+        }
+
+        if (array_key_exists('price', $data->all()) && !empty($data->get('price'))) {
+            list($first, $second) = explode('-',$data->get('price'));
+            $query->andWhere('p.netPrice BETWEEN :first AND :second')
+                ->setParameter(':first', trim($first))
+                ->setParameter(':second', trim($second));
+        }
+
+       return $query->getQuery()
+            ->getResult();
     }
 }
