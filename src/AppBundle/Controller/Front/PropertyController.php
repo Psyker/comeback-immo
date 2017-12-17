@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * Class PropertyController
@@ -70,10 +71,15 @@ class PropertyController extends Controller
      */
     public function searchAction(Request $request)
     {
+        $page = $request->get('page', 1);
         $locations = $this->getDoctrine()->getRepository('AppBundle:Location')->getCities();
-        if (!empty($request->query)) {
-            $properties = $this->getDoctrine()->getRepository('AppBundle:Property')->simpleSearchProperties($request->query);
-            dump($properties);
+        if (!empty($request->query->all())) {
+            $properties = $this->getDoctrine()->getRepository('AppBundle:Property')
+                ->simpleSearchProperties($request->query, $page);
+
+            return $this->render('front/property/display/list.html.twig', [
+                'properties' => $properties
+            ]);
         }
 
         return $this->render(':front/property:search.html.twig', [

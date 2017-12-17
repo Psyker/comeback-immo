@@ -2,12 +2,11 @@
 
 namespace AppBundle\Template;
 
-
 use Pagerfanta\View\Template\DefaultTemplate;
 
 class ComebackTemplate extends DefaultTemplate
 {
-    static protected $defaultOptions = array(
+    static protected $defaultOptions = [
         'previous_message'   => '<i class="fa fa-angle-left"></i>Précédent',
         'next_message'       => 'Suivant <i class="fa fa-angle-right"></i>',
         'css_disabled_class' => 'disabled',
@@ -21,7 +20,7 @@ class ComebackTemplate extends DefaultTemplate
         'rel_next'            => 'next',
         'css_prev_class'      => 'prev',
         'css_next_class'      => 'next',
-    );
+    ];
 
     public function previousEnabled($page)
     {

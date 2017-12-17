@@ -8,11 +8,11 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="breadcrumbs">
-                    <a href="index.html">Home</a>
+                    <a href="{{ path('app_front_home') }}">Accueil</a>
                     <span class="sep">/</span>
-                    <span class="current">Properties List</span>
+                    <span class="current">Liste des propriétés</span>
                 </div>
-                <h2 class="page-title">All Properties</h2>
+                <h2 class="page-title">{{ app.request.attributes.get('_route') == 'app_front_search' ? 'Résultats de la recherche' : 'Toutes les propriétés' }}</h2>
             </div>
         </div>
     </div>
@@ -27,7 +27,7 @@
                     <div class="col-md-12">
                         <div class="item">
                             <figure>
-                                <img src="{{ property.medias[0].imageUrl }}" alt="" class="img-responsive">
+                                <img src="{% if property.medias.0.imageUrl is defined %} {{ property.medias.0.imageUrl }}{% endif %}" alt="" class="img-responsive">
                                 {#<span class="label sale">Sell</span>#}
                                 <div class="overlay">
                                     <a href="{{ path('app_front_property_show', {'id': property.affId}) }}" class="btn btn-detail">Voir</a>

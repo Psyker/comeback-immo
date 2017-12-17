@@ -19,8 +19,8 @@ use Doctrine\ORM\Mapping\ManyToOne;
  */
 class Property implements PropertyInterface
 {
-    CONST PROPERTY_HOUSE = 'house';
-    CONST PROPERTY_APARTMENT = 'appartement';
+    const PROPERTY_HOUSE = 'house';
+    const PROPERTY_APARTMENT = 'appartement';
 
     /**
      * @var int
@@ -70,7 +70,9 @@ class Property implements PropertyInterface
 
     /**
      * @var PropertyOutside $propertyOutside
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\PropertyOutside", mappedBy="property", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\PropertyOutside",
+     *      mappedBy="property", cascade={"persist", "remove"}
+     * )
      * @ORM\JoinColumn(name="outside_id", referencedColumnName="id")
      */
     private $propertyOutside;
@@ -103,7 +105,9 @@ class Property implements PropertyInterface
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Media", mappedBy="property", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Media",
+     *      mappedBy="property", cascade={"persist", "remove"}, orphanRemoval=true
+     * )
      */
     private $medias;
 

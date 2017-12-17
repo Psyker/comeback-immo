@@ -36,6 +36,6 @@ class DefaultController extends Controller
      */
     public function aboutAction()
     {
-        return $this->redirectToRoute('app_front_home');
+        return $this->render(':front/default:about.html.twig');
     }
 }

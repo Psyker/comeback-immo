@@ -134,9 +134,9 @@ class PropertyArea implements PropertyInterface
 
     public function set(string $functionName, $value): PropertyInterface
     {
-       $this->$functionName($value);
+        $this->$functionName($value);
 
-       return $this;
+        return $this;
     }
 
     public function get(string $functionName): PropertyInterface

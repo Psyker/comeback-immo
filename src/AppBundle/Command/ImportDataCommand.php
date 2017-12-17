@@ -11,6 +11,7 @@ use AppBundle\Entity\Media;
 use AppBundle\Entity\PropertyOther;
 use AppBundle\Entity\PropertyOutside;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManager;
 use GuzzleHttp\Client;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Helper\ProgressBar;
@@ -109,7 +110,7 @@ class ImportDataCommand extends ContainerAwareCommand
     ];
     private $em;
 
-    public function __construct(ObjectManager $em)
+    public function __construct(EntityManager $em)
     {
         parent::__construct();
         $this->em = $em;
@@ -131,7 +132,7 @@ class ImportDataCommand extends ContainerAwareCommand
             if (array_key_exists($key, $data)) {
                 foreach ($attributeCategory as $keyAttribute => $attribute) {
                     if (is_array($attribute)) {
-                        foreach($attribute as $keyNestedAttribute => $nestedAttribute) {
+                        foreach ($attribute as $keyNestedAttribute => $nestedAttribute) {
                             if (array_key_exists($keyNestedAttribute, $data[$key][$keyAttribute])) {
                                 $entity->set($nestedAttribute, $data[$key][$keyAttribute][$keyNestedAttribute]);
                             }
@@ -148,7 +149,8 @@ class ImportDataCommand extends ContainerAwareCommand
         return $entity;
     }
 
-    private function createProperty(array $data) {
+    private function createProperty(array $data)
+    {
         /** @var Property $property */
         $property = $this->setDataByModel($this->propertyModel, $data, new Property());
         if (array_key_exists('MAISON', $data)) {
@@ -197,7 +199,7 @@ class ImportDataCommand extends ContainerAwareCommand
             $property->removeMedia($media);
         }
         foreach ($data['IMAGES']['IMG'] as $img) {
-            $property->addMedia((new Media())->setImageUrl($img)->setProperty($property)->setThumbnail(false)->setCover(false));
+            $property->addMedia((new Media())->setImageUrl($img)->setProperty($property));
         }
     }
 

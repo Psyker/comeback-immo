@@ -1,5 +1,5 @@
 <div class="filter">
-    <form action="{{ path('app_front_search') }}">
+    <form action="{{ path('app_front_search') }}" method="get">
         <select name="location" class="location">
             <option value="">Ville</option>
             {% for location in locations %}
@@ -20,7 +20,7 @@
         <div class="range">
             <p>
                 <label for="price">Prix</label>
-                <span>$ <input name="price" type="text" id="price" ></span>
+                <span> €<input name="price" type="text" id="price" > </span>
             </p>
             <div id="price-range"></div>
         </div>

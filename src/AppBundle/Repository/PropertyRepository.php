@@ -23,7 +23,7 @@ class PropertyRepository extends EntityRepository
             ->getQuery()
             ->getScalarResult();
 
-       return array_map('current', $result);
+        return array_map('current', $result);
     }
 
     public function getCarouselProperties()
@@ -72,7 +72,7 @@ class PropertyRepository extends EntityRepository
         return $query;
     }
 
-    public function simpleSearchProperties(ParameterBag $data)
+    public function simpleSearchProperties(ParameterBag $data, int $page)
     {
         $query = $this->createQueryBuilder('p')
             ->join('p.location', 'l');
@@ -92,13 +92,17 @@ class PropertyRepository extends EntityRepository
         }
 
         if (array_key_exists('price', $data->all()) && !empty($data->get('price'))) {
-            list($first, $second) = explode('-',$data->get('price'));
+            list($first, $second) = explode('-', $data->get('price'));
             $query->andWhere('p.netPrice BETWEEN :first AND :second')
                 ->setParameter(':first', trim($first))
                 ->setParameter(':second', trim($second));
         }
 
-       return $query->getQuery()
-            ->getResult();
+        $pagerfanta = new Pagerfanta(new DoctrineORMAdapter($query));
+        $pagerfanta->setMaxPerPage(5)
+            ->setCurrentPage($page)
+            ->setAllowOutOfRangePages(true);
+
+        return $pagerfanta;
     }
 }
