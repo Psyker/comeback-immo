@@ -19,8 +19,8 @@ use Doctrine\ORM\Mapping\ManyToOne;
  */
 class Property implements PropertyInterface
 {
-    const PROPERTY_HOUSE = 'house';
-    const PROPERTY_APARTMENT = 'appartement';
+    const PROPERTY_HOUSE = 'Maison';
+    const PROPERTY_APARTMENT = 'Appartement';
 
     /**
      * @var int

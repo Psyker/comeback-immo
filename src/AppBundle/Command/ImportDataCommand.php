@@ -29,6 +29,12 @@ class ImportDataCommand extends ContainerAwareCommand
         ],
         'VENTE' => [
             'PRIX' => 'setNetPrice'
+        ],
+        'INTITULE' => [
+            'FR' => 'setTitle'
+        ],
+        'COMMENTAIRES' => [
+            'FR' => 'setDescription'
         ]
     ];
 
@@ -213,6 +219,7 @@ class ImportDataCommand extends ContainerAwareCommand
         $xml = simplexml_load_string($res->getBody()->getContents(), 'SimpleXMLElement', LIBXML_NOCDATA);
         $arrayData = json_decode(json_encode((array)$xml), true);
         $em = $this->getContainer()->get('doctrine.orm.default_entity_manager');
+
         $checkPropBar = new ProgressBar($output, count($arrayData['BIEN']));
         // Clear media table.
         $this->em->getConnection()->exec('TRUNCATE TABLE media');

@@ -1,0 +1,41 @@
+{% extends ':front/layout:base.html.twig' %}
+
+{% block body %}
+
+    <div class="full-width page-wrap properties-page">
+
+        <!-- BREADCRUMBS-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumbs">
+                        <a href="{{ path('app_front_home') }}">Accueil</a>
+                        <span class="sep">/</span>
+                        <span class="current">Résultats</span>
+                    </div>
+                    <h2 class="page-title">Résultats de la recherche</h2>
+                </div>
+            </div>
+        </div>
+        <!-- BREADCRUMBS -->
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    {% if properties|length > 0 %}
+                    <div class="row properties-grid">
+                        {% for propertyRow in properties|batch(3) %}
+                            {% for row in propertyRow %}
+                                {% set property = row %}
+                                {% include ':front/default:property_block.html.twig' with  {'property': property, 'col': 'col-md-4 col-sm-6'} %}
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                        <h3 style="color: white">Aucun résultats pour votre recherche.</h3>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

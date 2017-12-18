@@ -77,7 +77,7 @@ class PropertyController extends Controller
             $properties = $this->getDoctrine()->getRepository('AppBundle:Property')
                 ->simpleSearchProperties($request->query, $page);
 
-            return $this->render('front/property/display/list.html.twig', [
+            return $this->render('front/property/results.html.twig', [
                 'properties' => $properties
             ]);
         }

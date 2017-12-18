@@ -45,10 +45,18 @@
                                 <div class="item-detail">
                                     <span class="price">{{ property.netPrice }} €</span>
                                     <div class="left">
-                                        <span class="bed">{{ property.propertyInside.bedroomQuantity }}</span>
-                                        <span class="bath">{{ property.propertyInside.bathroomQuantity }}</span>
-                                        <span class="garage">{{ property.propertyOther.garageQuantity|default(0) }}</span>
-                                        {#<span class="gym">1</span>#}
+                                        <span><i class="fa fa-bed"></i>{{ property.propertyInside.bedroomQuantity }}</span>
+                                        {% if property.propertyInside.bathroomQuantity > 0 and property.propertyInside.washroomQuantity > 0 %}
+                                            <span><i class="fa fa-bath"></i>{{ property.propertyInside.bathroomQuantity + property.propertyInside.washroomQuantity }}</span>
+                                        {% elseif property.propertyInside.bathroomQuantity > 0 %}
+                                            <span><i class="fa fa-bath"></i>{{ property.propertyInside.bathroomQuantity }}</span>
+                                        {% elseif property.propertyInside.washroomQuantity > 0 %}
+                                            <span><i class="fa fa-bath"></i>{{ property.propertyInside.washroomQuantity }}</span>
+                                        {% endif %}
+                                        <span><i class="fa fa-home"></i>{{ property.propertyInside.roomQuantity|default(0) }}</span>
+                                        {% if property.propertyOutside.garden > 0 %}
+                                            <span><i class="fa fa-leaf"></i>{{ property.propertyArea.landArea }} m2</span>
+                                        {% endif %}
                                     </div>
                                     <div class="right">
                                         <span class="area">{{ property.propertyArea.area|default("N/A") }} m2</span>

@@ -13,7 +13,7 @@
                         <span class="sep">/</span>
                         <span class="current">Propriété</span>
                     </div>
-                    <h2 class="page-title">Propriété</h2>
+                    <h2 class="page-title">{{ property.title }}</h2>
                 </div>
             </div>
         </div>
@@ -85,9 +85,7 @@
                         {% if property.propertyOther.elevator %}<li>Ascenseur</li>{% endif %}
                     </ul>
                     <p class="property-description">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad aut culpa cumque, cupiditate
-                        deserunt earum est facere facilis illo ipsam itaque molestiae nesciunt nihil nobis praesentium
-                        repellat similique, unde?
+                        {{ property.description }}
                     </p>
                 </div>
                 <!-- PROPERTY DATA -->

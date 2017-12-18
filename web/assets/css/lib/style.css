@@ -273,7 +273,7 @@ header .user-drop li i { margin-right: 20px; }
 .label.hot { background: #d32f2f; }
 
 .item .item-detail { padding: 20px; overflow: hidden; }
-.item .item-detail span { font-size: 12px; color: white; text-transform: uppercase; padding-left: 20px; margin-right: 20px; }
+.item .item-detail span { font-size: 12px; color: white; text-transform: uppercase; padding-left: 5px; margin-right: 10px; }
 .item .item-detail span i { margin-right: 10px; }
 .item .item-detail .left { float: left; }
 .item .item-detail .right { text-align: right; float: right; }
@@ -341,7 +341,7 @@ header .user-drop li i { margin-right: 20px; }
 .design article p { font-size: 16px; color: #727272; line-height: 28px; margin-bottom: 30px; }
 .design figure { overflow: hidden; line-height: 0; }
 
-.personal-agent { background: url(../../images/banner-agent.png) no-repeat; background-size: cover; min-height: 415px; }
+.personal-agent { background: url(../../images/banner.png) no-repeat; background-size: cover; min-height: 415px; }
 .personal-agent figure { text-align: center; line-height: 0; }
 .personal-agent figure img { display: inline-block; }
 .personal-agent article { padding-top: 100px; }
@@ -353,7 +353,7 @@ header .user-drop li i { margin-right: 20px; }
 .history h3 { font-size: 30px; color: #212121; text-transform: uppercase; margin-bottom: 25px; }
 .history p { font-size: 16px; color: #727272; line-height: 28px; margin-bottom: 30px; }
 
-.partners { margin: 80px 0 0; padding: 145px 0; background: url(../../images/banner-partners.png) no-repeat; background-size: cover;  }
+.partners { margin: 80px 0 0; padding: 145px 0; background: url(../../images/banner.png) no-repeat; background-size: cover;  }
 .partners li { text-align: center; }
 .partners a { vertical-align: middle; display: inline-block; }
 
