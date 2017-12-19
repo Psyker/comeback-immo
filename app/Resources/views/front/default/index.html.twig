@@ -3,31 +3,30 @@
 {% block body %}
     <div class="flexslider" id="slider">
         <ul class="slides">
-            {#{% for carouselProperty in carouselProperties %}#}
             <li>
-                <img src="{{ asset('assets/images/homepage.jpeg') }}" class="img-responsive" alt="Slider Image" />
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            {#<div class="detail">#}
-                                {#<div class="white">#}
-                                    {#<h2>{{ carouselProperty.0.location.city }} <br> {{ carouselProperty.0.type }}</h2>#}
-                                    {#<span class="slide-location">{{ carouselProperty.0.location.city }} ({{ carouselProperty.0.location.country }})</span>#}
-                                    {#<div class="bar"></div>#}
-                                    {#<span class="slide-price">{{ carouselProperty.0.netPrice }} €</span>#}
-                                {#</div>#}
-                                {#<div class="red">#}
-                                    {#<span class="bath">{{ carouselProperty.0.propertyInside.bathroomQuantity }} Salles de bains</span>#}
-                                    {#<span class="bed">{{ carouselProperty.0.propertyInside.bedroomQuantity }} Chambres</span>#}
-                                    {#<span class="gym">1 Gym</span>#}
-                                    {#<span class="pool">2 Pool</span>#}
-                                {#</div>#}
-                            {#</div>#}
-                        </div>
-                    </div>
-                </div>
+                <img src="{{ asset('assets/images/homepage/hompage1.jpg') }}" class="img-responsive" alt="Slider Image" />
             </li>
-            {#{% endfor %}#}
+            <li>
+                <img src="{{ asset('assets/images/homepage/hompage2.jpg') }}" class="img-responsive" alt="Slider Image" />
+            </li>
+            <li>
+                <img src="{{ asset('assets/images/homepage/hompage3.jpeg') }}" class="img-responsive" alt="Slider Image" />
+            </li>
+            <li>
+                <img src="{{ asset('assets/images/homepage/hompage4.jpeg') }}" class="img-responsive" alt="Slider Image" />
+            </li>
+            <li>
+                <img src="{{ asset('assets/images/homepage/hompage5.jpeg') }}" class="img-responsive" alt="Slider Image" />
+            </li>
+            <li>
+                <img src="{{ asset('assets/images/homepage/homepage6.jpeg') }}" class="img-responsive" alt="Slider Image" />
+            </li>
+            <li>
+                <img src="{{ asset('assets/images/homepage/homepage7.jpeg') }}" class="img-responsive" alt="Slider Image" />
+            </li>
+            <li>
+                <img src="{{ asset('assets/images/homepage/homepage8.jpeg') }}" class="img-responsive" alt="Slider Image" />
+            </li>
         </ul>
     </div>
     <!-- SLIDER -->
@@ -115,17 +114,16 @@
     <div class="full-width personal-agent">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 col-sm-4">
+                <div class="col-md-6 col-sm-6">
                     <figure>
-                        <img src="{{ asset('assets/images/agent-pic.png') }}" alt="Pic" class="img-responsive">
+                        <img style="margin-top: 20%" src="{{ asset('assets/images/logo-CB.png') }}" alt="Pic" class="img-responsive">
                     </figure>
                 </div>
-                <div class="col-md-8 col-sm-8">
+                <div class="col-md-6 col-sm-6">
                     <article>
-                        <span>Lara Loft</span>
-                        <h2>Your personal agent</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget<br> dolor. Aenean massa.</p>
-                        <button type="button" class="btn btn-danger">Get Agent Help</button>
+                        <h2>Votre agence immobilière</h2>
+                        <p>Nous nous tenons à votre disposition pour toutes questions éventuelles, nous sommes à votre écoute pour y répondre.</p>
+                        <button type="button" class="btn btn-danger">Poser une question</button>
                     </article>
                 </div>
             </div>
@@ -133,27 +131,27 @@
     </div>
     <!-- BANNER -->
 
-    <!-- REVIEWS -->
-    <div class="full-width rewiews">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-sm-4">
-                    <img src="{{ asset('assets/images/avatar1.png') }}" alt="Avatar" class="img-responsive">
-                    <h6>Jane Ramos</h6>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient...</p>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                    <img src="{{ asset('assets/images/avatar1.png') }}" alt="Avatar" class="img-responsive">
-                    <h6>Eva Rodriges</h6>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient...</p>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                    <img src="{{ asset('assets/images/avatar1.png') }}" alt="Avatar" class="img-responsive">
-                    <h6>Paul Jones</h6>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient...</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- REVIEWS -->
+    {#<!-- REVIEWS -->#}
+    {#<div class="full-width rewiews">#}
+        {#<div class="container">#}
+            {#<div class="row">#}
+                {#<div class="col-md-4 col-sm-4">#}
+                    {#<img src="{{ asset('assets/images/avatar1.png') }}" alt="Avatar" class="img-responsive">#}
+                    {#<h6>Jane Ramos</h6>#}
+                    {#<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient...</p>#}
+                {#</div>#}
+                {#<div class="col-md-4 col-sm-4">#}
+                    {#<img src="{{ asset('assets/images/avatar1.png') }}" alt="Avatar" class="img-responsive">#}
+                    {#<h6>Eva Rodriges</h6>#}
+                    {#<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient...</p>#}
+                {#</div>#}
+                {#<div class="col-md-4 col-sm-4">#}
+                    {#<img src="{{ asset('assets/images/avatar1.png') }}" alt="Avatar" class="img-responsive">#}
+                    {#<h6>Paul Jones</h6>#}
+                    {#<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient...</p>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+    {#<!-- REVIEWS -->#}
 {% endblock %}
