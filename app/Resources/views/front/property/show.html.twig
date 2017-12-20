@@ -121,13 +121,13 @@
         {#<!-- GALLERY -->#}
 
         <div class="container">
+            <h5>Informations supplémentaires</h5>
+            <br>
             <div class="row">
-
                 <!-- INFRASTRUCTURE -->
                 <div class="col-md-12 infra-elements">
                     {% if property.location.busProximity > 0 %}
                         <div class="col-md-4">
-                            <h5>Infrastructure Elements</h5>
                             <div class="element">
                                 <img src="{{ asset('assets/images/element-bus.png') }}" alt="">
                                 <h6>Arrêt de bus</h6>
@@ -138,7 +138,6 @@
                     {% endif %}
                     {% if property.location.shopProximity > 0 %}
                         <div class="col-md-4">
-                            <h5>Infrastructure Elements</h5>
                             <div class="element">
                                 <img src="{{ asset('assets/images/element-market.png') }}" alt="">
                                 <h6>Commerces</h6>
@@ -183,58 +182,12 @@
             </div>
         </div>
 
-        <!-- BANNER -->
-        <div class="full-width personal-agent">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4 col-sm-4">
-                        <figure>
-                            <img src="images/agent-pic.png" alt="Pic" class="img-responsive">
-                        </figure>
-                    </div>
-                    <div class="col-md-8 col-sm-8">
-                        <article>
-                            <span>Lara Loft</span>
-                            <h2>Your personal agent</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget<br> dolor. Aenean massa.</p>
-                            <button type="button" class="btn btn-danger">Get Agent Help</button>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- BANNER -->
-
         <!-- ITEMS GRID -->
         <div class="container">
             <h2 class="page-title">Vous pourriez aimer aussi ...</h2>
             <div class="row">
                 {% for relatedProperty in relatedProperties %}
-                <div class="col-md-4 col-sm-6">
-                    <div class="item">
-                        <div class="item-header clearfix">
-                            <h3>{{ relatedProperty.location.city }} {{ relatedProperty.type }}</h3>
-                        </div>
-                        <figure>
-                            <img src="{% if relatedProperty.medias.0.imageUrl is defined %}{{ relatedProperty.medias.0.imageUrl }}{% endif %}" alt="" class="img-responsive">
-                            <div class="overlay">
-                                <a href="{{ path('app_front_property_show', {'id' : relatedProperty.affId}) }}" class="btn btn-detail">Voir</a>
-                            </div>
-                        </figure>
-                        <div class="item-detail">
-                            <div class="left">
-                                <span class="place"><i class="fa fa-map-marker"></i>{{ relatedProperty.location.city }} ({{ relatedProperty.location.country }})</span>
-                                <span class="bed">{{ relatedProperty.propertyInside.bedroomQuantity }}</span>
-                                <span class="bath">{{ relatedProperty.propertyInside.bathroomQuantity }}</span>
-                                <span class="garage">{{ property.propertyOther.garageQuantity|default(0) }}</span>
-                            </div>
-                            <div class="right">
-                                <span class="area">{{ relatedProperty.propertyArea.area|default('N/A') }} m2</span>
-                                <span class="price">{{ relatedProperty.netPrice }} €</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    {% include ':front/default:property_block.html.twig' with {'property': relatedProperty, 'col': 'col-md-4 col-sm-6'} %}
                 {% endfor %}
             </div>
         </div>

@@ -1,105 +1,90 @@
 {% extends ':front/layout:base.html.twig' %}
 
 {% block body %}
-<div class="page-wrap properties-page">
+    <div class="page-wrap properties-page">
 
-    <!-- BREADCRUMBS-->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="breadcrumbs">
-                    <a href="{{ path('app_front_home') }}">Accueil</a>
-                    <span class="sep">/</span>
-                    <span class="current">Liste des propriétés</span>
+        <!-- BREADCRUMBS-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumbs">
+                        <a href="{{ path('app_front_home') }}">Accueil</a>
+                        <span class="sep">/</span>
+                        <span class="current">Liste des propriétés</span>
+                    </div>
+                    <h2 class="page-title">{{ app.request.attributes.get('_route') == 'app_front_search' ? 'Résultats de la recherche' : 'Toutes les propriétés' }}</h2>
                 </div>
-                <h2 class="page-title">{{ app.request.attributes.get('_route') == 'app_front_search' ? 'Résultats de la recherche' : 'Toutes les propriétés' }}</h2>
             </div>
         </div>
-    </div>
-    <!-- BREADCRUMBS -->
+        <!-- BREADCRUMBS -->
 
-    <div class="container">
-        <div class="row">
-            {% include ':front/layout:property_sidebar.html.twig' %}
-            <div class="col-md-8">
-                <div class="row properties-list">
-                    {% for property in properties.currentPageResults %}
-                    <div class="col-md-12">
-                        <div class="item">
-                            <figure>
-                                <img src="{% if property.medias.0.imageUrl is defined %} {{ property.medias.0.imageUrl }}{% endif %}" alt="" class="img-responsive">
-                                {#<span class="label sale">Sell</span>#}
-                                <div class="overlay">
-                                    <a href="{{ path('app_front_property_show', {'id': property.affId}) }}" class="btn btn-detail">Voir</a>
-                                </div>
-                            </figure>
-                            <div class="item-data">
-                                <div class="item-header clearfix">
-                                    <h3><a href="{{ path('app_front_property_show', {'id': property.affId}) }}">{{ property.location.city }} {{ property.type }}</a></h3>
-                                    {#<span class="favorite"><i class="fa fa-heart"></i>9</span>#}
-                                    <span class="place">
+        <div class="container">
+            <div class="row">
+                {% include ':front/layout:property_sidebar.html.twig' %}
+                <div class="col-md-8">
+                    <div class="row properties-list">
+                        {% for property in properties.currentPageResults %}
+                            <div class="col-md-12">
+                                <div class="item">
+                                    <figure>
+                                        <img src="{% if property.medias.0.imageUrl is defined %} {{ property.medias.0.imageUrl }}{% endif %}"
+                                             alt="" class="img-responsive">
+                                        {#<span class="label sale">Sell</span>#}
+                                        <div class="overlay">
+                                            <a href="{{ path('app_front_property_show', {'id': property.affId}) }}"
+                                               class="btn btn-detail">Voir</a>
+                                        </div>
+                                    </figure>
+                                    <div class="item-data">
+                                        <div class="item-header clearfix">
+                                            <h3>
+                                                <a href="{{ path('app_front_property_show', {'id': property.affId}) }}">{{ property.location.city }} {{ property.type }}</a>
+                                            </h3>
+                                            {#<span class="favorite"><i class="fa fa-heart"></i>9</span>#}
+                                            <span class="place">
                                         <i class="fa fa-map-marker"></i>
-                                        {{ property.location.city }} {{ property.location.country }}
+                                                {{ property.location.city }} {{ property.location.country }}
                                     </span>
-                                </div>
-                                <div class="item-detail">
-                                    <span class="price">{{ property.netPrice }} €</span>
-                                    <div class="left">
-                                        <span><i class="fa fa-bed"></i>{{ property.propertyInside.bedroomQuantity }}</span>
-                                        {% if property.propertyInside.bathroomQuantity > 0 and property.propertyInside.washroomQuantity > 0 %}
-                                            <span><i class="fa fa-bath"></i>{{ property.propertyInside.bathroomQuantity + property.propertyInside.washroomQuantity }}</span>
-                                        {% elseif property.propertyInside.bathroomQuantity > 0 %}
-                                            <span><i class="fa fa-bath"></i>{{ property.propertyInside.bathroomQuantity }}</span>
-                                        {% elseif property.propertyInside.washroomQuantity > 0 %}
-                                            <span><i class="fa fa-bath"></i>{{ property.propertyInside.washroomQuantity }}</span>
-                                        {% endif %}
-                                        <span><i class="fa fa-home"></i>{{ property.propertyInside.roomQuantity|default(0) }}</span>
-                                        {% if property.propertyOutside.garden > 0 %}
-                                            <span><i class="fa fa-leaf"></i>{{ property.propertyArea.landArea }} m2</span>
-                                        {% endif %}
-                                    </div>
-                                    <div class="right">
-                                        <span class="area">{{ property.propertyArea.area|default("N/A") }} m2</span>
+                                        </div>
+                                        <div class="item-detail">
+                                            <span class="price">{{ property.netPrice }} €</span>
+                                            <div class="left">
+                                                <span><i class="fa fa-bed"></i>{{ property.propertyInside.bedroomQuantity }}</span>
+                                                {% if property.propertyInside.bathroomQuantity > 0 and property.propertyInside.washroomQuantity > 0 %}
+                                                    <span><i class="fa fa-bath"></i>{{ property.propertyInside.bathroomQuantity + property.propertyInside.washroomQuantity }}</span>
+                                                {% elseif property.propertyInside.bathroomQuantity > 0 %}
+                                                    <span><i class="fa fa-bath"></i>{{ property.propertyInside.bathroomQuantity }}</span>
+                                                {% elseif property.propertyInside.washroomQuantity > 0 %}
+                                                    <span><i class="fa fa-bath"></i>{{ property.propertyInside.washroomQuantity }}</span>
+                                                {% endif %}
+                                                <span><i class="fa fa-home"></i>{{ property.propertyInside.roomQuantity|default(0) }}</span>
+                                                {% if property.propertyOutside.garden > 0 %}
+                                                    <span><i class="fa fa-leaf"></i>{{ property.propertyArea.landArea }}
+                                                        m2</span>
+                                                {% endif %}
+                                            </div>
+                                            <div class="right">
+                                                <span class="area">{{ property.propertyArea.area|default("N/A") }}
+                                                    m2</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    {% if properties.haveToPaginate %}
+                        {{ pagerfanta(properties, 'comeback_template', { 'omitFirstPage': true}) }}
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                {% if properties.haveToPaginate %}
-                    {{ pagerfanta(properties, 'comeback_template', { 'omitFirstPage': true})}}
-                {% endif %}
-            </div>
-        </div>
-    </div>
-
-
-
-    {#<!-- PAGINATION -->#}
-    {#<div class="container">#}
-        {#<div class="row">#}
-            {#<div class="col-md-12">#}
-                {#<div class="pagination">#}
-                    {#<a href="#" class="prev"><i class="fa fa-angle-left"></i>Previous</a>#}
-                    {#<a href="#">1</a>#}
-                    {#<span>2</span>#}
-                    {#<a href="#">3</a>#}
-                    {#<a href="#">4</a>#}
-                    {#<a href="#">5</a>#}
-                    {#<a href="#">6</a>#}
-                    {#<a href="#" class="next">Next<i class="fa fa-angle-right"></i></a>#}
-                {#</div>#}
-            {#</div>#}
-        {#</div>#}
-    {#</div>#}
-    {#<!-- PAGINATION -->#}
-</div>
 {% endblock %}

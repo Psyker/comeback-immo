@@ -105,4 +105,9 @@ class PropertyRepository extends EntityRepository
 
         return $pagerfanta;
     }
+
+    public function advancedSearchProperties(ParameterBag $data, int $page)
+    {
+
+    }
 }
