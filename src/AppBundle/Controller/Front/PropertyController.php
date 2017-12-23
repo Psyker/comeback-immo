@@ -71,21 +71,23 @@ class PropertyController extends Controller
      */
     public function searchAction(Request $request)
     {
+        dump($request->query->all());exit;
         $page = $request->get('page', 1);
         if (!empty($request->query->all())) {
-            $properties = [];
             if (explode('?', $request->getRequestUri())[0] === $this->generateUrl('app_front_search')) {
                 $properties = $this->getDoctrine()->getRepository('AppBundle:Property')
                     ->simpleSearchProperties($request->query, $page);
+            } else {
+                $properties = $this->getDoctrine()->getRepository('AppBundle:Property')
+                    ->advancedSearchProperties($request->query, $page);
             }
-            $properties = $this->getDoctrine()->getRepository('AppBundle:Property')
-                ->advancedSearchProperties($request->query, $page);
 
             return $this->render('front/property/results.html.twig', [
                 'properties' => $properties
             ]);
         }
 
-        return $this->render(':front/property:search.html.twig');
+        $this->addFlash('danger', 'Une erreur est survenue. Réessayer plus tard.');
+        return $this->redirectToRoute('app_front_home');
     }
 }

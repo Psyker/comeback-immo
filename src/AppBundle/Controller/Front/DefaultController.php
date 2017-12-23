@@ -15,7 +15,7 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $propertyRepo = $this->getDoctrine()->getRepository('AppBundle:Property');
-        $properties = $propertyRepo->findBy([], ['createdAt' => 'ASC'], 9, null);
+        $properties = $propertyRepo->findBy([], ['createdAt' => 'DESC'], 9, null);
         return $this->render('front/default/index.html.twig', [
             'properties' => $properties,
         ]);

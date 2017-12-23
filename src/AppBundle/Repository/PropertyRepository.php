@@ -108,6 +108,49 @@ class PropertyRepository extends EntityRepository
 
     public function advancedSearchProperties(ParameterBag $data, int $page)
     {
+        $query = $this->createQueryBuilder('p')
+            ->join('p.location', 'l')
+            ->join('p.propertyArea', 'pa')
+            ->join('p.propertyInside', 'pi');
 
+        if (array_key_exists('location', $data->all()) && !empty($data->get('location'))) {
+            $query->andWhere('l.city LIKE :city')
+                ->setParameter(':city', '%'.$data->get('location').'%');
+        }
+
+        if (array_key_exists('rooms', $data->all()) && !empty($data->get('rooms'))) {
+            $query->andWhere('pi.roomQuantity = :rooms')
+                ->setParameter(':rooms', $data->get('rooms'));
+        }
+
+        if (array_key_exists('type', $data->all()) && !empty($data->get('type'))) {
+            $query->andWhere('p.type = :type');
+            if ($data->get('type') === Property::PROPERTY_HOUSE) {
+                $query->setParameter(':type', Property::PROPERTY_HOUSE);
+            } else {
+                $query->setParameter(':type', Property::PROPERTY_APARTMENT);
+            }
+        }
+
+        if (array_key_exists('price', $data->all()) && !empty($data->get('price'))) {
+            list($first, $second) = explode('-', $data->get('price'));
+            $query->andWhere('p.netPrice BETWEEN :first AND :second')
+                ->setParameter(':first', trim($first))
+                ->setParameter(':second', trim($second));
+        }
+
+        if (array_key_exists('area', $data->all()) && !empty($data->get('area'))) {
+            list($min, $max) = explode('-', $data->get('area'));
+            $query->andWhere('pa.area BETWEEN :min AND :max')
+                ->setParameter(':min', trim($min))
+                ->setParameter(':max', trim($max));
+        }
+
+        $pagerfanta = new Pagerfanta(new DoctrineORMAdapter($query));
+        $pagerfanta->setMaxPerPage(5)
+            ->setCurrentPage($page)
+            ->setAllowOutOfRangePages(true);
+
+        return $pagerfanta;
     }
 }

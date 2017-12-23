@@ -34,7 +34,7 @@
 
     <!-- FILTER -->
     <div class="container">
-        {{ render(controller('AppBundle\\Controller\\Front\\PropertyController::searchAction')) }}
+        {% include ':front/property:search.html.twig' %}
     </div>
     <!-- FILTER -->
 
