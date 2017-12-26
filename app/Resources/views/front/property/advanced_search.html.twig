@@ -59,7 +59,7 @@
         <div class="check-box">
             <label><input name="garage" type="checkbox" class="checkbox">Garage</label>
             <label><input name="garden" type="checkbox" class="checkbox" checked>Jardin</label>
-            <label><input name="parking" type="checkbox" class="checkbox">Parking</label>
+            <label><input name="basement" type="checkbox" class="checkbox">Sous-sol</label>
         </div>
 
         <hr>
@@ -81,7 +81,7 @@
 
         <div class="buttons">
             <button class="btn btn-danger"><i class="fa fa-search"></i>Rechercher</button>
-            <button class="btn btn-clear">Effacer</button>
+            <a href="{{ path('app_front_property_list') }}" class="btn btn-clear">Effacer</a>
         </div>
 
     </form>

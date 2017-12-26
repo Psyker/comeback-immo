@@ -533,9 +533,9 @@ footer ul li a:hover { color: #fff; }
 
 .typography .highlight span { color: #000000; background: #ffeb3b; padding: 10px 20px; }
 
-.typography table { width: 100%; }
+.typography table { display: inline-block; }
 .typography table td { padding: 15px 20px; }
-.typography thead { background: #000; color: #ffffff; font-size: 15px; font-weight: 600; border-bottom: 10px solid #f7f7f7; }
+.typography thead { background: rgb(149, 131, 101); color: #ffffff; font-size: 15px; font-weight: 600; border-bottom: 10px solid #f7f7f7; }
 .typography tbody { background: #fff; color: #727272; font-size: 15px; font-weight: 300; }
 .typography tbody tr { border-bottom: 1px solid #f7f7f7; }
 

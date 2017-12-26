@@ -2,8 +2,10 @@
 
 namespace AppBundle\Controller\Front;
 
+use AppBundle\Form\ContactForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
@@ -23,11 +25,28 @@ class DefaultController extends Controller
 
     /**
      * @Route("/contact", name="app_front_contact")
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function contactAction()
+    public function contactAction(Request $request)
     {
-        return $this->render('front/default/contact.html.twig');
+        $form = $this->createForm(ContactForm::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $message = new \Swift_Message();
+            $message->setBody($form->getData()['message']);
+            $message->setSubject($form->getData()['subject']);
+            $message->setFrom($form->getData()['email']);
+            $message->setTo('bourgoi.theo@gmail.com');
+
+            $this->addFlash('succes', 'Votre message a bien été envoyé');
+
+            $this->get('swiftmailer.mailer')->send($message);
+        }
+        return $this->render('front/default/contact.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 
     /**

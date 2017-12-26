@@ -12,22 +12,22 @@
     user-select: none;
 }
 
-.pace:before {
-    content: 'Hata';
-    display: inline-block;
-    top: 30%;
-    position: absolute;
-    padding-left: 50px;
-    background: url("../../images/logo.png") left center no-repeat;
-    text-transform: uppercase;
-    color: #212121;
-    font-weight: 900;
-    font-size: 18px;
-    height: 32px;
-    line-height: 34px;
-    left: 50%;
-    margin-left: -50px;
-}
+/*.pace:before {*/
+    /*content: 'Hata';*/
+    /*display: inline-block;*/
+    /*top: 30%;*/
+    /*position: absolute;*/
+    /*padding-left: 50px;*/
+    /*background: url("../../images/logo.png") left center no-repeat;*/
+    /*text-transform: uppercase;*/
+    /*color: #212121;*/
+    /*font-weight: 900;*/
+    /*font-size: 18px;*/
+    /*height: 32px;*/
+    /*line-height: 34px;*/
+    /*left: 50%;*/
+    /*margin-left: -50px;*/
+/*}*/
 
 .pace-inactive {
     display: none;

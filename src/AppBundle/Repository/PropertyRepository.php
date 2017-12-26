@@ -72,55 +72,35 @@ class PropertyRepository extends EntityRepository
         return $query;
     }
 
-    public function simpleSearchProperties(ParameterBag $data, int $page)
-    {
-        $query = $this->createQueryBuilder('p')
-            ->join('p.location', 'l');
-
-        if (array_key_exists('location', $data->all()) && !empty($data->get('location'))) {
-            $query->andWhere('l.city LIKE :city')
-                ->setParameter(':city', '%'.$data->get('location').'%');
-        }
-
-        if (array_key_exists('type', $data->all()) && !empty($data->get('type'))) {
-            $query->andWhere('p.type = :type');
-            if ($data->get('type') === Property::PROPERTY_HOUSE) {
-                $query->setParameter(':type', Property::PROPERTY_HOUSE);
-            } else {
-                $query->setParameter(':type', Property::PROPERTY_APARTMENT);
-            }
-        }
-
-        if (array_key_exists('price', $data->all()) && !empty($data->get('price'))) {
-            list($first, $second) = explode('-', $data->get('price'));
-            $query->andWhere('p.netPrice BETWEEN :first AND :second')
-                ->setParameter(':first', trim($first))
-                ->setParameter(':second', trim($second));
-        }
-
-        $pagerfanta = new Pagerfanta(new DoctrineORMAdapter($query));
-        $pagerfanta->setMaxPerPage(5)
-            ->setCurrentPage($page)
-            ->setAllowOutOfRangePages(true);
-
-        return $pagerfanta;
-    }
-
-    public function advancedSearchProperties(ParameterBag $data, int $page)
+    public function searchProperties(ParameterBag $data, int $page)
     {
         $query = $this->createQueryBuilder('p')
             ->join('p.location', 'l')
             ->join('p.propertyArea', 'pa')
-            ->join('p.propertyInside', 'pi');
+            ->join('p.propertyInside', 'pi')
+            ->join('p.propertyOther', 'pot')
+            ->join('p.propertyOutside', 'po');
 
         if (array_key_exists('location', $data->all()) && !empty($data->get('location'))) {
             $query->andWhere('l.city LIKE :city')
                 ->setParameter(':city', '%'.$data->get('location').'%');
         }
 
-        if (array_key_exists('rooms', $data->all()) && !empty($data->get('rooms'))) {
-            $query->andWhere('pi.roomQuantity = :rooms')
-                ->setParameter(':rooms', $data->get('rooms'));
+        if (array_key_exists('room', $data->all()) && !empty($data->get('room'))) {
+            $query->andWhere('pi.roomQuantity = :room')
+                ->setParameter(':room', $data->get('room'));
+        }
+
+        if (array_key_exists('garage', $data->all()) && $data->get('garage') == 'on') {
+            $query->andWhere('pot.garageQuantity = '. true);
+        }
+
+        if (array_key_exists('basement', $data->all()) && $data->get('basement') == 'on') {
+            $query->andWhere('pot.basement = '.true);
+        }
+
+        if (array_key_exists('garden', $data->all()) && $data->get('garden') == 'on') {
+            $query->andWhere('po.garden = '. true);
         }
 
         if (array_key_exists('type', $data->all()) && !empty($data->get('type'))) {

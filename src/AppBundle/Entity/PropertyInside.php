@@ -236,7 +236,7 @@ class PropertyInside implements PropertyInterface
     /**
      * @return int
      */
-    public function getFloorNumber(): int
+    public function getFloorNumber()
     {
         return $this->floorNumber;
     }

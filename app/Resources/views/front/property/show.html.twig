@@ -70,10 +70,14 @@
                         <a href="" class="btn btn-danger">Contacter un agent</a>
                     </div>
                     <div class="prop-features">
-                        <span class="bed">{{ property.propertyInside.bedroomQuantity }} Chambres</span>
-                        <span class="garage">{{ property.propertyOther.garageQuantity|default(0) }} Garage</span>
-                        <span class="bath">{{ property.propertyInside.bathroomQuantity }} Salle de bains</span>
-                        <span class="kitchen">Cuisine {{ property.propertyInside.kitchen }}</span>
+                        <span><i class="fa fa-bed"></i>{{ property.propertyInside.bedroomQuantity }} Chambres</span>
+                        {% if property.propertyInside.bathroomQuantity > 0 %}
+                            <span><i class="fa fa-bath"></i>{{ property.propertyInside.bathroomQuantity }} Salles de bains</span>
+                        {% elseif property.propertyInside.washroomQuantity > 0 %}
+                            <span><i class="fa fa-tint"></i>{{ property.propertyInside.washroomQuantity }} Salles d'eau</span>
+                        {% endif %}
+                        <span ><i class="fa fa-thermometer-quarter"></i>Cuisine {{ property.propertyInside.kitchen }}</span>
+                        {% if property.propertyInside.heatingType %}<span><i class="fa fa-fire"></i>Chauffage {{ property.propertyInside.heatingType }}</span>{% endif %}
                     </div>
                     <ul>
                         {% if property.propertyOutside.garden %}<li>Jardin</li>{% endif %}
@@ -119,9 +123,115 @@
             {#</div>#}
         {#</div>#}
         {#<!-- GALLERY -->#}
+        <div class="container typography">
+            <div class="row">
+                <h2>Caractéristiques : </h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Nom</td>
+                            <td>Valeur</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Surface</td>
+                            <td>{{ property.propertyArea.area|default('N/A') }} m2</td>
+                        </tr>
+                        <tr>
+                            <td>Surface séjour</td>
+                            <td>{{ property.propertyArea.livingRoomArea|default('N/A') }} m2</td>
+                        </tr>
+                        <tr>
+                            <td>Surface terrain</td>
+                            <td>{{ property.propertyArea.landArea|default('N/A') }} m2</td>
+                        </tr>
+                        <tr>
+                            <td>Nombre pièces</td>
+                            <td>{{ property.propertyInside.roomQuantity|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Cuisine</td>
+                            <td>{{ property.propertyInside.kitchen|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Nombre d'étages</td>
+                            <td>{{ property.propertyInside.floorNumber|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Cave</td>
+                            <td>{{ property.propertyOther.cellar|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Garage</td>
+                            <td>{{ property.propertyOther.garageQuantity|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Digicode</td>
+                            <td>{{ property.propertyOther.digicode|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Jardin</td>
+                            <td>{{ property.propertyOutside.garden|default('N/A') }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Nom</td>
+                            <td>Valeur</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nombre chambres</td>
+                            <td>{{ property.propertyInside.bedroomQuantity|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Salles de bains</td>
+                            <td>{{ property.propertyInside.bathroomQuantity|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Salles d'eau</td>
+                            <td>{{ property.propertyInside.washroomQuantity|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Toilettes</td>
+                            <td>{{ property.propertyInside.toiletQuantity }}</td>
+                        </tr>
+                        <tr>
+                            <td>Chauffage</td>
+                            <td>{{ property.propertyInside.heatingType|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Ascenseur</td>
+                            <td>{{ property.propertyOther.elevator|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Parking</td>
+                            <td>{{ property.propertyOther.parkingSpot|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Interphone</td>
+                            <td>{{ property.propertyOther.intercom|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Sous-sol</td>
+                            <td>{{ property.propertyOther.basement|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Année de construction</td>
+                            <td>{{ property.propertyOutside.yearOfConstruction }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
 
         <div class="container">
-            <h5>Informations supplémentaires</h5>
+            <h2>Informations supplémentaires :</h2>
             <br>
             <div class="row">
                 <!-- INFRASTRUCTURE -->
@@ -148,37 +258,6 @@
                     {% endif %}
                 </div>
                 <!-- INFRASTRUCTURE -->
-
-                <!-- NEARBY PLACES -->
-                {#<div class="col-md-7 nearby-places">#}
-                    {#<h5>Nearby Attractions</h5>#}
-                    {#<div class="element">#}
-                        {#<figure>#}
-                            {#<img src="images/nearby1.png" alt="Image" class="img-responsive">#}
-                        {#</figure>#}
-                        {#<h6>Champs Elysees</h6>#}
-                        {#<span class="car">In 14 Minutes</span>#}
-                        {#<a href="#" class="loc-marker"><i class="fa fa-map-marker"></i></a>#}
-                    {#</div>#}
-                    {#<div class="element">#}
-                        {#<figure>#}
-                            {#<img src="images/nearby2.png" alt="Image" class="img-responsive">#}
-                        {#</figure>#}
-                        {#<h6>South Beach</h6>#}
-                        {#<span class="car">In 20 Minutes</span>#}
-                        {#<a href="#" class="loc-marker"><i class="fa fa-map-marker"></i></a>#}
-                    {#</div>#}
-                    {#<div class="element">#}
-                        {#<figure>#}
-                            {#<img src="images/nearby3.png" alt="Image" class="img-responsive">#}
-                        {#</figure>#}
-                        {#<h6>Ghosts and The Walking</h6>#}
-                        {#<span class="car">In 24 Minutes</span>#}
-                        {#<a href="#" class="loc-marker"><i class="fa fa-map-marker"></i></a>#}
-                    {#</div>#}
-                {#</div>#}
-                <!-- NEARBY PLACES -->
-
             </div>
         </div>
 

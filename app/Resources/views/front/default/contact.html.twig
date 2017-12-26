@@ -30,14 +30,9 @@
                         <div class="col-md-12 col-sm-12">
                             <div class="contact-form">
                                 <h3>Envoyer un message</h3>
-                                <form action="#">
-                                    <input type="text" placeholder="Nom">
-                                    <input type="text" placeholder="Email">
-                                    <input type="text" placeholder="Téléphone">
-                                    <input type="text" placeholder="Sujet">
-                                    <textarea placeholder="Message"></textarea>
-                                    <input type="submit" class="btn btn-danger" value="Envoyer">
-                                </form>
+                                {{ form_start(form) }}
+                                {{ form_widget(form) }}
+                                {{ form_end(form) }}
                             </div>
                         </div>
                     </div>
