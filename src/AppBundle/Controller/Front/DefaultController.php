@@ -35,12 +35,18 @@ class DefaultController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $message = new \Swift_Message();
-            $message->setBody($form->getData()['message']);
-            $message->setSubject($form->getData()['subject']);
+            $message->setBody($this->render(':front/mail:contact_mail.html.twig', [
+                'message' => $form->getData()['message'],
+                'name' => $form->getData()['name'],
+                'email' => $form->getData()['email'],
+                'subject' => $form->getData()['subject'],
+                'phone' => $form->getData()['phone']
+            ]), 'text/html');
+            $message->setSubject('Nouveau message');
             $message->setFrom($form->getData()['email']);
             $message->setTo('bourgoi.theo@gmail.com');
 
-            $this->addFlash('succes', 'Votre message a bien été envoyé');
+            $this->addFlash('success', 'Votre message a bien été envoyé');
 
             $this->get('swiftmailer.mailer')->send($message);
         }

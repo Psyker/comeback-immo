@@ -29,6 +29,13 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <div class="contact-form">
+
+                                {# pass an array argument to get the messages of those types  #}
+                                {% for label, messages in app.flashes(['success', 'error']) %}
+                                    {% for message in messages %}
+                                       <h3>{{ message }} <i class="fa fa-check"></i></h3>
+                                    {% endfor %}
+                                {% endfor %}
                                 <h3>Envoyer un message</h3>
                                 {{ form_start(form) }}
                                 {{ form_widget(form) }}

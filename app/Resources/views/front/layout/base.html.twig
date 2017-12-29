@@ -167,17 +167,16 @@
 <footer>
     <div class="container">
         <div class="row">
-            <div class="col-md-5 copy-right">
-                <p><img src="{{ asset('assets/images/footer-logo.png') }}" alt="Logo" class="img-responsive"> &copy; 2015 HATA — Real Estate
-                    Site Template</p>
+            <div class="col-md-12 copy-right text-center">
+                <p><img style="height: 60px; width: auto;" src="{{ asset('assets/images/logo-CB.png') }}" alt="Logo" class="img-responsive"> &copy; 2017 COMEBACK Immobilier</p>
             </div>
-            <div class="col-md-7">
+            <div class="col-md-12 text-center">
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Properties</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Team</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="{{ path('app_front_home') }}">Accueil</a></li>
+                    <li><a href="{{ path('app_front_property_list') }}">Propriétés</a></li>
+                    <li><a href="{{ path('app_front_about') }}">A propos</a></li>
+                    <li><a href="{{ path('app_front_contact') }}">Nous contacter</a></li>
+                    <li><a href="{{ asset('assets/images/dossiers/honoraires.pdf') }}" target="_blank">Honoraires</a></li>
                 </ul>
             </div>
         </div>

@@ -231,7 +231,9 @@
 
 
         <div class="container">
+            {% if property.location.busProximity > 0 and property.location.shopProximity > 0 %}
             <h2>Informations supplémentaires :</h2>
+                {% endif %}
             <br>
             <div class="row">
                 <!-- INFRASTRUCTURE -->

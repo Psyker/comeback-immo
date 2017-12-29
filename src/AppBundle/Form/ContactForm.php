@@ -21,7 +21,7 @@ class ContactForm extends AbstractType
             'label' => 'Email'
         ])
         ->add('phone', TextType::class,  [
-            'label' => 'Telephone'
+            'label' => 'Téléphone'
         ])
         ->add('subject', TextType::class,  [
             'label' => 'Sujet'

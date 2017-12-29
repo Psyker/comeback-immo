@@ -420,7 +420,7 @@ header .user-drop li i { margin-right: 20px; }
 .add-comment img { margin: 0 auto 30px; display: block; }
 .add-comment form { position: relative; }
 .add-comment form span { background: url(../../images/corner.png) no-repeat; width: 8px; height: 6px; display: block; position: absolute; top: 20px; left: -7px; }
-.add-comment form textarea { color: #727272; border-radius: 2px; padding: 15px; background: #fff; height: 300px; resize: none; width: 100%; border: none; margin-bottom: 20px; }
+.add-comment form textarea { color: #727272; border-radius: 2px; padding: 15px; background: #fff; height: 300px; resize: none; width: 100%; border: none; margin-bottom: 20px; text-transform: none;!important; }
 .add-comment form button { padding: 16px 0; background: rgb(149, 131, 101); border-radius: 2px; display: block; font-size: 14px; color: #fff; text-transform: uppercase; border: none; width: 100%;  }
 
 .blog-single .blog-posts { padding: 60px 0; background: #f0f0f0; }
@@ -450,12 +450,12 @@ header .user-drop li i { margin-right: 20px; }
 	Footer
 ****************************************************************************/
 
-footer { width: 100%; background: #212121; padding: 85px 0; text-transform: uppercase; }
-footer .copy-right img { margin-right: 20px; display: inline-block; vertical-align: middle; }
+footer { width: 100%; background: #212121; padding: 20px 0; text-transform: uppercase; }
+footer .copy-right img { margin-right: 20px; display: inline-block; vertical-align: middle; margin-bottom: 15px}
 footer .copy-right p { line-height: 36px; color: #b6b6b6; }
 footer .copy-right a { color: #b6b6b6; }
-footer ul { text-align: right; }
-footer ul li { display: inline-block; margin: 0 30px; line-height: 36px; }
+footer ul { text-align: center; }
+footer ul li { display: inline-block; margin: 0 20px; line-height: 36px; }
 footer ul li:last-child { margin-right: 0; }
 footer ul li a { color: #b6b6b6; }
 footer ul li a:hover { color: #fff; }
@@ -633,7 +633,7 @@ footer ul li a:hover { color: #fff; }
 .contact-form h3 { color: #212121; font-weight: 600; font-size: 20px; margin-bottom: 25px; }
 .contact-form input[type=text],
 .contact-form input[type=text],
-.contact-form textarea { line-height: 20px; text-transform: uppercase; width: 100%; background: #ededed; color: #727272; padding: 10px 20px; border: none; border-radius: 2px; margin-bottom: 20px; }
+.contact-form textarea { line-height: 20px;width: 100%; background: #ededed; color: #727272; padding: 10px 20px; border: none; border-radius: 2px; margin-bottom: 20px; }
 .contact-form textarea { height: 80px; }
 .contact-form input[type=submit] { width: 100%; }
 
