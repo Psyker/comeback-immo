@@ -7,11 +7,13 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="breadcrumbs">
-                        <a href="index.html">Home</a>
+                        <a href="{{ path('app_front_home') }}">Accueil</a>
                         <span class="sep">/</span>
-                        <span class="current">Properties List</span>
+                        <a href="{{ path('app_front_property_list') }}">Liste des propriétés</a>
+                        <span class="sep">/</span>
+                        <span class="current">Propriété</span>
                     </div>
-                    <h2 class="page-title">All Properties</h2>
+                    <h2 class="page-title">{{ property.title }}</h2>
                 </div>
             </div>
         </div>
@@ -19,21 +21,21 @@
 
         <div class="container">
 
-            <!-- PROPERTY FILTERS -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="property-filter">
-                        <a href="#" class="active">Overview</a>
-                        <a href="#">Living Room</a>
-                        <a href="#">I Bedroom</a>
-                        <a href="#">II Bedroom</a>
-                        <a href="#">Bathroom</a>
-                        <a href="#">Kitchen</a>
-                        <a href="#" class="view-map">View on Map</a>
-                    </div>
-                </div>
-            </div>
-            <!-- PROPERTY FILTERS -->
+            {#<!-- PROPERTY FILTERS -->#}
+            {#<div class="row">#}
+                {#<div class="col-md-12">#}
+                    {#<div class="property-filter">#}
+                        {#<a href="#" class="active">Overview</a>#}
+                        {#<a href="#">Living Room</a>#}
+                        {#<a href="#">I Bedroom</a>#}
+                        {#<a href="#">II Bedroom</a>#}
+                        {#<a href="#">Bathroom</a>#}
+                        {#<a href="#">Kitchen</a>#}
+                        {#<a href="#" class="view-map">View on Map</a>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+            {#<!-- PROPERTY FILTERS -->#}
 
             <div class="row">
 
@@ -41,23 +43,17 @@
                 <div class="col-md-7 property-slider">
                     <figure id="property-slider">
                         <ul class="slides">
-                            <li><img src="images/pro-big.jpg" alt="Image" class="img-responsive"></li>
-                            <li><img src="images/pro-big.jpg" alt="Image" class="img-responsive"></li>
-                            <li><img src="images/pro-big.jpg" alt="Image" class="img-responsive"></li>
-                            <li><img src="images/pro-big.jpg" alt="Image" class="img-responsive"></li>
-                            <li><img src="images/pro-big.jpg" alt="Image" class="img-responsive"></li>
-                            <li><img src="images/pro-big.jpg" alt="Image" class="img-responsive"></li>
+                            {% for media in property.medias|slice(0, 4) %}
+                                <li><img src="{{ media.imageUrl }}" style="max-height: 485px" alt="Image" class="img-responsive"></li>
+                            {% endfor %}
                         </ul>
-                        <span class="label sale">Sale</span>
+                        {#<span class="label sale">Sale</span>#}
                     </figure>
                     <figure id="property-carousel" class="flexslider">
                         <ul class="slides">
-                            <li><img src="images/pro-thumb1.jpg" alt="Thumbnails" class="img-responsive"></li>
-                            <li><img src="images/pro-thumb2.jpg" alt="Thumbnails" class="img-responsive"></li>
-                            <li><img src="images/pro-thumb3.jpg" alt="Thumbnails" class="img-responsive"></li>
-                            <li><img src="images/pro-thumb1.jpg" alt="Thumbnails" class="img-responsive"></li>
-                            <li><img src="images/pro-thumb2.jpg" alt="Thumbnails" class="img-responsive"></li>
-                            <li><img src="images/pro-thumb3.jpg" alt="Thumbnails" class="img-responsive"></li>
+                            {% for media in property.medias|slice(0, 4) %}
+                                <li><img src="{{ media.imageUrl }}" style="max-height: 135px" alt="Image" class="img-responsive"></li>
+                            {% endfor %}
                         </ul>
                     </figure>
                 </div>
@@ -66,332 +62,217 @@
                 <!-- PROPERTY DATA -->
                 <div class="col-md-5 property-data">
                     <div class="prop-features prop-before">
-                        <span class="location">Barcelona (Spain)</span>
-                        <span class="area">1750 Sq Ft</span>
+                        <span class="location">{{ property.location.city }} ({{ property.location.country }})</span>
+                        <span class="area">{{ property.propertyArea.area }} m2</span>
                     </div>
                     <div class="prop-price">
-                        <strong class="price">$ 23 525 800</strong>
-                        <a href="" class="btn btn-danger">Contact Agent</a>
+                        <strong class="price">{{ property.netPrice }} €</strong>
+                        <a href="" class="btn btn-danger">Contacter un agent</a>
                     </div>
                     <div class="prop-features">
-                        <span class="bed">3 Bedroom</span>
-                        <span class="garage">1 Garage</span>
-                        <span class="bath">2 Baths</span>
-                        <span class="kitchen">2 Kithen</span>
-                        <span class="gym">1 Gym</span>
+                        <span><i class="fa fa-bed"></i>{{ property.propertyInside.bedroomQuantity }} Chambres</span>
+                        {% if property.propertyInside.bathroomQuantity > 0 %}
+                            <span><i class="fa fa-bath"></i>{{ property.propertyInside.bathroomQuantity }} Salles de bains</span>
+                        {% elseif property.propertyInside.washroomQuantity > 0 %}
+                            <span><i class="fa fa-tint"></i>{{ property.propertyInside.washroomQuantity }} Salles d'eau</span>
+                        {% endif %}
+                        <span ><i class="fa fa-thermometer-quarter"></i>Cuisine {{ property.propertyInside.kitchen }}</span>
+                        {% if property.propertyInside.heatingType %}<span><i class="fa fa-fire"></i>Chauffage {{ property.propertyInside.heatingType }}</span>{% endif %}
                     </div>
                     <ul>
-                        <li>Garden</li>
-                        <li>Air Condition</li>
-                        <li>CCTV</li>
-                        <li>Security System</li>
-                        <li>Parking</li>
-                        <li>Children Play Ground</li>
-                        <li>Graveyard</li>
-                        <li>Gym</li>
-                        <li>Community Center</li>
+                        {% if property.propertyOutside.garden %}<li>Jardin</li>{% endif %}
+                        {% if property.propertyOther.digicode %}<li>Digicode</li>{% endif %}
+                        {% if property.propertyOther.intercom %}<li>Interphone</li>{% endif %}
+                        {% if property.propertyOther.basement %}<li>Sous-sol</li>{% endif %}
+                        {% if property.propertyOther.cellar %}<li>Cave</li>{% endif %}
+                        {% if property.propertyOther.parkingSpot %}<li>Parking</li>{% endif %}
+                        {% if property.propertyOther.elevator %}<li>Ascenseur</li>{% endif %}
                     </ul>
+                    <p class="property-description">
+                        {{ property.description }}
+                    </p>
                 </div>
                 <!-- PROPERTY DATA -->
             </div>
         </div>
-        <!-- GALLERY -->
-        <div class="full-width gallery">
-            <div class="grid">
-                <div class="grid-sizer"></div>
-                <div class="grid-item grid-item-half">
-                    <a href="#"><img src="images/g13.jpg" alt=""><div class="overlay"></div></a>
-                    <a href="#"><img src="images/g11.jpg" alt=""><div class="overlay"></div></a>
-                    <a href="#"><img src="images/g12.jpg" alt=""><div class="overlay"></div></a>
-                </div>
-                <div class="grid-item">
-                    <a href="#"><img src="images/g14.jpg" alt=""><div class="overlay"></div></a>
-                    <a href="#"><img src="images/g15.jpg" alt=""><div class="overlay"></div></a>
-                </div>
-                <div class="grid-item">
-                    <a href="#"><img src="images/g16.jpg" alt=""><div class="overlay"></div></a>
-                    <a href="#"><img src="images/g17.jpg" alt=""><div class="overlay"></div></a>
-                </div>
-                <div class="grid-item">
-                    <a href="#"><img src="images/g18.jpg" alt=""><div class="overlay"></div></a>
-                    <a href="#"><img src="images/g19.jpg" alt=""><div class="overlay"></div></a>
-                </div>
-                <div class="grid-item grid-item-half">
-                    <a href="#"><img src="images/g20.jpg" alt=""><div class="overlay"></div></a>
-                    <a href="#"><img src="images/g13.jpg" alt=""><div class="overlay"></div></a>
-                </div>
+        {#<!-- GALLERY -->#}
+        {#<div class="full-width gallery">#}
+            {#<div class="grid">#}
+                {#<div class="grid-sizer"></div>#}
+                {#<div class="grid-item grid-item-half">#}
+                    {#<a href="#"><img src="images/g13.jpg" alt=""><div class="overlay"></div></a>#}
+                    {#<a href="#"><img src="images/g11.jpg" alt=""><div class="overlay"></div></a>#}
+                    {#<a href="#"><img src="images/g12.jpg" alt=""><div class="overlay"></div></a>#}
+                {#</div>#}
+                {#<div class="grid-item">#}
+                    {#<a href="#"><img src="images/g14.jpg" alt=""><div class="overlay"></div></a>#}
+                    {#<a href="#"><img src="images/g15.jpg" alt=""><div class="overlay"></div></a>#}
+                {#</div>#}
+                {#<div class="grid-item">#}
+                    {#<a href="#"><img src="images/g16.jpg" alt=""><div class="overlay"></div></a>#}
+                    {#<a href="#"><img src="images/g17.jpg" alt=""><div class="overlay"></div></a>#}
+                {#</div>#}
+                {#<div class="grid-item">#}
+                    {#<a href="#"><img src="images/g18.jpg" alt=""><div class="overlay"></div></a>#}
+                    {#<a href="#"><img src="images/g19.jpg" alt=""><div class="overlay"></div></a>#}
+                {#</div>#}
+                {#<div class="grid-item grid-item-half">#}
+                    {#<a href="#"><img src="images/g20.jpg" alt=""><div class="overlay"></div></a>#}
+                    {#<a href="#"><img src="images/g13.jpg" alt=""><div class="overlay"></div></a>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
+        {#<!-- GALLERY -->#}
+        <div class="container typography">
+            <div class="row">
+                <h2>Caractéristiques : </h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Nom</td>
+                            <td>Valeur</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Surface</td>
+                            <td>{{ property.propertyArea.area|default('N/A') }} m2</td>
+                        </tr>
+                        <tr>
+                            <td>Surface séjour</td>
+                            <td>{{ property.propertyArea.livingRoomArea|default('N/A') }} m2</td>
+                        </tr>
+                        <tr>
+                            <td>Surface terrain</td>
+                            <td>{{ property.propertyArea.landArea|default('N/A') }} m2</td>
+                        </tr>
+                        <tr>
+                            <td>Nombre pièces</td>
+                            <td>{{ property.propertyInside.roomQuantity|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Cuisine</td>
+                            <td>{{ property.propertyInside.kitchen|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Nombre d'étages</td>
+                            <td>{{ property.propertyInside.floorNumber|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Cave</td>
+                            <td>{{ property.propertyOther.cellar|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Garage</td>
+                            <td>{{ property.propertyOther.garageQuantity|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Digicode</td>
+                            <td>{{ property.propertyOther.digicode|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Jardin</td>
+                            <td>{{ property.propertyOutside.garden|default('N/A') }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Nom</td>
+                            <td>Valeur</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nombre chambres</td>
+                            <td>{{ property.propertyInside.bedroomQuantity|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Salles de bains</td>
+                            <td>{{ property.propertyInside.bathroomQuantity|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Salles d'eau</td>
+                            <td>{{ property.propertyInside.washroomQuantity|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Toilettes</td>
+                            <td>{{ property.propertyInside.toiletQuantity }}</td>
+                        </tr>
+                        <tr>
+                            <td>Chauffage</td>
+                            <td>{{ property.propertyInside.heatingType|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Ascenseur</td>
+                            <td>{{ property.propertyOther.elevator|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Parking</td>
+                            <td>{{ property.propertyOther.parkingSpot|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Interphone</td>
+                            <td>{{ property.propertyOther.intercom|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Sous-sol</td>
+                            <td>{{ property.propertyOther.basement|default('N/A') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Année de construction</td>
+                            <td>{{ property.propertyOutside.yearOfConstruction }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-        <!-- GALLERY -->
+
 
         <div class="container">
+            {% if property.location.busProximity > 0 and property.location.shopProximity > 0 %}
+            <h2>Informations supplémentaires :</h2>
+                {% endif %}
+            <br>
             <div class="row">
-
                 <!-- INFRASTRUCTURE -->
-                <div class="col-md-5 infra-elements">
-                    <h5>Infrastructure Elements</h5>
-                    <div class="element">
-                        <img src="images/element-bus.png" alt="">
-                        <h6>Bus Stop</h6>
-                        <span class="walk">In 8 Minutes</span>
-                        <a href="#" class="loc-marker"><i class="fa fa-map-marker"></i></a>
-                    </div>
-                    <div class="element">
-                        <img src="images/element-book.png" alt="">
-                        <h6>The Great Library</h6>
-                        <span class="walk">In 12 Minutes</span>
-                        <a href="#" class="loc-marker"><i class="fa fa-map-marker"></i></a>
-                    </div>
-                    <div class="element">
-                        <img src="images/element-market.png" alt="">
-                        <h6>Super Market</h6>
-                        <span class="walk">In 2 Minutes</span>
-                        <a href="#" class="loc-marker"><i class="fa fa-map-marker"></i></a>
-                    </div>
-                    <div class="element">
-                        <img src="images/element-school.png" alt="">
-                        <h6>International School</h6>
-                        <span class="cycling">In 13 Minutes</span>
-                        <a href="#" class="loc-marker"><i class="fa fa-map-marker"></i></a>
-                    </div>
+                <div class="col-md-12 infra-elements">
+                    {% if property.location.busProximity > 0 %}
+                        <div class="col-md-4">
+                            <div class="element">
+                                <img src="{{ asset('assets/images/element-bus.png') }}" alt="">
+                                <h6>Arrêt de bus</h6>
+                                <span class="walk">{{ property.location.busProximity }} min</span>
+                                <a href="#" class="loc-marker"><i class="fa fa-map-marker"></i></a>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if property.location.shopProximity > 0 %}
+                        <div class="col-md-4">
+                            <div class="element">
+                                <img src="{{ asset('assets/images/element-market.png') }}" alt="">
+                                <h6>Commerces</h6>
+                                <span class="walk">{{ property.location.shopProximity }} km</span>
+                                <a href="#" class="loc-marker"><i class="fa fa-map-marker"></i></a>
+                            </div>
+                        </div>
+                    {% endif %}
                 </div>
                 <!-- INFRASTRUCTURE -->
-
-                <!-- NEARBY PLACES -->
-                <div class="col-md-7 nearby-places">
-                    <h5>Nearby Attractions</h5>
-                    <div class="element">
-                        <figure>
-                            <img src="images/nearby1.png" alt="Image" class="img-responsive">
-                        </figure>
-                        <h6>Champs Elysees</h6>
-                        <span class="car">In 14 Minutes</span>
-                        <a href="#" class="loc-marker"><i class="fa fa-map-marker"></i></a>
-                    </div>
-                    <div class="element">
-                        <figure>
-                            <img src="images/nearby2.png" alt="Image" class="img-responsive">
-                        </figure>
-                        <h6>South Beach</h6>
-                        <span class="car">In 20 Minutes</span>
-                        <a href="#" class="loc-marker"><i class="fa fa-map-marker"></i></a>
-                    </div>
-                    <div class="element">
-                        <figure>
-                            <img src="images/nearby3.png" alt="Image" class="img-responsive">
-                        </figure>
-                        <h6>Ghosts and The Walking</h6>
-                        <span class="car">In 24 Minutes</span>
-                        <a href="#" class="loc-marker"><i class="fa fa-map-marker"></i></a>
-                    </div>
-                </div>
-                <!-- NEARBY PLACES -->
-
             </div>
         </div>
-
-        <!-- BANNER -->
-        <div class="full-width personal-agent">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4 col-sm-4">
-                        <figure>
-                            <img src="images/agent-pic.png" alt="Pic" class="img-responsive">
-                        </figure>
-                    </div>
-                    <div class="col-md-8 col-sm-8">
-                        <article>
-                            <span>Lara Loft</span>
-                            <h2>Your personal agent</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget<br> dolor. Aenean massa.</p>
-                            <button type="button" class="btn btn-danger">Get Agent Help</button>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- BANNER -->
 
         <!-- ITEMS GRID -->
         <div class="container">
+            <h2 class="page-title">Vous pourriez aimer aussi ...</h2>
             <div class="row">
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="item">
-                        <div class="item-header clearfix">
-                            <h3>Los Angles Apartment</h3>
-                            <span class="favorite"><i class="fa fa-heart"></i>9</span>
-                        </div>
-                        <figure>
-                            <img src="images/items/7.png" alt="" class="img-responsive">
-                            <span class="label sale">Sell</span>
-                            <div class="overlay">
-                                <a href="#" class="btn btn-detail">Detail</a>
-                            </div>
-                        </figure>
-                        <div class="item-detail">
-                            <div class="left">
-                                <span class="place"><i class="fa fa-map-marker"></i>Galtur (Austria)</span>
-                                <span class="bed">3</span>
-                                <span class="bath">2</span>
-                                <span class="garage">2</span>
-                                <span class="gym">1</span>
-                            </div>
-                            <div class="right">
-                                <span class="area">134 m2</span>
-                                <span class="price">$ 870000</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="item">
-                        <div class="item-header clearfix">
-                            <h3>Los Angles Apartment</h3>
-                            <span class="favorite"><i class="fa fa-heart"></i>9</span>
-                        </div>
-                        <figure>
-                            <img src="images/items/8.png" alt="" class="img-responsive">
-                            <span class="label rent">Rent</span>
-                            <div class="overlay">
-                                <a href="#" class="btn btn-detail">Detail</a>
-                            </div>
-                        </figure>
-                        <div class="item-detail">
-                            <div class="left">
-                                <span class="place"><i class="fa fa-map-marker"></i>Galtur (Austria)</span>
-                                <span class="bed">3</span>
-                                <span class="bath">2</span>
-                                <span class="garage">2</span>
-                                <span class="gym">1</span>
-                            </div>
-                            <div class="right">
-                                <span class="area">134 m2</span>
-                                <span class="price">$ 870000</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="item">
-                        <div class="item-header clearfix">
-                            <h3>Los Angles Apartment</h3>
-                            <span class="favorite"><i class="fa fa-heart"></i>9</span>
-                        </div>
-                        <figure>
-                            <img src="images/items/9.png" alt="" class="img-responsive">
-                            <span class="label rent">Rent</span>
-                            <div class="overlay">
-                                <a href="#" class="btn btn-detail">Detail</a>
-                            </div>
-                        </figure>
-                        <div class="item-detail">
-                            <div class="left">
-                                <span class="place"><i class="fa fa-map-marker"></i>Galtur (Austria)</span>
-                                <span class="bed">3</span>
-                                <span class="bath">2</span>
-                                <span class="garage">2</span>
-                                <span class="gym">1</span>
-                            </div>
-                            <div class="right">
-                                <span class="area">134 m2</span>
-                                <span class="price">$ 870000</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="item">
-                        <div class="item-header clearfix">
-                            <h3>Los Angles Apartment</h3>
-                            <span class="favorite"><i class="fa fa-heart"></i>9</span>
-                        </div>
-                        <figure>
-                            <img src="images/items/10.png" alt="" class="img-responsive">
-                            <span class="label hot">Hot</span>
-                            <div class="overlay">
-                                <a href="#" class="btn btn-detail">Detail</a>
-                            </div>
-                        </figure>
-                        <div class="item-detail">
-                            <div class="left">
-                                <span class="place"><i class="fa fa-map-marker"></i>Galtur (Austria)</span>
-                                <span class="bed">3</span>
-                                <span class="bath">2</span>
-                                <span class="garage">2</span>
-                                <span class="gym">1</span>
-                            </div>
-                            <div class="right">
-                                <span class="area">134 m2</span>
-                                <span class="price">$ 870000</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="item">
-                        <div class="item-header clearfix">
-                            <h3>Los Angles Apartment</h3>
-                            <span class="favorite"><i class="fa fa-heart"></i>9</span>
-                        </div>
-                        <figure>
-                            <img src="images/items/11.png" alt="" class="img-responsive">
-                            <span class="label rent">Rent</span>
-                            <div class="overlay">
-                                <a href="#" class="btn btn-detail">Detail</a>
-                            </div>
-                        </figure>
-                        <div class="item-detail">
-                            <div class="left">
-                                <span class="place"><i class="fa fa-map-marker"></i>Galtur (Austria)</span>
-                                <span class="bed">3</span>
-                                <span class="bath">2</span>
-                                <span class="garage">2</span>
-                                <span class="gym">1</span>
-                            </div>
-                            <div class="right">
-                                <span class="area">134 m2</span>
-                                <span class="price">$ 870000</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="item">
-                        <div class="item-header clearfix">
-                            <h3>Los Angles Apartment</h3>
-                            <span class="favorite"><i class="fa fa-heart"></i>9</span>
-                        </div>
-                        <figure>
-                            <img src="images/items/12.png" alt="" class="img-responsive">
-                            <span class="label sale">Sell</span>
-                            <div class="overlay">
-                                <a href="#" class="btn btn-detail">Detail</a>
-                            </div>
-                        </figure>
-                        <div class="item-detail">
-                            <div class="left">
-                                <span class="place"><i class="fa fa-map-marker"></i>Galtur (Austria)</span>
-                                <span class="bed">3</span>
-                                <span class="bath">2</span>
-                                <span class="garage">2</span>
-                                <span class="gym">1</span>
-                            </div>
-                            <div class="right">
-                                <span class="area">134 m2</span>
-                                <span class="price">$ 870000</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                {% for relatedProperty in relatedProperties %}
+                    {% include ':front/default:property_block.html.twig' with {'property': relatedProperty, 'col': 'col-md-4 col-sm-6'} %}
+                {% endfor %}
             </div>
         </div>
         <!-- ITEMS GRID -->
+
     </div>
 {% endblock %}

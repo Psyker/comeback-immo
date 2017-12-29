@@ -7,11 +7,11 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="breadcrumbs">
-                        <a href="index.html">Home</a>
+                        <a href="{{ path('app_front_home') }}">Accueil</a>
                         <span class="sep">/</span>
-                        <span class="current">About</span>
+                        <span class="current">A Propos</span>
                     </div>
-                    <h2 class="page-title">About Us</h2>
+                    <h2 class="page-title">A Propos</h2>
                 </div>
             </div>
         </div>
@@ -20,116 +20,50 @@
         <!-- CONTENTS -->
         <div class="container">
             <div class="page-contents">
-
                 <div class="row">
-                    <div class="col-md-11 col-md-offset-1">
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-5">
-                        <figure>
-                            <a href="#">
-                                <img src="images/about.png" alt="Profile Image" class="img-responsive">
-                                <div class="overlay"></div>
-                            </a>
-                        </figure>
-                    </div>
-                    <div class="col-md-7">
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-                        <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-11 col-md-offset-1">
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni.</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <!-- CONTENTS -->
-
-        <!-- BANNER  -->
-        <div class="full-width history">
-            <div class="container">
-                <div class="row">
+                    {#<div class="col-md-5">#}
+                        {#<figure>#}
+                            {#<a href="#">#}
+                                {#<img src="{{ asset('assets/images/about.png') }}" alt="Profile Image" class="img-responsive">#}
+                                {#<div class="overlay"></div>#}
+                            {#</a>#}
+                        {#</figure>#}
+                    {#</div>#}
                     <div class="col-md-12">
-                        <h3>History of success</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo<br> ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis<br> dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies <br> nec, pellentesque eu, pretium quis, sem.</p>
-                        <button class="btn btn-danger">LEARN MORE</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- BANNER -->
-
-        <!-- CONTENTS -->
-        <div class="container">
-            <div class="page-contents">
-
-                <div class="row">
-                    <div class="col-md-11 col-md-offset-1">
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-7">
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. </p>
-                        <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>
-                    </div>
-                    <div class="col-md-5">
-                        <figure>
-                            <a href="#">
-                                <img src="images/about2.png" alt="Profile Image" class="img-responsive">
-                                <div class="overlay"></div>
-                            </a>
-                        </figure>
+                        <p>L'agence COMEBACK Immobilier située au coeur de l'Oise dispose d'une forte connaissance du marché, de ce département et tout particulièrement du secteur
+                            Chantilly, Lamorlaye, Gouvieux, Orry la Ville, Coye la Forêt, La Chapelle en Serval, Luzarches, Chaumontel et les environs du 60, 77, 95.
+                        </p>
+                        <p>COMEBACK Immobilier est à votre écoute afin d'estimer vos biens à sa valeur actuelle et saura vous conseiller et mettre à votre disposition
+                            tout son professionnalisme et ses compétences pour l'achat, la vente, la location de votre maison, villa, appartement, terrain ou local commercial.
+                        </p>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-11 col-md-offset-1">
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,<br> eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam<br> voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni</p>
+                        <p class="text-center">Nous vous accompagnerons aussi longtemps que nécessaire tout au long de vos démarches. Alors n'hésitez pas à nous contacter pour votre
+                        projet immobilier</p>
                     </div>
                 </div>
 
             </div>
         </div>
         <!-- CONTENTS -->
-
         <!-- BANNER  -->
-        <div class="full-width partners">
-            <div class="container">
-                <div class="row">
-                    <ul>
-                        <li class="col-md-2"><a href="#"><img src="images/logo1.png" alt="Client Logo" class="img-responsive"></a></li>
-                        <li class="col-md-2"><a href="#"><img src="images/logo2.png" alt="Client Logo" class="img-responsive"></a></li>
-                        <li class="col-md-2"><a href="#"><img src="images/logo3.png" alt="Client Logo" class="img-responsive"></a></li>
-                        <li class="col-md-2"><a href="#"><img src="images/logo4.png" alt="Client Logo" class="img-responsive"></a></li>
-                        <li class="col-md-2"><a href="#"><img src="images/logo5.png" alt="Client Logo" class="img-responsive"></a></li>
-                        <li class="col-md-2"><a href="#"><img src="images/logo6.png" alt="Client Logo" class="img-responsive"></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        {#<div class="full-width partners">#}
+            {#<div class="container">#}
+                {#<div class="row">#}
+                    {#<ul>#}
+                        {#<li class="col-md-2"><a href="#"><img src="images/logo1.png" alt="Client Logo" class="img-responsive"></a></li>#}
+                        {#<li class="col-md-2"><a href="#"><img src="images/logo2.png" alt="Client Logo" class="img-responsive"></a></li>#}
+                        {#<li class="col-md-2"><a href="#"><img src="images/logo3.png" alt="Client Logo" class="img-responsive"></a></li>#}
+                        {#<li class="col-md-2"><a href="#"><img src="images/logo4.png" alt="Client Logo" class="img-responsive"></a></li>#}
+                        {#<li class="col-md-2"><a href="#"><img src="images/logo5.png" alt="Client Logo" class="img-responsive"></a></li>#}
+                        {#<li class="col-md-2"><a href="#"><img src="images/logo6.png" alt="Client Logo" class="img-responsive"></a></li>#}
+                    {#</ul>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
         <!-- BANNER -->
-
-        <!-- REVIEWS -->
-        <div class="full-width rewiews">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <img src="images/avatar1.png" alt="" class="img-responsive">
-                        <h6>Eva Rodriges</h6>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque<br> penatibus et magnis dis parturient montes, nascetur ridiculus...</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- REVIEWS -->
     </div>
 {% endblock %}

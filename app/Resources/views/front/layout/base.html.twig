@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/lib/flexslider.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/css/lib/jquery.selectBox.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/css/lib/jquery-ui.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('assets/css/lib/font-awesome.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('assets/css/lib/fontawesome-all.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/css/lib/green.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/css/lib/style.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/css/lib/responsive.css') }}" type="text/css">
@@ -33,88 +33,89 @@
 
 <body>
 
-<!-- TOP -->
-<div class="top-bar">
+{#<!-- TOP -->#}
+{#<div class="top-bar">#}
 
-    <p class="text">
-        <a><i class="fa fa-map-marker"></i> 121 King Street, Melbourne Victoria 3000 Australia</a>
-        <a href="tel:+61383766284"><i class="fa fa-phone"></i> + 613 8376 6284</a>
-    </p>
+    {#<p class="text">#}
+        {#<a><i class="fa fa-map-marker"></i> 121 King Street, Melbourne Victoria 3000 Australia</a>#}
+        {#<a href="tel:+61383766284"><i class="fa fa-phone"></i> + 613 8376 6284</a>#}
+    {#</p>#}
 
-    <p class="social">
-        <a href="#"><i class="fa fa-twitter"></i></a>
-        <a href="#"><i class="fa fa-facebook"></i></a>
-        <a href="#"><i class="fa fa-vimeo"></i></a>
-        <a href="#"><i class="fa fa-instagram"></i></a>
-        <a href="#"><i class="fa fa-skype"></i></a>
-    </p>
+    {#<p class="social">#}
+        {#<a href="#"><i class="fa fa-twitter"></i></a>#}
+        {#<a href="#"><i class="fa fa-facebook"></i></a>#}
+        {#<a href="#"><i class="fa fa-vimeo"></i></a>#}
+        {#<a href="#"><i class="fa fa-instagram"></i></a>#}
+        {#<a href="#"><i class="fa fa-skype"></i></a>#}
+    {#</p>#}
 
-</div>
-<!-- TOP -->
+{#</div>#}
+{#<!-- TOP -->#}
 
 <!-- HEADER -->
 <header class="clearfix">
 
     <div class="logo">
-        <a href="#"><img src="{{ asset('assets/images/logo.png') }}" alt="ComeBack-Immobilier">ComeBack-Immobilier</a>
+        <a href="#"><img height="40%" width="100%" src="{{ asset('assets/images/logo-CB.png') }}" alt="ComeBack-Immobilier"></a>
     </div>
 
     <nav class="navbar collapse" id="mobile-menu">
         <ul class="nav navbar-nav">
-            <li class="active"><a href="{{ path('app_front_home') }}">Home</a></li>
-            <li><a href="{{ path('app_front_about') }}">About Us</a></li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown">Properties</a>
-                <ul class="dropdown-menu">
-                    <li><a href="properties-grid.html">Properties Grid</a></li>
-                    <li><a href="properties-list.html">Properties List</a></li>
-                    <li><a href="properties-map.html">Properties Map</a></li>
-                    <li><a href="properties-single.html">Properties Single</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown">Services</a>
-                <ul class="dropdown-menu">
-                    <li><a href="services.html">Services Page</a></li>
-                    <li><a href="services-single.html">Preparation of Documents</a></li>
-                    <li><a href="services-single.html">Design Projects</a></li>
-                    <li><a href="services-single.html">Repair of Apartments</a></li>
-                    <li><a href="services-single.html">Utility Services</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown">Page</a>
-                <ul class="dropdown-menu">
-                    <li><a href="team.html">Team</a></li>
-                    <li><a href="team-single.html">Team Single</a></li>
-                    <li><a href="typography.html">Typography</a></li>
-                    <li><a href="error.html">404 Error</a></li>
-                    <li><a href="offline.html">Site Offline</a></li>
-                    <li><a href="coming-soon.html">Coming Soon</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown">Blog</a>
-                <ul class="dropdown-menu">
-                    <li><a href="blog.html">Blog Posts</a></li>
-                    <li><a href="blog-post.html">Single Post</a></li>
-                </ul>
-            </li>
-            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="{{ path('app_front_home') }}">Accueil</a></li>
+            <li><a href="{{ path('app_front_about') }}">A propos</a></li>
+            <li><a href="{{ path('app_front_property_list') }}">Propriétés</a></li>
+            {#<li class="dropdown">#}
+                {#<a class="dropdown-toggle" data-toggle="dropdown">Properties</a>#}
+                {#<ul class="dropdown-menu">#}
+                    {#<li><a href="properties-grid.html">Properties Grid</a></li>#}
+                    {#<li><a href="properties-list.html">Properties List</a></li>#}
+                    {#<li><a href="properties-map.html">Properties Map</a></li>#}
+                    {#<li><a href="properties-single.html">Properties Single</a></li>#}
+                {#</ul>#}
+            {#</li>#}
+            {#<li class="dropdown">#}
+                {#<a class="dropdown-toggle" data-toggle="dropdown">Services</a>#}
+                {#<ul class="dropdown-menu">#}
+                    {#<li><a href="services.html">Services Page</a></li>#}
+                    {#<li><a href="services-single.html">Preparation of Documents</a></li>#}
+                    {#<li><a href="services-single.html">Design Projects</a></li>#}
+                    {#<li><a href="services-single.html">Repair of Apartments</a></li>#}
+                    {#<li><a href="services-single.html">Utility Services</a></li>#}
+                {#</ul>#}
+            {#</li>#}
+            {#<li class="dropdown">#}
+                {#<a class="dropdown-toggle" data-toggle="dropdown">Page</a>#}
+                {#<ul class="dropdown-menu">#}
+                    {#<li><a href="team.html">Team</a></li>#}
+                    {#<li><a href="team-single.html">Team Single</a></li>#}
+                    {#<li><a href="typography.html">Typography</a></li>#}
+                    {#<li><a href="error.html">404 Error</a></li>#}
+                    {#<li><a href="offline.html">Site Offline</a></li>#}
+                    {#<li><a href="coming-soon.html">Coming Soon</a></li>#}
+                {#</ul>#}
+            {#</li>#}
+            {#<li class="dropdown">#}
+                {#<a class="dropdown-toggle" data-toggle="dropdown">Blog</a>#}
+                {#<ul class="dropdown-menu">#}
+                    {#<li><a href="blog.html">Blog Posts</a></li>#}
+                    {#<li><a href="blog-post.html">Single Post</a></li>#}
+                {#</ul>#}
+            {#</li>#}
+            <li><a href="{{ path('app_front_contact') }}">Nous contacter</a></li>
         </ul>
     </nav>
 
-    <div class="user">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="{{ asset('assets/images/avatar1.png') }}" alt="User Photo">
-            <span class="drop-arow"></span>
-        </a>
-        <ul class="dropdown-menu user-drop">
-            <li><a href="#"><i class="fa fa-user"></i>My Profile</a></li>
-            <li><a href="#"><i class="fa fa-list"></i>My Properties</a></li>
-            <li><a href="#"><i class="fa fa-sign-out"></i>Logout</a></li>
-        </ul>
-    </div>
+    {#<div class="user">#}
+        {#<a href="#" class="dropdown-toggle" data-toggle="dropdown">#}
+            {#<img src="{{ asset('assets/images/avatar1.png') }}" alt="User Photo">#}
+            {#<span class="drop-arow"></span>#}
+        {#</a>#}
+        {#<ul class="dropdown-menu user-drop">#}
+            {#<li><a href="#"><i class="fa fa-user"></i>My Profile</a></li>#}
+            {#<li><a href="#"><i class="fa fa-list"></i>My Properties</a></li>#}
+            {#<li><a href="#"><i class="fa fa-sign-out"></i>Logout</a></li>#}
+        {#</ul>#}
+    {#</div>#}
 
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mobile-menu" aria-expanded="false">
         <span class="icon-bar"></span>
@@ -127,15 +128,36 @@
 
 {% block body %}{% endblock %}
 
+<!-- BANNER -->
+<div class="full-width personal-agent">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <figure>
+                    <img style="margin-top: 20%" src="{{ asset('assets/images/logo-CB.png') }}" alt="Pic" class="img-responsive">
+                </figure>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <article>
+                    <h2>Votre agence immobilière</h2>
+                    <p>Nous nous tenons à votre disposition pour toutes questions éventuelles, nous sommes à votre écoute pour y répondre.</p>
+                    <button type="button" class="btn btn-danger">Poser une question</button>
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- BANNER -->
+
 <!-- CALL2ACTION -->
 <div class="full-width call-action">
     <div class="container">
         <div class="row">
             <div class="col-md-9">
-                <h4>Want to sell you property? contact us now!</h4>
+                <h4>Vous voulez vendre un bien ? Contactez nous maintenant !</h4>
             </div>
             <div class="col-md-3">
-                <a href="contact.html" class="btn btn-danger">Submit Property</a>
+                <a href="{{ path('app_front_contact') }}" class="btn btn-danger">Vendre un bien</a>
             </div>
         </div>
     </div>
@@ -145,17 +167,16 @@
 <footer>
     <div class="container">
         <div class="row">
-            <div class="col-md-5 copy-right">
-                <p><img src="{{ asset('assets/images/footer-logo.png') }}" alt="Logo" class="img-responsive"> &copy; 2015 HATA — Real Estate
-                    Site Template</p>
+            <div class="col-md-12 copy-right text-center">
+                <p><img style="height: 60px; width: auto;" src="{{ asset('assets/images/logo-CB.png') }}" alt="Logo" class="img-responsive"> &copy; 2017 COMEBACK Immobilier</p>
             </div>
-            <div class="col-md-7">
+            <div class="col-md-12 text-center">
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Properties</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Team</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="{{ path('app_front_home') }}">Accueil</a></li>
+                    <li><a href="{{ path('app_front_property_list') }}">Propriétés</a></li>
+                    <li><a href="{{ path('app_front_about') }}">A propos</a></li>
+                    <li><a href="{{ path('app_front_contact') }}">Nous contacter</a></li>
+                    <li><a href="{{ asset('assets/images/dossiers/honoraires.pdf') }}" target="_blank">Honoraires</a></li>
                 </ul>
             </div>
         </div>

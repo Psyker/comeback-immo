@@ -1,290 +1,64 @@
 {% extends ':front/layout:base.html.twig' %}
 
 {% block body %}
+    <div class="page-wrap properties-page">
 
-<div class="full-width page-wrap properties-page">
-
-    <!-- BREADCRUMBS-->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="breadcrumbs">
-                    <a href="index.html">Home</a>
-                    <span class="sep">/</span>
-                    <span class="current">Properties Grid</span>
-                </div>
-                <h2 class="page-title">All Properties</h2>
-            </div>
-        </div>
-    </div>
-    <!-- BREADCRUMBS -->
-
-    <div class="container">
-        <div class="row">
-
-            {% include ':front/layout:property_sidebar.html.twig' %}
-
-            <div class="col-md-8">
-
-                <div class="row properties-grid">
-
-                    <div class="col-md-6 col-sm-6">
-                        <div class="item">
-                            <div class="item-header clearfix">
-                                <h3><a href="#">Los Angles Apartment</a></h3>
-                                <span class="favorite"><i class="fa fa-heart"></i>9</span>
-                            </div>
-                            <figure>
-                                <img src="images/items/1.png" alt="" class="img-responsive">
-                                <span class="label sale">Sell</span>
-                                <div class="overlay">
-                                    <a href="#" class="btn btn-detail">Detail</a>
-                                </div>
-                            </figure>
-                            <div class="item-detail">
-                                <div class="left">
-                                    <span class="place"><i class="fa fa-map-marker"></i>Galtur (Austria)</span>
-                                    <span class="bed">3</span>
-                                    <span class="bath">2</span>
-                                    <span class="garage">2</span>
-                                    <span class="gym">1</span>
-                                </div>
-                                <div class="right">
-                                    <span class="area">134 m2</span>
-                                    <span class="price">$ 870000</span>
-                                </div>
-                            </div>
-                        </div>
+        <!-- BREADCRUMBS-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumbs">
+                        <a href="{{ path('app_front_home') }}">Accueil</a>
+                        <span class="sep">/</span>
+                        <span class="current">Liste des propriétés</span>
                     </div>
-
-                    <div class="col-md-6 col-sm-6">
-                        <div class="item">
-                            <div class="item-header clearfix">
-                                <h3><a href="#">Los Angles Apartment</a></h3>
-                                <span class="favorite"><i class="fa fa-heart"></i>9</span>
-                            </div>
-                            <figure>
-                                <img src="images/items/2.png" alt="" class="img-responsive">
-                                <span class="label sale">Sell</span>
-                                <div class="overlay">
-                                    <a href="#" class="btn btn-detail">Detail</a>
-                                </div>
-                            </figure>
-                            <div class="item-detail">
-                                <div class="left">
-                                    <span class="place"><i class="fa fa-map-marker"></i>Galtur (Austria)</span>
-                                    <span class="bed">3</span>
-                                    <span class="bath">2</span>
-                                    <span class="garage">2</span>
-                                    <span class="gym">1</span>
-                                </div>
-                                <div class="right">
-                                    <span class="area">134 m2</span>
-                                    <span class="price">$ 870000</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6">
-                        <div class="item">
-                            <div class="item-header clearfix">
-                                <h3><a href="#">Los Angles Apartment</a></h3>
-                                <span class="favorite"><i class="fa fa-heart"></i>9</span>
-                            </div>
-                            <figure>
-                                <img src="images/items/3.png" alt="" class="img-responsive">
-                                <span class="label sale">Sell</span>
-                                <div class="overlay">
-                                    <a href="#" class="btn btn-detail">Detail</a>
-                                </div>
-                            </figure>
-                            <div class="item-detail">
-                                <div class="left">
-                                    <span class="place"><i class="fa fa-map-marker"></i>Galtur (Austria)</span>
-                                    <span class="bed">3</span>
-                                    <span class="bath">2</span>
-                                    <span class="garage">2</span>
-                                    <span class="gym">1</span>
-                                </div>
-                                <div class="right">
-                                    <span class="area">134 m2</span>
-                                    <span class="price">$ 870000</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6">
-                        <div class="item">
-                            <div class="item-header clearfix">
-                                <h3><a href="#">Los Angles Apartment</a></h3>
-                                <span class="favorite"><i class="fa fa-heart"></i>9</span>
-                            </div>
-                            <figure>
-                                <img src="images/items/4.png" alt="" class="img-responsive">
-                                <span class="label sale">Sell</span>
-                                <div class="overlay">
-                                    <a href="#" class="btn btn-detail">Detail</a>
-                                </div>
-                            </figure>
-                            <div class="item-detail">
-                                <div class="left">
-                                    <span class="place"><i class="fa fa-map-marker"></i>Galtur (Austria)</span>
-                                    <span class="bed">3</span>
-                                    <span class="bath">2</span>
-                                    <span class="garage">2</span>
-                                    <span class="gym">1</span>
-                                </div>
-                                <div class="right">
-                                    <span class="area">134 m2</span>
-                                    <span class="price">$ 870000</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6">
-                        <div class="item">
-                            <div class="item-header clearfix">
-                                <h3><a href="#">Los Angles Apartment</a></h3>
-                                <span class="favorite"><i class="fa fa-heart"></i>9</span>
-                            </div>
-                            <figure>
-                                <img src="images/items/5.png" alt="" class="img-responsive">
-                                <span class="label sale">Sell</span>
-                                <div class="overlay">
-                                    <a href="#" class="btn btn-detail">Detail</a>
-                                </div>
-                            </figure>
-                            <div class="item-detail">
-                                <div class="left">
-                                    <span class="place"><i class="fa fa-map-marker"></i>Galtur (Austria)</span>
-                                    <span class="bed">3</span>
-                                    <span class="bath">2</span>
-                                    <span class="garage">2</span>
-                                    <span class="gym">1</span>
-                                </div>
-                                <div class="right">
-                                    <span class="area">134 m2</span>
-                                    <span class="price">$ 870000</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6">
-                        <div class="item">
-                            <div class="item-header clearfix">
-                                <h3><a href="#">Los Angles Apartment</a></h3>
-                                <span class="favorite"><i class="fa fa-heart"></i>9</span>
-                            </div>
-                            <figure>
-                                <img src="images/items/6.png" alt="" class="img-responsive">
-                                <span class="label sale">Sell</span>
-                                <div class="overlay">
-                                    <a href="#" class="btn btn-detail">Detail</a>
-                                </div>
-                            </figure>
-                            <div class="item-detail">
-                                <div class="left">
-                                    <span class="place"><i class="fa fa-map-marker"></i>Galtur (Austria)</span>
-                                    <span class="bed">3</span>
-                                    <span class="bath">2</span>
-                                    <span class="garage">2</span>
-                                    <span class="gym">1</span>
-                                </div>
-                                <div class="right">
-                                    <span class="area">134 m2</span>
-                                    <span class="price">$ 870000</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6">
-                        <div class="item">
-                            <div class="item-header clearfix">
-                                <h3><a href="#">Los Angles Apartment</a></h3>
-                                <span class="favorite"><i class="fa fa-heart"></i>9</span>
-                            </div>
-                            <figure>
-                                <img src="images/items/7.png" alt="" class="img-responsive">
-                                <span class="label sale">Sell</span>
-                                <div class="overlay">
-                                    <a href="#" class="btn btn-detail">Detail</a>
-                                </div>
-                            </figure>
-                            <div class="item-detail">
-                                <div class="left">
-                                    <span class="place"><i class="fa fa-map-marker"></i>Galtur (Austria)</span>
-                                    <span class="bed">3</span>
-                                    <span class="bath">2</span>
-                                    <span class="garage">2</span>
-                                    <span class="gym">1</span>
-                                </div>
-                                <div class="right">
-                                    <span class="area">134 m2</span>
-                                    <span class="price">$ 870000</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6">
-                        <div class="item">
-                            <div class="item-header clearfix">
-                                <h3><a href="#">Los Angles Apartment</a></h3>
-                                <span class="favorite"><i class="fa fa-heart"></i>9</span>
-                            </div>
-                            <figure>
-                                <img src="images/items/8.png" alt="" class="img-responsive">
-                                <span class="label sale">Sell</span>
-                                <div class="overlay">
-                                    <a href="#" class="btn btn-detail">Detail</a>
-                                </div>
-                            </figure>
-                            <div class="item-detail">
-                                <div class="left">
-                                    <span class="place"><i class="fa fa-map-marker"></i>Galtur (Austria)</span>
-                                    <span class="bed">3</span>
-                                    <span class="bath">2</span>
-                                    <span class="garage">2</span>
-                                    <span class="gym">1</span>
-                                </div>
-                                <div class="right">
-                                    <span class="area">134 m2</span>
-                                    <span class="price">$ 870000</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-
-    <!-- PAGINATION -->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="pagination">
-                    <a href="#" class="prev"><i class="fa fa-angle-left"></i>Previous</a>
-                    <a href="#">1</a>
-                    <span>2</span>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#">6</a>
-                    <a href="#" class="next">Next<i class="fa fa-angle-right"></i></a>
+                    <h2 class="page-title">{{ app.request.attributes.get('_route') == 'app_front_search' ? 'Résultats de la recherche' : 'Toutes les propriétés' }}</h2>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- PAGINATION -->
+        <!-- BREADCRUMBS -->
 
-</div>
+        <div class="container">
+            <div class="row">
+                {% include ':front/layout:property_sidebar.html.twig' %}
+                <div class="col-md-8">
+                    <div class="row properties-grid">
+                        {% for property in properties.currentPageResults %}
+                            {% include ':front/default:property_block.html.twig' with  {'property': property, 'col': 'col-md-6 col-sm-6' } %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    {% if properties.haveToPaginate %}
+                        {{ pagerfanta(properties, 'comeback_template', { 'omitFirstPage': true}) }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+
+        {#<!-- PAGINATION -->#}
+        {#<div class="container">#}
+        {#<div class="row">#}
+        {#<div class="col-md-12">#}
+        {#<div class="pagination">#}
+        {#<a href="#" class="prev"><i class="fa fa-angle-left"></i>Previous</a>#}
+        {#<a href="#">1</a>#}
+        {#<span>2</span>#}
+        {#<a href="#">3</a>#}
+        {#<a href="#">4</a>#}
+        {#<a href="#">5</a>#}
+        {#<a href="#">6</a>#}
+        {#<a href="#" class="next">Next<i class="fa fa-angle-right"></i></a>#}
+        {#</div>#}
+        {#</div>#}
+        {#</div>#}
+        {#</div>#}
+        {#<!-- PAGINATION -->#}
+    </div>
 {% endblock %}

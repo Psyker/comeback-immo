@@ -1,0 +1,88 @@
+<div class="property-search">
+    <form action="{{ path('app_front_search') }}" method="get">
+
+        <select name="location">
+            <option value="">Ville</option>
+            <option value="{{ 'APREMONT'|trim }}">Apremont</option>
+            <option value="{{ 'AVILY SAINT LEONARD'|trim }}">Avily-Saint-Léonard</option>
+            <option value="{{ 'BORAN SUR OISE'|trim }}">Boran sur Oise</option>
+            <option value="{{ 'BLAINCOURT'|trim }}">Blaincourt</option>
+            <option value="{{ 'CHANTILY'|trim }}">Chantily</option>
+            <option value="{{ 'COURTEUIL'|trim }}">Courteuil</option>
+            <option value="{{ 'CHAUMONTEL'|trim }}">Chaumontel</option>
+            <option value="{{ 'FOSSES'|trim }}">Fosses</option>
+            <option value="{{ 'LA CHAPELLE EN SERVAL'|trim }}">La Chapelle en Serval</option>
+            <option value="{{ 'LOUVRES'|trim }}">Louvres</option>
+            <option value="{{ 'GOYE LA FORET'|trim }}">Goye La Forêt</option>
+            <option value="{{ 'GOUVIEUX'|trim }}">Gouvieux</option>
+            <option value="{{ 'LAMORLAYE'|trim }}">Lamorlaye</option>
+            <option value="{{ 'ORRY LA VILLE'|trim }}">Orry La Ville</option>
+            <option value="{{ 'PRECY SUR OISE'|trim }}">Précy Sur Oise</option>
+            <option value="{{ 'PLAILY'|trim }}">Plaily</option>
+            <option value="{{ 'SENLIS'|trim }}">Senlis</option>
+            <option value="{{ 'SURVILLIERS'|trim }}">Survilliers</option>
+            <option value="{{ 'VINEUIL SAINT FIRMIN'|trim }}">Vineuil Saint Firmin</option>
+            <option value="{{ 'LUZARCHES'|trim }}">Luzarches</option>
+            <option value="{{ 'SAINT WITZ'|trim }}">Saint-Witz</option>
+            <option value="{{ 'SAINT LEU D ESSERENT'|trim }}">Saint-Leu-D'Esserent</option>
+            <option value="{{ 'VILLERS SOUS SAINT LEU'|trim }}">Villers Sous Saint Leu</option>
+            <option value="{{ 'VEMARS'|trim }}">Vémars</option>
+            <option value="{{ 'MOUSSY LE NEUF'|trim }}">Moussy Le Neuf</option>
+        </select>
+        <select name="type">
+            <option value="">Type de bien</option>
+            <option value="maison">Maison</option>
+            <option value="appartement">Appartement</option>
+        </select>
+        <select name="category">
+            <option value="">Catégorie</option>
+            <option>Achat</option>
+        </select>
+
+        <hr>
+
+        <select name="room" class="half first">
+            <option value="">Pièces</option>
+            {% for i in 1..10 %}
+                <option value="{{ i }}">{{ i }}</option>
+            {% endfor %}
+        </select>
+        <select name="bath" class="half">
+            <option value="">Bains</option>
+            {% for i in 1..5 %}
+                <option value="{{ i }}">{{ i }}</option>
+            {% endfor %}
+        </select>
+
+        <hr>
+
+        <div class="check-box">
+            <label><input name="garage" type="checkbox" class="checkbox">Garage</label>
+            <label><input name="garden" type="checkbox" class="checkbox" checked>Jardin</label>
+            <label><input name="basement" type="checkbox" class="checkbox">Sous-sol</label>
+        </div>
+
+        <hr>
+
+        <div class="range">
+            <p>
+                <label for="area" class="p-1">Surface</label>
+                <span>m2 <input name="area" type="text" id="area" /></span>
+            </p>
+            <div id="area-range"></div>
+        </div>
+        <div class="range">
+            <p>
+                <label for="price" class="p-2">Prix</label>
+                <span>$ <input name="price" type="text" id="price" ></span>
+            </p>
+            <div id="price-range"></div>
+        </div>
+
+        <div class="buttons">
+            <button class="btn btn-danger"><i class="fa fa-search"></i>Rechercher</button>
+            <a href="{{ path('app_front_property_list') }}" class="btn btn-clear">Effacer</a>
+        </div>
+
+    </form>
+</div>

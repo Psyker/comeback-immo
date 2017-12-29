@@ -182,7 +182,7 @@
 
 @media only screen and (max-width: 480px)
 {
-
+    #slider.flexslider {  max-height: 200px  }
     .top-bar .text { display: none; }
     .blog-posts .post figure { width: 100%; margin: 0 0 30px; height: auto; }
     .blog-posts .post figure img { width: 100%; height: auto; }

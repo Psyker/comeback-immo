@@ -1,0 +1,41 @@
+<div class="{{ col }}">
+    <div class="item">
+        <div class="item-header clearfix">
+            <h3>
+                <a href="{{ path('app_front_property_show', {'id': property.affId}) }}">{{ property.location.city }} {{ property.type }}</a>
+            </h3>
+            {#<span class="favorite"><i class="fa fa-heart"></i>9</span>#}
+        </div>
+        <figure>
+            {% if property.medias[0].imageUrl is defined %}
+                <img src="{{ property.medias[0].imageUrl }}" alt="" class="img-responsive">
+            {% endif %}
+            {#<span class="label sale">Sell</span>#}
+            <div class="overlay">
+                <a href="{{ path('app_front_property_show', {'id': property.affId}) }}" class="btn btn-detail">Voir</a>
+            </div>
+        </figure>
+        <div class="item-detail">
+            <div class="left">
+                <span class="place"><i
+                            class="fa fa-map-marker"></i>{{ property.location.city }} {#({{ property.location.country }})#}</span>
+                <span><i class="fa fa-bed"></i>{{ property.propertyInside.bedroomQuantity|default(0) }}</span>
+                {% if property.propertyInside.bathroomQuantity > 0 and property.propertyInside.washroomQuantity > 0 %}
+                    <span><i class="fa fa-bath"></i>{{ property.propertyInside.bathroomQuantity + property.propertyInside.washroomQuantity }}</span>
+                {% elseif property.propertyInside.bathroomQuantity > 0 %}
+                    <span><i class="fa fa-bath"></i>{{ property.propertyInside.bathroomQuantity }}</span>
+                {% elseif property.propertyInside.washroomQuantity > 0 %}
+                    <span><i class="fa fa-bath"></i>{{ property.propertyInside.washroomQuantity }}</span>
+                {% endif %}
+                <span><i class="fa fa-home"></i>{{ property.propertyInside.roomQuantity|default(0) }}</span>
+                {% if property.propertyOutside.garden > 0 %}
+                    <span><i class="fa fa-leaf"></i>{{ property.propertyArea.landArea }} m2</span>
+                {% endif %}
+            </div>
+            <div class="right">
+                <span class="area"><i class="fa fa-arrows-alt-h"></i>{{ property.propertyArea.area|default("N/A") }} m2</span>
+                <span class="price">{{ property.netPrice }} €</span>
+            </div>
+        </div>
+    </div>
+</div>
