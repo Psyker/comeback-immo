@@ -227,11 +227,13 @@ class ImportDataCommand extends ContainerAwareCommand
         $propertiesIds = $em->getRepository('AppBundle:Property')->getAffIds();
         $existPropertiesCounter = 0;
         $newPropertiesCounter = 0;
+        $affIds = [];
         $output->writeln([
             'Checking properties ...'
         ]);
         $checkPropBar->start();
         foreach($arrayData['BIEN'] as $item) {
+            $affIds[] = $item['INFO_GENERALES']['AFF_ID'];
             if (!in_array($item['INFO_GENERALES']['AFF_ID'], $propertiesIds)) {
                 $newPropertiesCounter++;
                 $this->createProperty($item);
@@ -240,6 +242,15 @@ class ImportDataCommand extends ContainerAwareCommand
                 $this->updateProperty($item['INFO_GENERALES']['AFF_ID'], $item);
             }
             $checkPropBar->advance();
+        }
+
+        foreach ($propertiesIds as $propertiesId) {
+            if (!in_array($propertiesId, $affIds)) {
+                /** @var Property $property */
+                $property = $em->getRepository(Property::class)->find($propertiesId);
+                $em->remove($property->getLocation());
+                $em->remove($property);
+            }
         }
         $output->writeln([
             PHP_EOL.'New properties to create :'. $newPropertiesCounter,
