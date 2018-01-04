@@ -57,7 +57,7 @@ class Property implements PropertyInterface
     /**
      * @var Location $location
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Location", mappedBy="property", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(name="location_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="location_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $location;
 
