@@ -44,7 +44,7 @@ class DefaultController extends Controller
             ]), 'text/html');
             $message->setSubject('Nouveau message');
             $message->setFrom($form->getData()['email']);
-            $message->setTo($this->getParameter(''));
+            $message->setTo($this->getParameter('mailer_user'));
 
             $this->addFlash('success', 'Votre message a bien été envoyé');
 
