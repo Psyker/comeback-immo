@@ -86,6 +86,11 @@ class PropertyRepository extends EntityRepository
                 ->setParameter(':city', '%'.$data->get('location').'%');
         }
 
+        if (array_key_exists('bedrooms', $data->all()) && !empty($data->get('bedrooms'))) {
+            $query->andWhere('pi.bedroomQuantity LIKE :bedrooms')
+                ->setParameter(':bedrooms', $data->get('bedrooms'));
+        }
+
         if (array_key_exists('room', $data->all()) && !empty($data->get('room'))) {
             $query->andWhere('pi.roomQuantity = :room')
                 ->setParameter(':room', $data->get('room'));
@@ -105,8 +110,8 @@ class PropertyRepository extends EntityRepository
 
         if (array_key_exists('type', $data->all()) && !empty($data->get('type'))) {
             $query->andWhere('p.type = :type');
-            if ($data->get('type') === Property::PROPERTY_HOUSE) {
-                $query->setParameter(':type', Property::PROPERTY_HOUSE);
+            if ($data->get('type') === lcfirst(Property::PROPERTY_HOUSE)) {
+                $query->setParameter(':type', lcfirst(Property::PROPERTY_HOUSE));
             } else {
                 $query->setParameter(':type', Property::PROPERTY_APARTMENT);
             }

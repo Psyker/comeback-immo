@@ -34,7 +34,7 @@
             </div>
             <div class="right">
                 <span class="area"><i class="fa fa-arrows-alt-h"></i>{{ property.propertyArea.area|default("N/A") }} m2</span>
-                <span class="price">{{ property.netPrice }} €</span>
+                <span class="price">{{ property.netPrice|number_format(0, '.', ' ') }} €</span>
             </div>
         </div>
     </div>

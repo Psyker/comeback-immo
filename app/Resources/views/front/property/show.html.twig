@@ -66,7 +66,7 @@
                         <span class="area">{{ property.propertyArea.area }} m2</span>
                     </div>
                     <div class="prop-price">
-                        <strong class="price">{{ property.netPrice }} €</strong>
+                        <strong class="price">{{ property.netPrice|number_format(0, ',', ' ') }} €</strong>
                         <a href="" class="btn btn-danger">Contacter un agent</a>
                     </div>
                     <div class="prop-features">

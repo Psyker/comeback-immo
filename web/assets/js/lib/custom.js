@@ -51,7 +51,7 @@ jQuery(document).ready(function($) {
         range: true,
         min: 0,
         max: 1000,
-        values: [ 500, 800 ],
+        values: [ 0, 500 ],
         slide: function( event, ui ) {
             $( "#area" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
         }
