@@ -50,7 +50,7 @@ class Property implements PropertyInterface
 
     /**
      * @var int $netPrice
-     * @ORM\Column(name="net_price", type="integer")
+     * @ORM\Column(name="net_price", type="integer", nullable=true)
      */
     private $netPrice;
 
@@ -94,7 +94,7 @@ class Property implements PropertyInterface
     /**
      * @var \DateTime $createdAt
      * @ORM\Column(name="created_at", type="datetime", nullable=true)
-     * @ORM\OrderBy("ASC")
+     * @ORM\OrderBy("DESC")
      */
     private $createdAt;
 
@@ -386,7 +386,7 @@ class Property implements PropertyInterface
     /**
      * @return int
      */
-    public function getNetPrice(): int
+    public function getNetPrice()
     {
         return $this->netPrice;
     }

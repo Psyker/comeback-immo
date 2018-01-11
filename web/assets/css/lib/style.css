@@ -62,7 +62,7 @@ body { background: #212121; color: #727272; font: 16px "Open Sans", Arial, Helve
 
 a { color: white; text-decoration: none; }
 a:visited { color: white; text-decoration: none; }
-a:hover { color: grey; text-decoration: none; }
+a:hover { color: black ; text-decoration: none; }
 a:focus, a:hover, a:active { outline: none; }
 
 h1, h2, h3, h4, h5, h6 { font-weight: 600; font-family: 'Open Sans', Arial, Helvetica, sans-serif; color: white; text-transform: uppercase; }
