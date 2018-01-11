@@ -1,7 +1,7 @@
 <div class="property-search">
     <form action="{{ path('app_front_search') }}" method="get">
-
-        <select name="location">
+        <input placeholder="VILLE" name="location" type="text" list="cities" class="type selectBox">
+        <datalist id="cities" class="location">
             <option value="">Ville</option>
             <option value="{{ 'APREMONT'|trim }}">Apremont</option>
             <option value="{{ 'AVILY SAINT LEONARD'|trim }}">Avily-Saint-Léonard</option>
@@ -28,7 +28,7 @@
             <option value="{{ 'VILLERS SOUS SAINT LEU'|trim }}">Villers Sous Saint Leu</option>
             <option value="{{ 'VEMARS'|trim }}">Vémars</option>
             <option value="{{ 'MOUSSY LE NEUF'|trim }}">Moussy Le Neuf</option>
-        </select>
+        </datalist>
         <select name="type">
             <option value="">Type de bien</option>
             <option value="maison">Maison</option>
@@ -47,8 +47,8 @@
                 <option value="{{ i }}">{{ i }}</option>
             {% endfor %}
         </select>
-        <select name="bath" class="half">
-            <option value="">Bains</option>
+        <select name="bedrooms" class="half">
+            <option value="">Chambres</option>
             {% for i in 1..5 %}
                 <option value="{{ i }}">{{ i }}</option>
             {% endfor %}
@@ -58,7 +58,7 @@
 
         <div class="check-box">
             <label><input name="garage" type="checkbox" class="checkbox">Garage</label>
-            <label><input name="garden" type="checkbox" class="checkbox" checked>Jardin</label>
+            <label><input name="garden" type="checkbox" class="checkbox">Jardin</label>
             <label><input name="basement" type="checkbox" class="checkbox">Sous-sol</label>
         </div>
 
@@ -74,7 +74,7 @@
         <div class="range">
             <p>
                 <label for="price" class="p-2">Prix</label>
-                <span>$ <input name="price" type="text" id="price" ></span>
+                <span>€ <input name="price" type="text" id="price" ></span>
             </p>
             <div id="price-range"></div>
         </div>

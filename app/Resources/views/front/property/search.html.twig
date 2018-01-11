@@ -1,6 +1,7 @@
-<div class="filter">
+<div class="filter text-center">
     <form action="{{ path('app_front_search') }}" method="get">
-        <select name="location" class="location">
+        <input placeholder="VILLE" name="location" type="text" list="cities" class="location type selectBox">
+        <datalist id="cities" class="location">
             <option value="">Ville</option>
             <option value="{{ 'APREMONT'|trim }}">Apremont</option>
             <option value="{{ 'AVILY SAINT LEONARD'|trim }}">Avily-Saint-Léonard</option>
@@ -27,7 +28,7 @@
             <option value="{{ 'VILLERS SOUS SAINT LEU'|trim }}">Villers Sous Saint Leu</option>
             <option value="{{ 'VEMARS'|trim }}">Vémars</option>
             <option value="{{ 'MOUSSY LE NEUF'|trim }}">Moussy Le Neuf</option>
-        </select>
+        </datalist>
         <select name="type" class="cata">
             <option value="">Type de bien</option>
             <option value="maison">Maison</option>
@@ -38,7 +39,7 @@
             <option>Achat</option>
         </select>
         <button type="submit" class="btn"><i class="fa fa-search"></i>Rechercher</button>
-        <div class="range">
+        <div class="range text-left">
             <p>
                 <label for="price">Prix</label>
                 <span> € <input name="price" type="text" id="price" > </span>
