@@ -49,7 +49,9 @@
                         <span class="area">{{ property.propertyArea.area }} m2</span>
                     </div>
                     <div class="prop-price">
-                        <strong class="price">{{ property.netPrice|number_format(0, ',', ' ') }} €</strong>
+                        {% if property.netPrice > 0 %}
+                            <strong class="price">{{ property.netPrice|number_format(0, ',', ' ') }} €</strong>
+                        {% endif %}
                         <a href="{{ path('app_front_contact') }}" class="btn btn-danger">Contacter un agent</a>
                     </div>
                     <div class="prop-features">
