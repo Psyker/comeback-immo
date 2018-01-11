@@ -78,7 +78,7 @@ html[xmlns] .flexslider .slides {
   border-radius: 4px;
 }
 .flexslider .slides {
-  zoom: 1;
+  zoom: 1.30;
 }
 .flexslider .slides img {
   height: auto;

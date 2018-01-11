@@ -99,13 +99,13 @@ p em { font-style: italic; }
     -moz-transition: all 1s;
     -o-transition: all 1s;
     transition: all 1s; }
-.btn-alt { background: #ffeb3b; color: #000; }
+.btn-alt { background: grey; color: #fff; }
 .btn i { margin-right: 10px; }
 .btn-small { padding: 6px 11px; font-size: 13px; }
-.btn-danger:hover { background: #ffeb3b; color: #000; }
+.btn-danger:hover { background: grey; color: #fff; }
 .btn-danger:visited { color: #fff; }
 .btn-alt:visited { color: #000; }
-.btn-alt:hover { background: #ffeb3b; color: #000; opacity: 0.8; }
+.btn-alt:hover { background: grey; color: #fff; opacity: 0.8; }
 .btn-clear { background: #b6b6b6; color: #fff; }
 
 .row-eq-height {
@@ -185,7 +185,7 @@ header .user-drop li i { margin-right: 20px; }
 ****************************************************************************/
   
 #slider { width: 100% !important; margin-top: -5px !important; overflow: hidden;  z-index: 98;  }
-#slider.flexslider { margin: 0 !important; border: 0 !important; max-height: 560px  }
+#slider.flexslider { margin: 0 !important; border: 0 !important; max-height: 760px  }
 #slider .col-md-12 { position: relative; }
 
 #slider .detail { position: absolute; bottom: 200px; left: 15px; z-index: 2; }
@@ -663,7 +663,7 @@ footer ul li a { color: #fff; }
 }
 .service .overlay { padding-left: 35px; line-height: 92px; background: rgba(255,255,255,0.8); position: absolute; bottom: 0; left: 0; width: 100%; }
 .service .overlay a { padding: 0 4px; font-weight: 600; font-size: 20px; color: #212121; text-transform: uppercase; }
-.service .overlay a:hover { background: #ffeb3b; border-radius: 2px; }
+.service .overlay a:hover { background: grey; border-radius: 2px; color: white; }
 
 
 /****************************************************************************
@@ -724,13 +724,13 @@ footer ul li a { color: #fff; }
 
 .property-views { text-align: right; margin-bottom: 60px; }
 .property-views a { font-size: 14px; background: #b6b6b6; display: inline-block; border-radius: 2px; color: #fff; text-transform: uppercase; padding: 5px 10px; margin-left: 20px; }
-.property-views a:hover { background: #ffeb3b; color: #000; }
+.property-views a:hover { background: grey; color: #fff; }
 .property-views a.active { background: #000; color: #fff; }
 .property-views a i { margin-right: 10px; }
 
 .property-filter { margin-bottom: 60px; }
 .property-filter a { font-size: 14px; background: #b6b6b6; display: inline-block; border-radius: 2px; color: #fff; text-transform: uppercase; padding: 5px 10px; margin-right: 20px; }
-.property-filter a:hover { background: #ffeb3b; color: #000; }
+.property-filter a:hover { background: grey; color: #fff; }
 .property-filter a.active { background: #000; color: #fff; }
 .property-filter a:focus,
 .property-filter a:visited { text-decoration: none; }
@@ -866,11 +866,11 @@ footer ul li a { color: #fff; }
     transition: all 0.5s;
 }
 .offline header .adress:after { content: " "; display: inline-block; width: 1px; height: 10px; position: absolute; top: 4px; right: 0; background: #e1e1e1; }
-.offline header .adress a:hover { background-color: #ffeb3b; }
+.offline header .adress a:hover { background-color: grey; }
 
 .offline header .phone { margin-right: 20px; display: inline-block; }
 .offline header .phone a { background: url(../../images/icon-phone.png) no-repeat left; padding-left: 20px; color: #727272; line-height: 12px; }
-.offline header .phone a:hover { background-color: #ffeb3b; }
+.offline header .phone a:hover { background-color: grey; }
 
 .offline .page-wrap { padding-top: 200px; }
 .offline .error-page p { font-size: 30px; font-weight: 600; }
@@ -899,3 +899,32 @@ footer ul li a { color: #fff; }
 .coming-soon .slider-control a { text-transform: uppercase; font-size: 15px; font-weight: 300; margin: 0 17px; display: inline-block; }
 .coming-soon .slider-control .prev i { margin-right: 20px; }
 .coming-soon .slider-control .next i { margin-left: 20px; }
+
+.table-inline {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.table-inline table {
+    display: table;
+    width: 45%;
+}
+
+.table-inline > table {
+    margin-right: 10px;
+}
+
+.table-inline tbody {
+    color: black;
+}
+
+@media screen and (max-width: 740px) {
+    .table-inline {
+        flex-direction: column;
+    }
+
+    .table-inline table {
+        width: 100%;
+    }
+}
