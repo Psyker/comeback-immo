@@ -185,7 +185,8 @@ header .user-drop li i { margin-right: 20px; }
 ****************************************************************************/
   
 #slider { width: 100% !important; margin-top: -5px !important; overflow: hidden;  z-index: 98;  }
-#slider.flexslider { margin: 0 !important; border: 0 !important; max-height: 760px  }
+#slider.flexslider { margin: 0 !important; border: 0 !important; max-height: 800px; }
+#slider img  {margin-top: -120px}
 #slider .col-md-12 { position: relative; }
 
 #slider .detail { position: absolute; bottom: 200px; left: 15px; z-index: 2; }
@@ -627,7 +628,7 @@ footer ul li a { color: #fff; }
 ****************************************************************************/
 
 .map-wrap { position: relative; }
-.contact-form-wrap { position: absolute; top: 100px; width: 100%; }
+.contact-form-wrap { position: absolute; top: 70px; width: 100%; }
 .contact-form { background: #ffffff; border-radius: 2px; padding: 55px 64px 64px; }
 .contact-form h3 { color: #212121; font-weight: 600; font-size: 20px; margin-bottom: 25px; }
 .contact-form input[type=text],

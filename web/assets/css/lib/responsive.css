@@ -131,7 +131,7 @@
     header .navbar-toggle { display: block; margin: 0 0 27px; }
     header .collapse { display: none; }
     header .navbar { float: none; clear: both; margin: 0 !important; width: 100%; }
-    header .navbar { position: absolute; top: 80px; left: 0; background: #fff; width: 100%; z-index: 999; }
+    header .navbar { position: absolute; top: 80px; left: 0; background: #212121; width: 100%; z-index: 999; }
     header .navbar .navbar-nav { margin: 0; padding: 0 0 20px; width: 100%; }
     header .navbar li { margin: 0; padding: 0; float: none; }
     header .navbar li a { padding: 12px 25px !important; display: block; }
