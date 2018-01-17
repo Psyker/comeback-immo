@@ -26,7 +26,7 @@
                 <div class="col-md-7 property-slider">
                     <figure id="property-slider">
                         <ul class="slides">
-                            {% for media in property.medias|slice(0, 4) %}
+                            {% for media in property.medias %}
                                 <li><img src="{{ media.imageUrl }}" style="max-height: 485px" alt="Image" class="img-responsive"></li>
                             {% endfor %}
                         </ul>
@@ -34,7 +34,7 @@
                     </figure>
                     <figure id="property-carousel" class="flexslider">
                         <ul class="slides">
-                            {% for media in property.medias|slice(0, 4) %}
+                            {% for media in property.medias %}
                                 <li><img src="{{ media.imageUrl }}" style="max-height: 135px" alt="Image" class="img-responsive"></li>
                             {% endfor %}
                         </ul>
