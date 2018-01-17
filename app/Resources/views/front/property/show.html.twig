@@ -222,16 +222,19 @@
         </div>
         {% endif %}
 
-        <!-- ITEMS GRID -->
-        <div class="container">
-            <h2 class="page-title">Vous pourriez aimer aussi ...</h2>
-            <div class="row">
-                {% for relatedProperty in relatedProperties %}
-                    {% include ':front/default:property_block.html.twig' with {'property': relatedProperty, 'col': 'col-md-4 col-sm-6'} %}
-                {% endfor %}
+        {% if relatedProperties|length > 1 %}
+            <!-- ITEMS GRID -->
+            <div class="container">
+                <h2 class="page-title">Vous pourriez aimer aussi ...</h2>
+                <div class="row">
+                    {% for relatedProperty in relatedProperties %}
+                        {% if property != relatedProperty %}
+                            {% include ':front/default:property_block.html.twig' with {'property': relatedProperty, 'col': 'col-md-4 col-sm-6'} %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
-        </div>
-        <!-- ITEMS GRID -->
-
+            <!-- ITEMS GRID -->
+        {% endif %}
     </div>
 {% endblock %}
