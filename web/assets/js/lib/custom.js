@@ -53,10 +53,12 @@ jQuery(document).ready(function($) {
         max: 1000,
         values: [ 0, 500 ],
         slide: function( event, ui ) {
-            $( "#area" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+            $( "#area-min" ).val( ui.values[ 0 ]);
+            $( "#area-max" ).val( ui.values[ 1 ])
         }
     });
-    $( "#area" ).val( $( "#area-range" ).slider( "values", 0 ) + " - " + $( "#area-range" ).slider( "values", 1 ) );
+    $( "#area-min" ).val( $( "#area-range" ).slider( "values", 0 ));
+    $( "#area-max" ).val( $( "#area-range" ).slider( "values", 1 ));
 
     // Price Range
 
@@ -66,10 +68,12 @@ jQuery(document).ready(function($) {
         max: 2000000,
         values: [ 0, 500000 ],
         slide: function( event, ui ) {
-            $( "#price" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+            $( "#price-min" ).val( ui.values[ 0 ]);
+            $( "#price-max" ).val( ui.values[ 1 ])
         }
     });
-    $( "#price" ).val( $( "#price-range" ).slider( "values", 0 ) + " - " + $( "#price-range" ).slider( "values", 1 ) );
+    $( "#price-min" ).val( $( "#price-range" ).slider( "values", 0 ));
+    $( "#price-max" ).val( $( "#price-range" ).slider( "values", 1 ));
 
     // Checkbox Replacements
 

@@ -1,6 +1,6 @@
 <div class="filter text-center">
     <form action="{{ path('app_front_search') }}" method="get">
-        <input placeholder="VILLE" name="location" type="text" list="cities" class="location type selectBox">
+        <input style="border-radius: 3px;" placeholder="VILLE" name="location" type="text" list="cities" class="location type selectBox">
         <datalist id="cities" class="location">
             <option value="">Ville</option>
             <option value="{{ 'APREMONT'|trim }}">Apremont</option>
@@ -42,7 +42,10 @@
         <div class="range text-left">
             <p>
                 <label for="price">Prix</label>
-                <span> € <input name="price" type="text" id="price" > </span>
+                <span class="text-white"> €
+                <input style="width: 60px; background-color: white; color: grey; padding: 3px; border-radius: 3px;" name="price-min" type="text" id="price-min" >
+                    -
+                <input style="width: 60px; background-color: white; color: grey; padding: 3px; border-radius: 3px;" name="price-max" type="text" id="price-max" > </span>
             </p>
             <div id="price-range"></div>
         </div>

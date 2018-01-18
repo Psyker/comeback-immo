@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.5.0'
+lock '3.10.1bin'
 
 set :application, 'comeback-immo'
 set :deploy_to, '/homez.114/comebacknu'

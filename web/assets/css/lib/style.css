@@ -920,6 +920,10 @@ footer ul li a { color: #fff; }
     color: black;
 }
 
+.text-white {
+    color: white;
+}
+
 @media screen and (max-width: 740px) {
     .table-inline {
         flex-direction: column;

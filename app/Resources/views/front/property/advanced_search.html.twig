@@ -67,14 +67,22 @@
         <div class="range">
             <p>
                 <label for="area" class="p-1">Surface</label>
-                <span>m2 <input name="area" type="text" id="area" /></span>
+                <span>m2
+                    <input style="width: 60px; background-color: white; color: grey; padding: 3px; border-radius: 3px;" name="area-min" type="text" id="area-min" >
+                    -
+                    <input style="width: 60px; background-color: white; color: grey; padding: 3px; border-radius: 3px;" name="area-max" type="text" id="area-max" >
+                </span>
             </p>
             <div id="area-range"></div>
         </div>
         <div class="range">
             <p>
                 <label for="price" class="p-2">Prix</label>
-                <span>€ <input name="price" type="text" id="price" ></span>
+                <span>€
+                    <input style="width: 60px; background-color: white; color: grey;  padding: 3px; border-radius: 3px;" name="price-min" type="text" id="price-min" >
+                    -
+                    <input style="width: 60px; background-color: white; color: grey;  padding: 3px; border-radius: 3px;" name="price-max" type="text" id="price-max" >
+                </span>
             </p>
             <div id="price-range"></div>
         </div>
