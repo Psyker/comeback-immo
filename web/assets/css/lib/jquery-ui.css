@@ -655,6 +655,7 @@ button.ui-button::-moz-focus-inner {
 	text-align: left;
 }
 .ui-slider .ui-slider-handle {
+	box-shadow: #373737 0px -1px 5px;
 	position: absolute;
 	z-index: 2;
 	width: 1.2em;
@@ -664,6 +665,7 @@ button.ui-button::-moz-focus-inner {
 	touch-action: none;
 }
 .ui-slider .ui-slider-range {
+	box-shadow: #373737 0px -1px 5px;
 	position: absolute;
 	z-index: 1;
 	font-size: .7em;
