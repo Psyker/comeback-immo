@@ -1,6 +1,6 @@
 <div class="filter text-center">
     <form action="{{ path('app_front_search') }}" method="get">
-        <input style="border-radius: 3px;" placeholder="VILLE" name="location" type="text" list="cities" class="location type selectBox">
+        <input style="border-radius: 3px;" placeholder="VILLE" name="location" type="text" list="cities" class="location caret-visible type selectBox">
         <datalist id="cities" class="location">
             <option value="">Ville</option>
             <option value="{{ 'APREMONT'|trim }}">Apremont</option>

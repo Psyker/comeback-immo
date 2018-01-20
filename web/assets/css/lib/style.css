@@ -924,6 +924,10 @@ footer ul li a { color: #fff; }
     color: white;
 }
 
+.caret-visible::-webkit-calendar-picker-indicator {
+    opacity: 100;
+}
+
 @media screen and (max-width: 740px) {
     .table-inline {
         flex-direction: column;
