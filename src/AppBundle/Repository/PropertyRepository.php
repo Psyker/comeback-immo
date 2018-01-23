@@ -117,15 +117,19 @@ class PropertyRepository extends EntityRepository
             }
         }
 
-        if (array_key_exists('price', $data->all()) && !empty($data->get('price'))) {
-            list($first, $second) = explode('-', $data->get('price'));
+        if (array_key_exists('price-min', $data->all()) && !empty($data->get('price-min'))
+            && array_key_exists('price-max', $data->all()) && !empty($data->get('price-max'))) {
+            $first = $data->get('price-min');
+            $second = $data->get('price-max');
             $query->andWhere('p.netPrice BETWEEN :first AND :second')
                 ->setParameter(':first', trim($first))
                 ->setParameter(':second', trim($second));
         }
 
-        if (array_key_exists('area', $data->all()) && !empty($data->get('area'))) {
-            list($min, $max) = explode('-', $data->get('area'));
+        if (array_key_exists('area-max', $data->all()) && !empty($data->get('area-max'))
+            && array_key_exists('area-min', $data->all()) && !empty($data->get('area-min'))) {
+            $min = $data->get('area-min');
+            $max = $data->get('area-max');
             $query->andWhere('pa.area BETWEEN :min AND :max')
                 ->setParameter(':min', trim($min))
                 ->setParameter(':max', trim($max));

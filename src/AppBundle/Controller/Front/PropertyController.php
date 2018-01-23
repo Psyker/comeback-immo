@@ -73,7 +73,6 @@ class PropertyController extends Controller
     {
         $page = $request->get('page', 1);
         if (!empty($request->query->all())) {
-
             $properties = $this->getDoctrine()->getRepository('AppBundle:Property')
                 ->searchProperties($request->query, $page);
 
