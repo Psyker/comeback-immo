@@ -72,7 +72,7 @@ class PropertyRepository extends EntityRepository
         return $query;
     }
 
-    public function searchProperties(ParameterBag $data, int $page)
+    public function searchProperties(ParameterBag $data, int $page, $limit = 5)
     {
         $query = $this->createQueryBuilder('p')
             ->join('p.location', 'l')
@@ -136,7 +136,7 @@ class PropertyRepository extends EntityRepository
         }
 
         $pagerfanta = new Pagerfanta(new DoctrineORMAdapter($query));
-        $pagerfanta->setMaxPerPage(5)
+        $pagerfanta->setMaxPerPage($limit)
             ->setCurrentPage($page)
             ->setAllowOutOfRangePages(true);
 

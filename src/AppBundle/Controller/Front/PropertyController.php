@@ -74,7 +74,7 @@ class PropertyController extends Controller
         $page = $request->get('page', 1);
         if (!empty($request->query->all())) {
             $properties = $this->getDoctrine()->getRepository('AppBundle:Property')
-                ->searchProperties($request->query, $page);
+                ->searchProperties($request->query, $page, 10);
 
             return $this->render('front/property/results.html.twig', [
                 'properties' => $properties
