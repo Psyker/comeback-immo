@@ -62,18 +62,18 @@ jQuery(document).ready(function($) {
 
     // Price Range
 
-    $( "#price-range" ).slider({
-        range: true,
-        min: 0,
-        max: 2000000,
-        values: [ 0, 500000 ],
-        slide: function( event, ui ) {
-            $( "#price-min" ).val( ui.values[ 0 ]);
-            $( "#price-max" ).val( ui.values[ 1 ])
-        }
-    });
-    $( "#price-min" ).val( $( "#price-range" ).slider( "values", 0 ));
-    $( "#price-max" ).val( $( "#price-range" ).slider( "values", 1 ));
+    // $( "#price-range" ).slider({
+    //     range: true,
+    //     min: 0,
+    //     max: 2000000,
+    //     values: [ 0, 500000 ],
+    //     slide: function( event, ui ) {
+    //         $( "#price-min" ).val( ui.values[ 0 ]);
+    //         $( "#price-max" ).val( ui.values[ 1 ])
+    //     }
+    // });
+    // $( "#price-min" ).val( $( "#price-range" ).slider( "values", 0 ));
+    // $( "#price-max" ).val( $( "#price-range" ).slider( "values", 1 ));
 
     // Checkbox Replacements
 

@@ -185,7 +185,7 @@ header .user-drop li i { margin-right: 20px; }
 ****************************************************************************/
   
 #slider { width: 100% !important; margin-top: -5px !important; overflow: hidden;  z-index: 98;  }
-#slider.flexslider { margin: 0 !important; border: 0 !important; max-height: 800px; }
+#slider.flexslider { margin: 0 !important; border: 0 !important; max-height: 800px; position: relative }
 #slider img  {margin-top: -120px}
 #slider .col-md-12 { position: relative; }
 
@@ -928,6 +928,15 @@ footer ul li a { color: #fff; }
     opacity: 100;
 }
 
+.signature {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+    color: black;
+    font-size: 1rem;
+}
+
 @media screen and (max-width: 740px) {
     .table-inline {
         flex-direction: column;
@@ -935,5 +944,14 @@ footer ul li a { color: #fff; }
 
     .table-inline table {
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 690px) {
+    .flexslider {
+        display: none;
+    }
+    header {
+        margin-bottom: 100px;
     }
 }

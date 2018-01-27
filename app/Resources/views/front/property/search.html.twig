@@ -10,8 +10,8 @@
             <option value="{{ 'CHANTILLY'|trim }}">Chantilly</option>
             <option value="{{ 'COURTEUIL'|trim }}">Courteuil</option>
             <option value="{{ 'CHAUMONTEL'|trim }}">Chaumontel</option>
-            <option value="{{ 'FOSSES'|trim }}">Fosses</option>
             <option value="{{ 'COYE LA FORET'|trim }}">Coye-La-Forêt</option>
+            <option value="{{ 'FOSSES'|trim }}">Fosses</option>
             <option value="{{ 'GOUVIEUX'|trim }}">Gouvieux</option>
             <option value="{{ 'LA CHAPELLE EN SERVAL'|trim }}">La Chapelle en Serval</option>
             <option value="{{ 'LOUVRES'|trim }}">Louvres</option>
@@ -41,14 +41,43 @@
         <button type="submit" class="btn"><i class="fa fa-search"></i>Rechercher</button>
         <div class="range text-left">
             <p>
-                <label for="price">Prix</label>
+                <label for="price">Prix entre</label>
                 <span class="text-white"> €
-                <input style="width: 60px; background-color: white; color: grey; padding: 3px; border-radius: 3px;" name="price-min" type="text" id="price-min" >
-                    -
-                <input style="width: 60px; background-color: white; color: grey; padding: 3px; border-radius: 3px;" name="price-max" type="text" id="price-max" > </span>
+                    <select style="background-color: white; color: grey; padding: 3px; border-radius: 3px;" class="cata selectBox" name="price-min" id="price-min">
+                        {% set count = 0 %}
+                        {% for i in 0..40 %}
+                            <option value="{{ count }}">{{ count|number_format(0, '.', ' ') }}</option>
+                            {% set count = count + 25000 %}
+                            {% if loop.index > 20 and loop.index < 25 %}
+                                {% set count = count + 40000 %}
+                            {% endif %}
+                            {% if loop.index > 25  %}
+                                {% set count = count + 100000 %}
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                         <span style="margin-left: 10px">et</span>
+                    <select style="background-color: white; color: grey; padding: 3px; border-radius: 3px;" name="price-max" class="cata selectBox"  id="price-max" >
+                        {% set count = 0 %}
+                        {% for i in 0..40 %}
+                            {% if loop.index == 40 %}
+                                <option selected value="{{ count }}">{{ count|number_format(0, '.', ' ') }}</option>
+                            {% else %}
+                                <option value="{{ count }}">{{ count|number_format(0, '.', ' ') }}</option>
+                            {% endif %}
+                            {% set count = count + 25000 %}
+                            {% if loop.index > 20 and loop.index < 25 %}
+                                {% set count = count + 40000 %}
+                            {% endif %}
+                            {% if loop.index > 25 %}
+                                {% set count = count + 100000 %}
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </span>
             </p>
-            <div id="price-range"></div>
         </div>
     </form>
+    <br>
     <a href="{{ path('app_front_property_list') }}" class="adv-srch">Recherche avancée</a>
 </div>
