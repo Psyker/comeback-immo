@@ -34,7 +34,6 @@ jQuery(document).ready(function($) {
         itemWidth: 200,
         itemMargin: 24,
         minItems: 1,
-        move: 1,
         asNavFor: '#property-slider'
     });
 
