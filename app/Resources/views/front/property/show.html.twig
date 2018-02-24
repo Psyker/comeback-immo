@@ -27,7 +27,7 @@
                     <figure id="property-slider">
                         <ul class="slides">
                             {% for media in property.medias %}
-                                <li><img src="{{ media.imageUrl }}" style="max-height: 485px" alt="Image" class="img-responsive"></li>
+                                <li><a href="{{ media.imageUrl }}" data-lightbox="property"><img src="{{ media.imageUrl }}"  style="max-height: 485px" alt="Image" class="img-responsive"></a></li>
                             {% endfor %}
                         </ul>
                         {#<span class="label sale">Sale</span>#}
