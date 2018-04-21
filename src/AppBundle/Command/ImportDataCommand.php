@@ -204,8 +204,14 @@ class ImportDataCommand extends ContainerAwareCommand
         foreach ($property->getMedias() as $media) {
             $property->removeMedia($media);
         }
-        foreach ($data['IMAGES']['IMG'] as $img) {
-            $property->addMedia((new Media())->setImageUrl($img)->setProperty($property));
+        if (!empty($data['IMAGES']['IMG'])) {
+            if (is_array($data['IMAGES']['IMG'])) {
+                foreach ($data['IMAGES']['IMG'] as $key => $img) {
+                    $property->addMedia((new Media())->setImageUrl($img)->setProperty($property));
+                }
+            } else {
+                $property->addMedia((new Media())->setImageUrl($data['IMAGES']['IMG'])->setProperty($property));
+            }
         }
     }
 
@@ -219,7 +225,6 @@ class ImportDataCommand extends ContainerAwareCommand
         $xml = simplexml_load_string($res->getBody()->getContents(), 'SimpleXMLElement', LIBXML_NOCDATA);
         $arrayData = json_decode(json_encode((array)$xml), true);
         $em = $this->getContainer()->get('doctrine.orm.default_entity_manager');
-
         $checkPropBar = new ProgressBar($output, count($arrayData['BIEN']));
         // Clear media table.
         $this->em->getConnection()->exec('TRUNCATE TABLE media');
@@ -242,6 +247,7 @@ class ImportDataCommand extends ContainerAwareCommand
                 $this->updateProperty($item['INFO_GENERALES']['AFF_ID'], $item);
             }
             $checkPropBar->advance();
+
         }
 
         foreach ($propertiesIds as $propertiesId) {
