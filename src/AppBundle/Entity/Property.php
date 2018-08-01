@@ -164,7 +164,7 @@ class Property implements PropertyInterface
      * @param string $description
      * @return Property
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
 
@@ -237,10 +237,10 @@ class Property implements PropertyInterface
     }
 
     /**
-     * @param PropertyInterface $propertyOther
+     * @param PropertyOther $propertyOther
      * @return Property
      */
-    public function setPropertyOther($propertyOther)
+    public function setPropertyOther(PropertyOther $propertyOther)
     {
         $this->propertyOther = $propertyOther;
 
@@ -259,7 +259,7 @@ class Property implements PropertyInterface
      * @param PropertyArea $propertyArea
      * @return Property
      */
-    public function setPropertyArea($propertyArea)
+    public function setPropertyArea(PropertyArea $propertyArea)
     {
         $this->propertyArea = $propertyArea;
 
