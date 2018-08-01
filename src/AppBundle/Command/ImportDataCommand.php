@@ -145,7 +145,11 @@ class ImportDataCommand extends ContainerAwareCommand
                         }
                     } else {
                         if (array_key_exists($keyAttribute, $data[$key])) {
-                            $entity->set($attribute, $data[$key][$keyAttribute]);
+                            if (is_array($data[$key][$keyAttribute])) {
+                                $entity->set($attribute, $data[$key][$keyAttribute][0]);
+                            } else {
+                                $entity->set($attribute, $data[$key][$keyAttribute]);
+                            }
                         }
                     }
                 }
@@ -166,15 +170,16 @@ class ImportDataCommand extends ContainerAwareCommand
         }
         /** @var Location $location */
         $location = $this->setDataByModel($this->locationModel, $data, new Location());
-        $location->setProperty($property);
         /** @var PropertyInside $propertyInside */
         $propertyInside = $this->setDataByModel($this->propertyInsideModel, $data, new PropertyInside());
         /** @var PropertyOutside $propertyOutside */
         $propertyOutside = $this->setDataByModel($this->propertyOutsideModel, $data, new PropertyOutside());
-        /** @var PropertyOutside $propertyOther */
+        /** @var PropertyOther $propertyOther */
         $propertyOther = $this->setDataByModel($this->propertyOtherModel, $data, new PropertyOther());
         /** @var PropertyArea $propertyArea */
         $propertyArea = $this->setDataByModel($this->propertyAreaModel, $data, new PropertyArea());
+
+        $location->setProperty($property);
         $property->setLocation($location);
         $property->setPropertyInside($propertyInside);
         $property->setPropertyOutside($propertyOutside);
