@@ -34,21 +34,27 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $message = new \Swift_Message();
-            $message->setBody($this->render(':front/mail:contact_mail.html.twig', [
+            $to = $this->getParameter('mailer_user');
+            $body = $this->render(':front/mail:contact_mail.html.twig', [
                 'message' => $form->getData()['message'],
                 'name' => $form->getData()['name'],
                 'email' => $form->getData()['email'],
                 'subject' => $form->getData()['subject'],
                 'phone' => $form->getData()['phone']
-            ]), 'text/html');
-            $message->setSubject('Nouveau message');
-            $message->setFrom($form->getData()['email']);
-            $message->setTo($this->getParameter('mailer_user'));
+            ]);
+            $headers = [];
+            $headers[] = 'MIME-Version: 1.0';
+            $headers[] = 'Content-type: text/html; charset=iso-8859-1';
+            $headers[] = 'To: Mary <'. $to .'@example.com>, '. $to .' <'. $to .'>';
+            $headers[] = 'From: '.$to.' <'. $to .'>';
+            mail(
+                $to,
+                'Vous avez un nouveau message ! | Comeback-Immobilier',
+                $body->getContent(),
+                implode("\r\n", $headers)
+            );
 
             $this->addFlash('success', 'Votre message a bien été envoyé');
-
-            $this->get('swiftmailer.mailer')->send($message);
         }
         return $this->render('front/default/contact.html.twig', [
             'form' => $form->createView()
