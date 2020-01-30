@@ -42,14 +42,18 @@ class DefaultController extends Controller
                 'subject' => $form->getData()['subject'],
                 'phone' => $form->getData()['phone']
             ]);
-            $header = "From: <".$to.">\n";
-            $header .= "Reply-To: ".$to."\n";
-            $header .= "Content-Type: text/plain; charset=\"utf-8\"";
+
+
+            $headers = [];
+            $headers[] = 'MIME-Version: 1.0';
+            $headers[] = 'Content-type: text/html; charset=iso-8859-1';
+            $headers[] = 'To: '. $to .' <'. $to . '>';
+            $headers[] = 'From: '.$to.' <'. $to .'>';
             mail(
                 $to,
                 'Vous avez un nouveau message ! | Comeback-Immobilier',
                 $body->getContent(),
-                $header
+                implode("\r\n", $headers)
             );
 
             $this->addFlash('success', 'Votre message a bien été envoyé');
